@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">GShare</string>
+    <string name="item_name">ItemName</string>
+    <string name="days">Days</string>
+    <string name="bellIcon">BellIcon</string>
+    <string name="gShareLogo">GShareLogo</string>
+    <string name="user_money">0</string>
+    <string name="homepage_background">HomepageBackground</string>
+    <string name="search">Search</string>
+    <string name="sortby_button">SortByButton</string>
+    <string name="empty_string"></string>
+    <string name="transactions">Transactions</string>
+    <string name="profile_pic">Profile Picture</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="username">Username</string>
+    <string name="name_surname">Name Surname</string>
+
+    <!--Content Descriptions-->
+    <string name="background">Background Image</string>
+    <string name="quests">QuestsButton</string>
+    <string name="bookmark_list">BookmarkListButton</string>
+    <string name="file_report">File Report</string>
+    <string name="lender_rating">Lender Rating</string>
+    <string name="borrower_rating">Borrower Rating</string>
+    <string name="badge1">Badge1</string>
+    <string name="badge2">Badge2</string>
+    <string name="badge3">Badge3</string>
+    <string name="badge4">Badge4</string>
+    <string name="badge5">Badge5</string>
+    <string name="editProfileButton">EditProfileButton</string>
+
+    <!--tabs-->
+    <string name="home">Home</string>
+    <string name="map">Map</string>
+    <string name="my_notices">My Notices</string>
+    <string name="chats">Chats</string>
+    <string name="profile">Profile</string>
+
+    <!--Category names-->
+    <string name="transport">Transport</string>
+    <string name="school">School</string>
+    <string name="laptop">Laptop</string>
+    <string name="camera">Camera</string>
+    <string name="stationary">Stationary</string>
+    <string name="pets">Pets</string>
+    <string name="sports">Sports</string>
+
+    <!--Lending/Borrowing-->
+    <string name="borrowing">Borrowing</string>
+    <string name="lending">Lending</string>
+
+</resources>

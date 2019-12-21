@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <ImageView
+        android:id="@+id/homepageBackgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="730dp"
+        android:contentDescription="@string/homepage_background"
+        app:srcCompat="@drawable/homepage_background" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="115dp">
+
+            <ImageButton
+                android:id="@+id/sortby_button"
+                android:layout_width="47dp"
+                android:layout_height="46dp"
+                android:contentDescription="@string/sortby_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.951"
+                app:layout_constraintStart_toEndOf="@+id/homepageSearchView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.869"
+                app:srcCompat="@drawable/sortby_icon" />
+
+            <SearchView
+                android:id="@+id/homepageSearchView"
+                android:layout_width="357dp"
+                android:layout_height="45dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:iconifiedByDefault="false"
+                android:queryHint="@string/search"
+                app:iconifiedByDefault="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.052"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.895">
+
+            </SearchView>
+
+            <TextView
+                android:id="@+id/moneyTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                app:layout_constraintBottom_toTopOf="@+id/sortby_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.928"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.39" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/categoryTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:orientation="horizontal">
+
+
+            <ImageButton
+                android:id="@+id/transportButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/transport"
+                app:srcCompat="@drawable/ic_car_black_24dp" />
+
+            <ImageButton
+                android:id="@+id/schoolButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/school"
+                app:srcCompat="@drawable/ic_school_black_24dp" />
+
+            <ImageButton
+                android:id="@+id/laptopButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/laptop"
+                app:srcCompat="@drawable/ic_laptop_black_24dp" />
+
+            <ImageButton
+                android:id="@+id/cameraButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/camera"
+                app:srcCompat="@drawable/ic_photo_camera_black_24dp" />
+
+            <ImageButton
+                android:id="@+id/stationaryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/stationary"
+                app:srcCompat="@drawable/ic_scissors_black_24dp" />
+
+            <ImageButton
+                android:id="@+id/petsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/pets"
+                app:srcCompat="@drawable/ic_pets_black_24dp" />
+
+            <ImageButton
+                android:id="@+id/sportsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/sports"
+                app:srcCompat="@drawable/ic_fitness_center_black_24dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lending_borrowing_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/lendingSortiButton"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="121dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="#FF9800"
+                android:text="@string/lending"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/emptyText"
+                android:layout_width="92dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/empty_string" />
+
+            <Button
+                android:id="@+id/borrowingSortButton"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="121dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="#B201D8"
+                android:text="@string/borrowing"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/homepageScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="480dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_marginTop="595dp"
+        android:background="#FA383838"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_tabs">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</FrameLayout>

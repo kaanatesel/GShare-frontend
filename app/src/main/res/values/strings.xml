@@ -17,6 +17,7 @@
     <string name="name_surname">Name Surname</string>
     <string name="time_left">Time Left: </string>
     <string name="status_of_chat">Status</string>
+    <string name="chat">Chat</string>
 
     <!--Content Descriptions-->
     <string name="background">Background Image</string>

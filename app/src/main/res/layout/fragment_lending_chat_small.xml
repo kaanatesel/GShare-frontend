@@ -34,7 +34,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nameSurname"
+                android:id="@+id/nameSurname2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed-medium"
@@ -90,6 +90,6 @@
         android:layout_width="wrap_content"
         android:layout_weight="1"
         app:srcCompat="@drawable/orange_line"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp" />
 
 </LinearLayout>

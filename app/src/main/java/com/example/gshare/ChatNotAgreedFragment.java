@@ -9,14 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class PinkFragment extends Fragment {
+public class ChatNotAgreedFragment extends Fragment {
 
-    //est comment
-    // test 2
-    // test 3
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_pink, container,false);
+        return inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
     }
 }

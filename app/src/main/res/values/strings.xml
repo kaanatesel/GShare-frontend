@@ -18,6 +18,11 @@
     <string name="time_left">Time Left: </string>
     <string name="status_of_chat">Status</string>
     <string name="chat">Chat</string>
+    <string name="message">Message</string>
+    <string name="date_time">Date and Time</string>
+    <string name="type_here">Type here...</string>
+    <string name="agree">Agree</string>
+    <string name="days_colon">Days:</string>
 
     <!--Content Descriptions-->
     <string name="background">Background Image</string>
@@ -35,6 +40,8 @@
     <string name="background_chats_fragment">Background For Chats Fragment</string>
     <string name="border_line">BorderLine</string>
     <string name="delete_chat">DeleteChat</string>
+    <string name="item_pic">Item Picture</string>
+    <string name="icon_g">G Icon</string>
 
     <!--tabs-->
     <string name="home">Home</string>

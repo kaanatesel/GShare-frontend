@@ -68,6 +68,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/status_of_chat" />
+
+            <ImageButton
+                android:id="@+id/deleteChatButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/delete_chat"
+                app:srcCompat="@android:drawable/ic_delete" />
         </LinearLayout>
 
     </LinearLayout>

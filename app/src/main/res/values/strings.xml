@@ -33,6 +33,7 @@
     <string name="editProfileButton">EditProfileButton</string>
     <string name="background_chats_fragment">Background For Chats Fragment</string>
     <string name="border_line">BorderLine</string>
+    <string name="delete_chat">DeleteChat</string>
 
     <!--tabs-->
     <string name="home">Home</string>

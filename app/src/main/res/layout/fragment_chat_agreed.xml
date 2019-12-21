@@ -119,7 +119,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="463dp">
+        android:layout_height="447dp">
 
         <LinearLayout
             android:id="@+id/linearLayoutForMessages"
@@ -204,6 +204,7 @@
                 android:name="com.example.gshare.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
             <fragment
                 android:id="@+id/fragment20"
                 android:name="com.example.gshare.SingleMessageFragment"
@@ -213,6 +214,15 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/timeLeftTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/time_left_without_colon"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <LinearLayout
         android:id="@+id/horizontalLayoutEdit"

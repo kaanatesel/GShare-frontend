@@ -24,6 +24,7 @@
     <string name="agree">Agree</string>
     <string name="days_colon">Days:</string>
     <string name="terminate">Termınate</string>
+    <string name="time_left_without_colon">Time Left</string>
 
     <!--Content Descriptions-->
     <string name="background">Background Image</string>
@@ -43,6 +44,7 @@
     <string name="delete_chat">DeleteChat</string>
     <string name="item_pic">Item Picture</string>
     <string name="icon_g">G Icon</string>
+    <string name="top_bar">Top Bar</string>
 
     <!--tabs-->
     <string name="home">Home</string>

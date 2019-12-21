@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 public class PinkFragment extends Fragment {
 
+    //test comment
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

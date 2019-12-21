@@ -14,7 +14,6 @@ public class PinkFragment extends Fragment {
     //est comment
     // test 2
     // test 3
-    //test onu
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

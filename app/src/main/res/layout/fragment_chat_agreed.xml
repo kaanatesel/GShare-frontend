@@ -30,12 +30,14 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/nameTextView2"
+            <Button
+                android:id="@+id/nameButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:text="@string/name_surname"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="#140707"
                 android:textSize="24sp" />
 
@@ -86,9 +88,10 @@
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:editable="false"
+            android:clickable="false"
+            android:focusable="false"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="none" />
 
         <Space
             android:layout_width="75dp"
@@ -108,9 +111,10 @@
             android:layout_width="86dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:editable="false"
+            android:clickable="false"
+            android:focusable="false"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="none" />
     </LinearLayout>
 
     <ScrollView

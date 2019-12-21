@@ -30,12 +30,14 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/nameTextView2"
+            <Button
+                android:id="@+id/nameButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:text="@string/name_surname"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="#140707"
                 android:textSize="24sp" />
 

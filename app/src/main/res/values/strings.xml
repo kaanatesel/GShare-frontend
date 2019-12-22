@@ -38,6 +38,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="enter_old_password">Old password here</string>
+    <string name="enter_new_password">New password here</string>
 
     <!--Popup Messages-->
     <string name="confirm_publish">Are you sure you want to publish the notice?</string>
@@ -61,6 +63,7 @@
     <string name="item_pic">Item Picture</string>
     <string name="icon_g">G Icon</string>
     <string name="top_bar">Top Bar</string>
+    <string name="g_logo">G Logo</string>
 
     <!--tabs-->
     <string name="home">Home</string>
@@ -84,6 +87,12 @@
 
     <!--Constant Texts-->
     <string name="status">Status:</string>
+    <string name="change_profile_picture">Change Picture</string>
+    <string name="change_name">Change Name</string>
+    <string name="change_password">Change Password</string>
+    <string name="edit_notice">Edit Notice</string>
+    <string name="notice">Notice</string>
+
     <!--Register Part-->
     <string name="loginPassword">Password</string>
     <string name="loginUserName">Username</string>

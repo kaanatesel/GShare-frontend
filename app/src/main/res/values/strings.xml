@@ -28,6 +28,13 @@
     <string name="returned">Returned</string>
     <string name="not_returned">Not Returned</string>
     <string name="sort_by">Sort By</string>
+    <string name="g_interval">G Interval</string>
+    <string name="distance">Distance</string>
+    <string name="km">km</string>
+    <string name="newest_first">Newest First</string>
+    <string name="alphabetical_sort">Alphabetically</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="apply">Apply</string>
 
     <!--Content Descriptions-->
     <string name="background">Background Image</string>

@@ -63,6 +63,7 @@
     <string name="item_pic">Item Picture</string>
     <string name="icon_g">G Icon</string>
     <string name="top_bar">Top Bar</string>
+    <string name="g_logo">G Logo</string>
 
     <!--tabs-->
     <string name="home">Home</string>

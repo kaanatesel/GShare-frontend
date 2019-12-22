@@ -38,6 +38,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="enter_old_password">Old password here</string>
+    <string name="enter_new_password">New password here</string>
 
     <!--Popup Messages-->
     <string name="confirm_publish">Are you sure you want to publish the notice?</string>
@@ -84,6 +86,10 @@
 
     <!--Constant Texts-->
     <string name="status">Status:</string>
+    <string name="change_profile_picture">Change Picture</string>
+    <string name="change_name">Change Name</string>
+    <string name="change_password">Change Password</string>
+
     <!--Register Part-->
     <string name="loginPassword">Password</string>
     <string name="loginUserName">Username</string>

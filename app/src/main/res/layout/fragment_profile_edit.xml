@@ -109,3 +109,5 @@
             android:text="@string/change_password"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
     </LinearLayout>
+
+</LinearLayout>

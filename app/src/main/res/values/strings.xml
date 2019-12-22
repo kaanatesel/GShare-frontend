@@ -89,6 +89,7 @@
     <string name="change_profile_picture">Change Picture</string>
     <string name="change_name">Change Name</string>
     <string name="change_password">Change Password</string>
+    <string name="edit_notice">Edit Notice</string>
 
     <!--Register Part-->
     <string name="loginPassword">Password</string>

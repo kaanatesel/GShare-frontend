@@ -155,18 +155,18 @@
             <ImageButton
                 android:id="@+id/questsButton"
                 style="@android:style/Widget.Material.Light.ImageButton"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:contentDescription="@string/quests"
                 android:background="@android:color/white"
                 app:srcCompat="@drawable/quests_button" />
 
             <ImageButton
                 android:id="@+id/bookmarksButton"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 app:srcCompat="@drawable/bookmark_list_button"
                 android:contentDescription="@string/bookmark_list" />
@@ -174,9 +174,9 @@
             <ImageButton
                 android:id="@+id/fileReportButton"
                 android:layout_width="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:background="@android:color/white"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:contentDescription="@string/file_report"
                 app:srcCompat="@drawable/file_report_button" />
 

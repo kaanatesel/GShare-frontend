@@ -71,4 +71,32 @@
 
     <!--Constant Texts-->
     <string name="status">Status:</string>
+    <!--Register Part-->
+    <string name="loginPassword">Password</string>
+    <string name="loginUserName">Username</string>
+    <string name="logloginButton">Login</string>
+    <string name="regloginButton">Login</string>
+    <string name="logregisterButton">Register</string>
+    <string name="regregisterButton">Register</string>
+    <string name="loginTitle">Login</string>
+    <string name="registerWarnText">Don\'t have an account?</string>
+    <string name="textViewUsername">Username:</string>
+    <string name="textViewPassword">Password:</string>
+    <string name="checkBoxKeep">Keep me logged in</string>
+    <string name="e_mail">E-mail:</string>
+    <string name="registerText">Register</string>
+    <string name="alreadyWarningText">Already have an account?</string>
+    <string name="registerEmail">E-mail</string>
+    <string name="nameSurname">Name and Surname (Will be displayed to other users):</string>
+    <string name="RegisterNameSurname">Name and Surname</string>
+
+    <!--Add Notice-->
+    <string name="addnotice">Add Notice</string>
+    <string name="publishbutton">Publish</string>
+    <string name="categorytext">Category:</string>
+    <string name="item_nametext">Item Name:</string>
+    <string name="daystext">Days:</string>
+    <string name="note">Note</string>
+    <string name="notetext">Note:</string>
+
 </resources>

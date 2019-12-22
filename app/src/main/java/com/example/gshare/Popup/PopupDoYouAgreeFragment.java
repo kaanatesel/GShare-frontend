@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.gshare.R;
 
-public class PopupDoYouAgree extends Fragment {
+public class PopupDoYouAgreeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

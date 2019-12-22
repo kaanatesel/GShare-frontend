@@ -61,7 +61,7 @@
             android:id="@+id/agreeButton"
             android:layout_width="121dp"
             android:layout_height="wrap_content"
-            android:text="@string/agree" />
+            android:text="@string/agree"/>
 
         <Button
             android:id="@+id/dontAgreeButton"

@@ -110,5 +110,11 @@
     <string name="daystext">Days:</string>
     <string name="note">Note</string>
     <string name="notetext">Note:</string>
+    <string name="gtext">G:</string>
+    <string name="doyouagreetext">Do you agree on the agreement?</string>
+    <string name="dontagreebutton">Don\'t Agree</string>
+    <string name="returndatesample">ReturnDateSample</string>
+    <string name="returndatetext">Return Date:</string>
+    <string name="gsample">GSample</string>
 
 </resources>

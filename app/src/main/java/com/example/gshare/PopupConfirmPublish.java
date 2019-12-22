@@ -14,6 +14,6 @@ public class PopupConfirmPublish extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.)
+        return inflater.inflate(R.layout.fragment_popup_confirm_publish, container, false);
     }
 }

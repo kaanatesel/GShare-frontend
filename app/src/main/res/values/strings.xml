@@ -36,6 +36,9 @@
     <string name="bookmarks">Bookmarks</string>
     <string name="apply">Apply</string>
 
+    <!--Popup Messages-->
+    <string name="confirm_publish">Are you sure you want to publish the notice?</string>
+
     <!--Content Descriptions-->
     <string name="background">Background Image</string>
     <string name="quests">QuestsButton</string>

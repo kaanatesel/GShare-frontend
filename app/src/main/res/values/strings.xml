@@ -110,5 +110,12 @@
     <string name="daystext">Days:</string>
     <string name="note">Note</string>
     <string name="notetext">Note:</string>
+    <string name="noticetitlesample">NoticeTitleSample</string>
+    <string name="g">G:</string>
+    <string name="contact">Contact</string>
+    <string name="dayssample">DaysSample</string>
+    <string name="gsample">GSample</string>
+    <string name="a_sample_note">A Sample Note</string>
+    <string name="user_button_going_to_be_a_user_fragment">User button going to be a user fragment</string>
 
 </resources>

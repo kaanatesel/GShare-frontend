@@ -37,6 +37,7 @@
     <string name="apply">Apply</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="edit_profile">Edit Profile</string>
 
     <!--Popup Messages-->
     <string name="confirm_publish">Are you sure you want to publish the notice?</string>

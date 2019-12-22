@@ -27,6 +27,7 @@
     <string name="time_left_without_colon">Time Left</string>
     <string name="returned">Returned</string>
     <string name="not_returned">Not Returned</string>
+    <string name="sort_by">Sort By</string>
 
     <!--Content Descriptions-->
     <string name="background">Background Image</string>

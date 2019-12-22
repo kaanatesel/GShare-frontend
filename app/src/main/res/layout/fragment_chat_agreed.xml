@@ -169,6 +169,12 @@
                 android:layout_height="wrap_content" />
 
             <fragment
+                android:id="@+id/fragment16"
+                android:name="com.example.gshare.PopupConfirmPublish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
                 android:id="@+id/fragment14"
                 android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"

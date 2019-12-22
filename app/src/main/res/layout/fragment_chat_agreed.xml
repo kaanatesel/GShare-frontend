@@ -170,7 +170,7 @@
 
             <fragment
                 android:id="@+id/fragment16"
-                android:name="com.example.gshare.PopupConfirmPublish"
+                android:name="com.example.gshare.Popup.PopupConfirmPublish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

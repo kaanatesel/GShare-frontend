@@ -58,13 +58,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/agree button"
+            android:id="@+id/agreeButton"
             android:layout_width="121dp"
             android:layout_height="wrap_content"
             android:text="@string/agree" />
 
         <Button
-            android:id="@+id/dontagreebutton"
+            android:id="@+id/dontAgreeButton"
             android:layout_width="121dp"
             android:layout_height="wrap_content"
             android:text="Don't Agree" />

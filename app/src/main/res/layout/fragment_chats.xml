@@ -35,19 +35,19 @@
 
                 <fragment
                     android:id="@+id/fragment"
-                    android:name="com.example.gshare.BorrowingChatFragmentSmall"
+                    android:name="com.example.gshare.Chat.BorrowingChatFragmentSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <fragment
                     android:id="@+id/fragment3"
-                    android:name="com.example.gshare.LendingChatFragmentSmall"
+                    android:name="com.example.gshare.Chat.LendingChatFragmentSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <fragment
                     android:id="@+id/fragment2"
-                    android:name="com.example.gshare.BorrowingChatFragmentSmall"
+                    android:name="com.example.gshare.Chat.BorrowingChatFragmentSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>

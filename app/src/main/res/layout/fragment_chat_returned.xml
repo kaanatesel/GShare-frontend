@@ -135,85 +135,85 @@
 
             <fragment
                 android:id="@+id/fragment4"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment5"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment6"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment7"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment8"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment9"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment14"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment13"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment12"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment11"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment50"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment40"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment30"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment20"
-                android:name="com.example.gshare.SingleMessageFragment"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

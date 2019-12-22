@@ -1,4 +1,4 @@
-package com.example.gshare;
+package com.example.gshare.Chat;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,11 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class ChatNotAgreedFragment extends Fragment {
+import com.example.gshare.R;
+
+public class ChatDoneFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
+        return inflater.inflate(R.layout.fragment_chat_done, container, false);
     }
 }

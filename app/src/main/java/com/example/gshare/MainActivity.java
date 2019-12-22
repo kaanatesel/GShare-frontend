@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.fragment_createnoticepurple);
+        setContentView(R.layout.fragment_notice_view_lending);
         //button1 = findViewById(R.id.regregisterButton);
         //button1.setOnClickListener(this);
         //setContentView(R.layout.activity_register);

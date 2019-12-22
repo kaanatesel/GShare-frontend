@@ -61,21 +61,6 @@
                 android:inputType="textPersonName"
                 tools:targetApi="o" />
 
-            <TextView
-                android:id="@+id/gtext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="G:"
-                android:textColor="#000000"
-                android:textSize="17sp" />
-
-            <EditText
-                android:id="@+id/ginput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="4"
-                android:hint="G value"
-                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout

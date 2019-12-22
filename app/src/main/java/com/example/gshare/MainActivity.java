@@ -12,7 +12,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_popup_sort_by);
+
+        setContentView(R.layout.fragment_createnoticeyellow);
 
 
     }

@@ -7,6 +7,11 @@
     android:orientation="vertical">
 
 
+    <fragment
+        android:id="@+id/fragment15"
+        android:name="com.example.gshare.TopBarClass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/linearLayoutForNoticeInfo"
@@ -52,7 +57,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/agreeButton"
+            android:id="@+id/terminateButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -119,7 +124,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="447dp">
+        android:layout_height="396dp">
 
         <LinearLayout
             android:id="@+id/linearLayoutForMessages"

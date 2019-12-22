@@ -8,7 +8,7 @@
 
 
     <fragment
-        android:id="@+id/fragment10"
+        android:id="@+id/fragment15"
         android:name="com.example.gshare.TopBarClass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -36,7 +36,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/nameButton"
+                android:id="@+id/nameButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -44,6 +44,7 @@
                 android:text="@string/name_surname"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="#140707"
+                android:clickable="false"
                 android:textSize="24sp" />
 
             <TextView
@@ -62,8 +63,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:layout_weight="1"
-            android:background="#3DE043"
-            android:text="@string/agree" />
+            android:background="#5F5C5B"
+            android:text="@string/terminate" />
 
     </LinearLayout>
 
@@ -93,8 +94,10 @@
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="none" />
 
         <Space
             android:layout_width="75dp"
@@ -114,13 +117,15 @@
             android:layout_width="86dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="none" />
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="412dp">
+        android:layout_height="408dp">
 
         <LinearLayout
             android:id="@+id/linearLayoutForMessages"

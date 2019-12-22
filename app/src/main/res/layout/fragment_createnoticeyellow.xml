@@ -1,193 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-
-    <TextView
-        android:id="@+id/addNotice"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/addnotice"
-        android:textColor="#FFC107"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.088" />
-
-    <Button
-        android:id="@+id/PublishButton"
-        android:layout_width="121dp"
-        android:layout_height="48dp"
-        android:text="@string/publishbutton"
-        android:textAllCaps="false"
-        android:textColor="#FFC107"
-        android:textColorHighlight="#2196F3"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addNotice"
-        app:layout_constraintVertical_bias="0.811" />
-
-    <TextView
-        android:id="@+id/itemnameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/item_nametext"
-        android:textColor="#000000"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/itemNameinput"
-        app:layout_constraintHorizontal_bias="0.432"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447" />
-
-    <TextView
-        android:id="@+id/daysText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/daystext"
-        android:textColor="#000000"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/daysinput"
-        app:layout_constraintHorizontal_bias="0.752"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemnameText"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/categoryText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/categorytext"
-        android:textColor="#000000"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/daysText" />
-
-    <TextView
-        android:id="@+id/noteText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/notetext"
-        android:textColor="#000000"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.186"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoryText"
-        app:layout_constraintVertical_bias="0.175" />
-
-    <EditText
-        android:id="@+id/itemNameinput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="272dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:ems="12"
-        android:hint="@string/item_name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:autofillHints="" tools:targetApi="o" />
-
-    <EditText
-        android:id="@+id/daysinput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="4"
-        android:hint="@string/days"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.389"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemNameinput"
-        android:autofillHints="" tools:targetApi="o" />
-
-    <EditText
-        android:id="@+id/noteinput"
-        android:layout_width="268dp"
-        android:layout_height="44dp"
-        android:layout_marginBottom="20dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/note"
-        android:inputType="textPersonName"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/PublishButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/daysinput"
-        app:layout_constraintVertical_bias="1.0"
-        tools:targetApi="o" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/addNotice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/g_share_logo" />
-
-    <ImageButton
-        android:id="@+id/AddImage"
-        android:layout_width="224dp"
-        android:layout_height="153dp"
-        app:layout_constraintBottom_toTopOf="@+id/itemNameinput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addNotice"
-        app:srcCompat="@android:drawable/ic_menu_add" />
-
-    <TextView
-        android:id="@+id/gtext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="G:"
-        android:textColor="#000000"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.632"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemnameText"
-        app:layout_constraintVertical_bias="0.092" />
-
-    <EditText
-        android:id="@+id/ginput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="4"
-        android:hint="G value"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.852"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemNameinput" />
+        android:orientation="vertical">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/gLogo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/g_share_logo" />
+
+        <TextView
+            android:id="@+id/addNotice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/addnotice"
+            android:textAlignment="center"
+            android:textColor="#FFC107"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="224dp"
+            android:layout_height="153dp"
+            android:layout_marginStart="100dp"
+            android:src="@android:drawable/ic_menu_add" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/itemnameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item_nametext"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/itemNameinput"
+                android:layout_width="137dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="28dp"
+                android:autofillHints=""
+                android:ems="12"
+                android:hint="@string/item_name"
+                android:inputType="textPersonName"
+                tools:targetApi="o" />
+
+            <TextView
+                android:id="@+id/gtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="G:"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/ginput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="4"
+                android:hint="G value"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/categoryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categorytext"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="250dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/daysText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/daystext"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/daysinput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="4"
+                android:hint="@string/days"
+                android:inputType="numberDecimal"
+                tools:targetApi="o" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/noteText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/notetext"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/noteinput"
+            android:layout_width="268dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/note"
+            android:inputType="textPersonName"
+            android:textColor="#000000"
+            tools:targetApi="o" />
+
+        <Button
+            android:id="@+id/PublishButton"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="80dp"
+            android:text="@string/publishbutton"
+            android:textAllCaps="false"
+            android:textColor="#FFC107"
+            android:textColorHighlight="#2196F3"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/doyouagreeText"
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lines="1"
+        android:text="Do you agree on the agreement?"
+        android:textColor="#000000" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/returndateText"
+            android:layout_width="91dp"
+            android:layout_height="match_parent"
+            android:text="Return Date: "
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/returndate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ReturnDateSample" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Gtext"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:text="G: "
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/G"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GSample" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/agree button"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:text="@string/agree" />
+
+        <Button
+            android:id="@+id/dontagreebutton"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:text="Don't Agree" />
+
+    </LinearLayout>
+
+</LinearLayout>

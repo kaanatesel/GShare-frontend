@@ -1,5 +1,10 @@
 package com.example.gshare.ModelClasses.Location;
 
+/**
+ * the location class that calculates locations and distances
+ *
+ * @version  23.12.2019
+ */
 public class LocationG {
     private double latitude;
     private double longitude;

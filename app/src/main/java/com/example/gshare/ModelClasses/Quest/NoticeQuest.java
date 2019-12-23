@@ -2,6 +2,11 @@ package com.example.gshare.ModelClasses.Quest;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
 
+/**
+ * The notice quest class that extends the quest class.
+ *
+ * @version  23.12.2019
+ */
 public class NoticeQuest extends Quest {
 
     public final static int lendQuest = 0;
@@ -38,6 +43,12 @@ public class NoticeQuest extends Quest {
             setProgress( borrow + lend );
         }
     }
+
+    /**
+     * checks the progress from the starting.
+     * @param user the user to check
+     * @param notice the notice to check
+     */
     public void checkProressForStarting( User user, Notice notice ){
         int day = (int) notice.computeTimeLeft();
 

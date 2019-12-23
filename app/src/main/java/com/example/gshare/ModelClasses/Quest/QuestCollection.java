@@ -2,22 +2,44 @@ package com.example.gshare.ModelClasses.Quest;
 
 import java.util.ArrayList;
 
+/**
+ * The quest collection class that takes quest to a colleciton
+ *
+ * @version 23.12.2019
+ */
 public class QuestCollection {
 
     private ArrayList<Quest> questList;
 
+    /**
+     * The constructor of the questcolleciton class
+     * @param questList the array list for quests.
+     */
     public QuestCollection( ArrayList<Quest> questList ) {
         this.questList = questList;
     }
 
+    /**
+     * gets all quests to user.
+     * @return questlist the quest list arraylist.
+     */
     public ArrayList<Quest> getAllQuests() {
         return questList;
     }
 
+    /**
+     * gets the quests to user.
+     * @param index the index of arraylist
+     * @return quest a quest.
+     */
     public Quest getQuest( int index ) {
         return questList.get( index );
     }
 
+    /**
+     * adds new quest by the param
+     * @param q the new quest to add.
+     */
     public void addNewQuest( Quest q ) {
         questList.add(q);
     }
@@ -40,6 +62,10 @@ public class QuestCollection {
 
     }
 
+    /**
+     * gets thq quest collection.
+     * @return collection the quest collection.
+     */
     public static QuestCollection getQuestCollection(){
         QuestCollection collection = new QuestCollection( new ArrayList<Quest>());
 

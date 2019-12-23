@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_my_notices);
+        DBHelper.getInstance(this);
 
         /*
         buttonLogin = (Button) findViewById(R.id.regloginButton);

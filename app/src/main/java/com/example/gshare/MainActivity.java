@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        
+
         buttonLogin = (Button) findViewById(R.id.regloginButton);
         buttonRegister = (Button) findViewById(R.id.regregisterButton);
         userName = (EditText) findViewById(R.id.loginUserName);

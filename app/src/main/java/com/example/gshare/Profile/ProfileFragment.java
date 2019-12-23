@@ -1,4 +1,4 @@
-package com.example.gshare;
+package com.example.gshare.Profile;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gshare.Chat.ChatFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import com.example.gshare.R;
 
 public class ProfileFragment extends Fragment {
     @Nullable

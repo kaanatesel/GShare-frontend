@@ -28,7 +28,7 @@
             android:layout_width="210dp"
             android:layout_height="37dp"
             android:layout_marginTop="24dp"
-            android:background="#80FFC107"
+            android:background="#B0673AB7"
             android:text="@string/noticetitlesample"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/dayText"
@@ -96,7 +96,7 @@
             android:layout_marginBottom="16dp"
             android:text="@string/contact"
             android:textAllCaps="false"
-            android:textColor="#FFC107"
+            android:textColor="#B0673AB7"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +108,7 @@
             android:layout_width="105dp"
             android:layout_height="27dp"
             android:layout_marginTop="20dp"
-            android:background="#80FFC107"
+            android:background="#B0673AB7"
             android:text="@string/dayssample"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -118,25 +118,11 @@
             app:layout_constraintTop_toBottomOf="@+id/noticeTitle" />
 
         <TextView
-            android:id="@+id/noticeg"
-            android:layout_width="80dp"
-            android:layout_height="31dp"
-            android:layout_marginTop="16dp"
-            android:background="#80FFC107"
-            android:text="@string/gsample"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.363"
-            app:layout_constraintStart_toEndOf="@+id/GText"
-            app:layout_constraintTop_toBottomOf="@+id/noticeTitle" />
-
-        <TextView
             android:id="@+id/noticenote"
             android:layout_width="256dp"
             android:layout_height="72dp"
             android:layout_marginTop="84dp"
-            android:background="#80FFC107"
+            android:background="#B0673AB7"
             android:text="@string/a_sample_note"
             android:textColor="#000000"
             android:textSize="18sp"

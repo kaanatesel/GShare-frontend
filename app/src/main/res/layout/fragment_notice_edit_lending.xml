@@ -19,10 +19,10 @@
             app:srcCompat="@drawable/g_share_logo" />
 
         <TextView
-            android:id="@+id/addNotice"
+            android:id="@+id/edit_notice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/addnotice"
+            android:text="@string/edit_notice"
             android:textAlignment="center"
             android:textColor="#FFC107"
             android:textSize="20sp"
@@ -155,7 +155,7 @@
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_marginStart="80dp"
-            android:text="@string/publishbutton"
+            android:text="@string/apply"
             android:textAllCaps="false"
             android:textColor="#FFC107"
             android:textColorHighlight="#2196F3"

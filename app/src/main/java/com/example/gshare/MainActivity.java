@@ -1,9 +1,13 @@
 package com.example.gshare;
 
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -28,14 +32,27 @@ import static com.example.gshare.R.layout.fragment_home_page;
 import static com.example.gshare.R.layout.fragment_profile;
 
 
-public class MainActivity extends AppCompatActivity {
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-    // bora
-    // return bora
-    // sa
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Button buttonLogin;
+    Button buttonRegister;
+    EditText userName;
+    EditText password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //setContentView(R.layout.activity_chat);
 
       /*ListView list = (ListView) findViewById(R.id.chatList);
@@ -49,10 +66,25 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
         }*/
 
-      setContentView(blank_layout);
-        BottomNavigationView bottomNav = findViewById(R.id.nav_view);
+        setContentView(R.layout.fragment_my_notices);
+
+        /*
+        buttonLogin = (Button) findViewById(R.id.regloginButton);
+        buttonRegister = (Button) findViewById(R.id.regregisterButton);
+        userName = (EditText) findViewById(R.id.loginUserName);
+        password = (EditText) findViewById(R.id.loginPassword);
+
+
+        buttonLogin.setOnClickListener(this);
+        buttonRegister.setOnClickListener(this);
+         */
+    }
+
+
+        /*BottomNavigationView bottomNav = findViewById(R.id.nav_view);
 
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
 
         HomePageFragment fragmentHome = new HomePageFragment();
         FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
@@ -68,10 +100,10 @@ public class MainActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             setContentView(R.layout.activity_main);
 
-        }*/
-    }
-    @NonNull
-        private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+        }
+    }*/
+
+        /*private BottomNavigationView.OnNavigationItemSelectedListener navListener =
                 new BottomNavigationView.OnNavigationItemSelectedListener(){
                 @SuppressLint("ResourceType")
                 @Override
@@ -126,9 +158,53 @@ public class MainActivity extends AppCompatActivity {
                 }
         };
 
+                }*/
+
+
+
+
+
+    public boolean tryLogin(String userName, String password) {//FIX THIS AT FINAL PRODUCT
+        /*if( DBHelper.getUser( userName , password) == null ){
+            return false;
+        }
+        return true;*/
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.regloginButton:
+                boolean result = tryLogin(userName.getText().toString(), password.getText().toString());
+;
+                if (result) {
+                    openHomePage();
                 }
+                else {
+                    Toast.makeText(this, "Wrong password or username", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.regregisterButton:
+                openRegister();
+                break;
+        }
+    }
+
+    public void openRegister(){
+        Intent intent = new Intent( this, RegisterActivity.class);
+        startActivity(intent);
+    }
+    public void openHomePage(){
+        String u_name = userName.getText().toString();
+        String p_word = password.getText().toString();
+        Intent intent = new Intent( this, HomePageActivity.class);
+        intent.putExtra( "USERNAME" , u_name );
+        intent.putExtra("PASSWORD", p_word );
+        startActivity(intent);
+    }
 
 
-
-
+}
 

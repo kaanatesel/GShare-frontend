@@ -3,6 +3,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,6 +42,20 @@ public class ListViewAdapter extends ArrayAdapter<NoticeTry> {
         noticeGView.setText(myNotices[position].getG());
         return row;
     }
+    list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        @Override
+        public void onItemClick(AdapterView<?> adapterView ,View view, int position, long l){
+
+
+        }
+
+
+
+    }
+
+
+
+            )
 }
 
 

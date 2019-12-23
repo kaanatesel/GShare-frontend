@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
         fragmentTransaction1.replace(R.id.main_layout,fragmentHome);
         fragmentTransaction1.commit();
-       /* ListView listView = (ListView) findViewById(R.id.list);
+       /ListView listView = (ListView) findViewById(R.id.list);
         NoticeTry[] notices = new NoticeTry[2];
         notices[0] = new NoticeTry("kitap", "3", "1");
         notices[1] = new NoticeTry("elma", "4", "2");

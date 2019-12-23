@@ -4,6 +4,11 @@ import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import java.util.ArrayList;
 
+/**
+ * The full static sort class that sorts the notices in the main home page.
+ *
+ * @version 23.12.2019
+ */
 public class Sort {
 
     public static final char LENDING = 'L';
@@ -20,6 +25,13 @@ public class Sort {
     public static final int BOOKS = 7;
     public static final int OTHER = 8;
 
+    /**
+     * sorts all notices by keyword.
+     * @param noticeList the notice list to sort.
+     * @param keyWord the keyword to sort.
+     * @param noticeType the noticetype.
+     * @return sortedList the sorted list.
+     */
     public static ArrayList<Notice> sortByKeyWord ( ArrayList<Notice> noticeList , String keyWord , char noticeType ) {//TESTED AND WORKS
         ArrayList<Notice> sortedList = new ArrayList<Notice>();
 
@@ -38,6 +50,13 @@ public class Sort {
         return sortedList;
     }
 
+    /**
+     * sorts all notices by category.
+     * @param noticeList the notice list to sort.
+     * @param categoryType the category type to sort.
+     * @param noticeType the notice type.
+     * @return sortedList the sorted list.
+     */
     public static ArrayList<Notice> sortByCategory ( ArrayList<Notice> noticeList , int categoryType, char noticeType ) {//TESTED AND WORKS
         ArrayList<Notice> sortedList = new ArrayList<Notice>();
 
@@ -56,6 +75,13 @@ public class Sort {
         return sortedList;
     }
 
+    /**
+     * sorts all notices by g interval
+     * @param noticeList the notice list to sort.
+     * @param startG the start g.
+     * @param endG the end g.
+     * @return sortedList the sorted list.
+     */
     public static ArrayList<Notice> sortByGInterval ( ArrayList<Notice> noticeList , int startG , int endG  ) {//TESTED AND WORK
         ArrayList<Notice> sortedList = new ArrayList<Notice>();
 
@@ -70,6 +96,14 @@ public class Sort {
         return sortedList;
     }
 
+    /**
+     * sorts all notices by distance.
+     * @param noticeList the notice list to sort.
+     * @param user the user that is sorting.
+     * @param interval the distance interval of sort.
+     * @param noticeType the notice type.
+     * @return sortedlist the sorted list.
+     */
     public static ArrayList<Notice> sortByDistance ( ArrayList<Notice> noticeList , User user , int interval, char noticeType ) {//TESTED AND PROBABLY IT WORKS HARD TO SEE
         ArrayList<Notice> sortedList = new ArrayList<Notice>();
 
@@ -103,6 +137,13 @@ public class Sort {
         return sortedList;
     }
 
+    /**
+     * sorts all notices by bookmark
+     * @param noticeList the notice list to sort.
+     * @param user the user to get the bookmark.
+     * @param noticeType the notice type
+     * @return
+     */
     public static ArrayList<Notice> sortByBookmark ( ArrayList<Notice> noticeList , User user, char noticeType ) {//TESTED AND WORKS
         ArrayList<Notice> sortedList = new ArrayList<Notice>();
 
@@ -123,6 +164,12 @@ public class Sort {
         return sortedList;
     }
 
+    /**
+     * sorts all notices by lexiographically.
+     * @param noticeList the notice list to sort.
+     * @param noticeType the notice type.
+     * @return noticeList the sorted list.
+     */
     public static ArrayList<Notice> sortByLexiography ( ArrayList<Notice> noticeList, char noticeType ) {//TESTED AND WORKS
 
         if( noticeType == BORROWING){
@@ -148,6 +195,12 @@ public class Sort {
         return noticeList;
     }
 
+    /**
+     * sorts all notices by post time.
+     * @param noticeList the notice list to sort.
+     * @param noticeType the notice type.
+     * @return noticeList the sorted list.
+     */
     public static ArrayList<Notice> sortByPostTime ( ArrayList<Notice> noticeList, char noticeType ){//TESTED AND WORKS
 
         if( noticeType == BORROWING){
@@ -172,6 +225,11 @@ public class Sort {
         return noticeList;
     }
 
+    /**
+     * gets all lending notices to the user.
+     * @param noticeList the notice list to get lending notices
+     * @return sortedList the sorted list.
+     */
     public static ArrayList< Notice > getLendings( ArrayList<Notice> noticeList ){//TESTED AND WORKS
         ArrayList< Notice > sortedList = new ArrayList<Notice>();
 
@@ -183,6 +241,12 @@ public class Sort {
         return sortedList;
 
     }
+
+    /**
+     * gets all borrowing notices to the user.
+     * @param noticeList the notice list the get borrowing notices.
+     * @return sortedList returns sorted list.
+     */
     public static ArrayList< Notice > getBorrowings( ArrayList<Notice> noticeList ){//TESTED AND WORKS
         ArrayList< Notice > sortedList = new ArrayList<Notice>();
 
@@ -195,10 +259,11 @@ public class Sort {
 
     }
 
+    // Not tested added recently
     /**
-     * Not tested added recently
-     * @param noticeList
-     * @return
+     * randomizes all notices.
+     * @param noticeList the noticeList to randomize noticeList.
+     * @return noticeList the randomized notice list.
      */
     public static ArrayList< Notice > randomize( ArrayList<Notice> noticeList ){
         for( int i = 0; i < noticeList.size(); i++ ) {

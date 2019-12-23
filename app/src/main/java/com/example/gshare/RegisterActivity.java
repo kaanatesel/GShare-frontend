@@ -1,5 +1,7 @@
 package com.example.gshare;
 
+import com.example.gshare.ModelClasses.User.User;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -46,9 +48,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.regregisterButton:
                 if( userName.getText().toString().length() != 0 && password.getText().toString().length()
                         != 0 && email.getText().toString().length() != 0 && nameAndSurname.getText().toString().length() != 0){
-                    /*User user = new User( nameAndSurname.getText().toString().substring(0,nameAndSurname.getText().toString().indexOf(" ") + 1),
-                            nameAndSurname.getText().toString().substring(nameAndSurname.getText().toString().indexOf(" ")),
-                            userName.getText().toString(), password.getText().toString(), email.getText().toString(), 0 );
+                    /*
+                    User user = new User( nameAndSurname.getText().toString(), userName.getText().toString(),
+                            password.getText().toString(), email.getText().toString(), 0 );
 
                     boolean added = tryRegister( user );*/
 

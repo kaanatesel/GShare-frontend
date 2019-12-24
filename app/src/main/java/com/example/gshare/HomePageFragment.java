@@ -75,13 +75,21 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         switch ( v.getId() ){
             case R.id.addNoticeButton:
                 if( sortMode == LENDING_MODE ){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("userName",user.getUserName());
+                    bundle.putString("password",user.getPassword());
                     CreateYellowNoticeFragment fragmentLend = new CreateYellowNoticeFragment();
+                    fragmentLend.setArguments(bundle);
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace( R.id.homepage_placeholder,fragmentLend);
                     fragmentTransaction.commit();
                 }
                 if( sortMode == BORROWING_MODE ){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("userName",user.getUserName());
+                    bundle.putString("password",user.getPassword());
                     CreatePurpleNoticeFragment fragmentBorrow = new CreatePurpleNoticeFragment();
+                    fragmentBorrow.setArguments(bundle);
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.homepage_placeholder,fragmentBorrow);
                     fragmentTransaction.commit();

@@ -89,7 +89,7 @@ public class PopupSortByFragment extends DialogFragment implements View.OnClickL
                 homePageFragment.setArguments(bundle);
                 fragmentTransaction.replace( R.id.homepage_placeholder, homePageFragment );
                 fragmentTransaction.commit();
-                //getDialog().dismiss();
+                getDialog().dismiss();
         }
     }
 }

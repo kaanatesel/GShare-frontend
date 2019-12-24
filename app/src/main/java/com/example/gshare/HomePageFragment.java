@@ -119,9 +119,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             case R.id.borrowingSortButton:
                 sortMode = BORROWING_MODE;
                 notices = Sort.getBorrowings( notices);
-                borrowModeButton.setBackgroundColor(Color.parseColor("#6a0dad"));
+                borrowModeButton.setBackgroundColor(Color.parseColor("#F000FF"));
                 lendModeButton.setBackgroundColor(Color.parseColor("#FF9800") );
-                addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6a0dad")));
+                addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F000FF")));
                 lendModeButton.setTypeface(null, Typeface.NORMAL);
                 borrowModeButton.setTypeface(null , Typeface.BOLD_ITALIC);
                 //CONNECT TO THE ADAPTER

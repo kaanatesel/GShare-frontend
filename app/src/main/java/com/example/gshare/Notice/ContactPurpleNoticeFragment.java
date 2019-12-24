@@ -14,15 +14,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.gshare.ChatActivity;
 import com.example.gshare.ModelClasses.ChatModel.Chat;
-import com.example.gshare.ModelClasses.ChatModel.ChatCollection;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.R;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 /**
  * Fix the DBHElper parts when it is added
@@ -40,11 +35,9 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
     String password;
 
 
-
-    @Nullable
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_noticecontactpurple, container, false);
+
         Bundle bundle = getArguments();
 
         noticeId = bundle.getInt("notice_id");
@@ -89,3 +82,4 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
     }
 
 }
+

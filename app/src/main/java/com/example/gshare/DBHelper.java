@@ -19,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import com.example.gshare.ModelClasses.ChatModel.Chat;
 import com.example.gshare.ModelClasses.ChatModel.Message;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
@@ -495,4 +496,7 @@ public class DBHelper {
 
 // POST isteği gönderildikten sonra response alıyor JSON id name email password createDATE
 
+
+
 // validateLogin() PU ın id sini kaydetsin
+

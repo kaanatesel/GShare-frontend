@@ -44,10 +44,11 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_noticecontactyellow, container, false);
         Bundle bundle = getArguments();
-
-        noticeId = bundle.getInt("notice_id");
-        userName = bundle.getString("userName");
-        password = bundle.getString("password");
+        if(bundle != null) {
+            noticeId = bundle.getInt("notice_id");
+            userName = bundle.getString("userName");
+            password = bundle.getString("password");
+        }
 
         notice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                 100,new LocationG());//DBHelper.getNotice(noticeId);
@@ -61,7 +62,7 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
         title.setText(notice.getName());
         days.setText(notice.getDay() + "");
         note.setText(notice.getNote());
-        g.setText(notice.getG()+"");
+        g.setText(notice.getG() + "");
 
         contactButton.setOnClickListener(this);
 
@@ -87,5 +88,12 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
         intent.putExtra("USERNAME" , user.getUserName() );
         intent.putExtra("PASSWORD", user.getPassword());
         startActivity(intent);
+
     }
+
+    /*ContactSmallProfileFragment fragment = new ContactSmallProfileFragment();
+onAttach(c);
+            FragmentTransaction fragmentTransactionForSmallProfile = mContext.getSupportFragmentManager().beginTransaction();
+            fragmentTransactionForSmallProfile.replace(R.id.UserButton,fragment);
+            fragmentTransactionForSmallProfile.commit();*/
 }

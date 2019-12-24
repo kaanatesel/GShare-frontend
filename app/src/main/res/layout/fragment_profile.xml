@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayoutProfile"
+    android:id="@+id/mainFrameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,14 +11,14 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="691dp"
         android:contentDescription="@string/background"
         app:srcCompat="@drawable/homepage_background_no_notifications" />
 
     <ScrollView
         android:id="@+id/scrollViewProfile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp">
 
         <LinearLayout
@@ -155,28 +155,28 @@
             <ImageButton
                 android:id="@+id/questsButton"
                 style="@android:style/Widget.Material.Light.ImageButton"
-                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/quests"
+                android:layout_marginStart="10dp"
                 android:background="@android:color/white"
+                android:contentDescription="@string/quests"
                 app:srcCompat="@drawable/quests_button" />
 
             <ImageButton
                 android:id="@+id/bookmarksButton"
-                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:background="@android:color/white"
-                app:srcCompat="@drawable/bookmark_list_button"
-                android:contentDescription="@string/bookmark_list" />
+                android:contentDescription="@string/bookmark_list"
+                app:srcCompat="@drawable/bookmark_list_button" />
 
             <ImageButton
                 android:id="@+id/fileReportButton"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:background="@android:color/white"
-                android:layout_height="wrap_content"
                 android:contentDescription="@string/file_report"
                 app:srcCompat="@drawable/file_report_button" />
 
@@ -192,79 +192,13 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/button22"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button24"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button23"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button21"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button19"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button18"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button17"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button16"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
 
         </LinearLayout>
     </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_gravity="bottom"></RelativeLayout>
 
 </FrameLayout>

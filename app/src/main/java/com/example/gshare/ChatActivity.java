@@ -5,7 +5,10 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.gshare.Chat.ChatsFragment;
+import com.example.gshare.Chat.ChatFragment;
+
+
+import static com.example.gshare.R.id.linearLayoutForChatsFragment;
 
 public class ChatActivity extends AppCompatActivity {
     String userName;
@@ -19,13 +22,13 @@ public class ChatActivity extends AppCompatActivity {
         userName = getIntent().getStringExtra("USERNAME");
         password = getIntent().getStringExtra("PASSWORD");
 
-        ChatsFragment chatsFragment = new ChatsFragment();
+        ChatFragment chatsFragment = new ChatFragment();
         Bundle bundle = new Bundle();
         bundle.putString("userName",userName);
         bundle.putString("password",password);
         chatsFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.chat_placeholder,chatsFragment);
+        fragmentTransaction.replace(R.id.linearLayoutForChatsFragment,chatsFragment);
         fragmentTransaction.commit();
     }
 }

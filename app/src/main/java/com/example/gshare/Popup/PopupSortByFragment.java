@@ -95,7 +95,7 @@ public class PopupSortByFragment extends DialogFragment implements View.OnClickL
                 HomePageFragment homePageFragment = new HomePageFragment();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 homePageFragment.setArguments(bundle);
-                fragmentTransaction.replace( R.id.homepage_placeholder, homePageFragment );
+                fragmentTransaction.replace( R.id.main_layout, homePageFragment );
                 fragmentTransaction.commit();
                 getDialog().dismiss();
         }

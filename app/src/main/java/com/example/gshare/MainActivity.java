@@ -3,7 +3,6 @@ package com.example.gshare;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     openHomePage(passDB.equals(uPass));
                 }
-
             }
         });
     }
@@ -117,8 +115,6 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra( "USERNAME" , u_name );
             intent.putExtra("PASSWORD", p_word );
             startActivity(intent);
-
-            
         }
 
     }

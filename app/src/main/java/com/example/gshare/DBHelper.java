@@ -1,4 +1,4 @@
-package com.example.gshare;
+/*package com.example.gshare;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -342,4 +342,4 @@ public class DBHelper {
 
 
 
-//}
+//}*/

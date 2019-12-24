@@ -13,17 +13,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentTransaction;
 
 
-import com.example.gshare.Notice.ContactYellowNoticeFragment;
-import com.example.gshare.Notice.NoticeTry;
+import com.example.gshare.ModelClasses.NoticeModel.Notice;
+
+import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import java.util.ArrayList;
 
-public class ListViewAdapter extends ArrayAdapter<NoticeTry> {
+public class ListViewAdapter extends ArrayAdapter<Notice> {
 
     Context context;
-    ArrayList<NoticeTry> myNotices;
+    ArrayList<Notice> myNotices;
 
-    private ArrayList<NoticeTry> notices;
-    public ListViewAdapter(@NonNull Context c,@NonNull ArrayList<NoticeTry> notices){
+    private ArrayList<Notice> notices;
+    public ListViewAdapter(@NonNull Context c,@NonNull ArrayList<Notice> notices){
         super(c, R.layout.noticelayout,notices);
         this.context = c;
         this.myNotices = notices;
@@ -39,11 +40,11 @@ public class ListViewAdapter extends ArrayAdapter<NoticeTry> {
         TextView noticeDayView = row.findViewById(R.id.textView6);
         TextView noticeGView = row.findViewById(R.id.textView5);
         noticeNameView.setText(myNotices.get(position).getName());
-        noticeDayView.setText(myNotices.get(position).getDay());
-        noticeGView.setText(myNotices.get(position).getG());
+        noticeDayView.setText(myNotices.get(position).getDay() + "");
+        noticeGView.setText(myNotices.get(position).getG() + "");
         return row;
     }
-    public ListViewAdapter update(ArrayList<NoticeTry> noticeTries){
+    public ListViewAdapter update(ArrayList<Notice> noticeTries){
         ListViewAdapter adapterNew = new ListViewAdapter(this.context,noticeTries);
         return adapterNew;
     }

@@ -67,7 +67,7 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
         HomePageFragment homePageFragment = new HomePageFragment();
         homePageFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.homepage_placeholder,homePageFragment);
+        fragmentTransaction.replace(R.id.main_layout,homePageFragment);
         fragmentTransaction.commit();
 
     }

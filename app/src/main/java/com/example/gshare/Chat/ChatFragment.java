@@ -23,7 +23,7 @@ private ListView chatList;
 private ChatAdapter chatAdapter;
 private ArrayList<ChatTry> chats;
     @Nullable
-
+//We will change ChatTry to Chat
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         @SuppressLint("ResourceType") View view = inflater.inflate(R.layout.activity_chat, container,false);
         chatList = (ListView)view.findViewById(R.id.chatList);

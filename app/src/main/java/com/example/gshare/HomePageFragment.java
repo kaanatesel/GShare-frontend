@@ -91,9 +91,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             case R.id.sortby_button:
                 PopupSortByFragment popupSortByFragment = new PopupSortByFragment();
                 popupSortByFragment.show( getFragmentManager(), "SortPopUp");
-                //FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                //fragmentTransaction.replace( R.id.homepage_placeholder, popupSortByFragment);
-                //fragmentTransaction.commit();
                 break;
 
             case R.id.borrowingSortButton:
@@ -108,6 +105,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
     public ArrayList<Notice> sort( ArrayList<Notice> list ,boolean accepted , boolean g, int min, int max, boolean newest, boolean alphabetical ){
         if( accepted ){
             if(sortMode==LENDING_MODE) {

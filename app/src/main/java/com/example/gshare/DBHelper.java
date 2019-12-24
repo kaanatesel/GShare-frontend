@@ -489,7 +489,7 @@ public class DBHelper {
 //    }//Lending notice end
 
 
-}
+//}
 
 }//DBHelper end
 

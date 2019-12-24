@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 
 import android.graphics.Typeface;
@@ -42,6 +43,7 @@ import java.util.ArrayList;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.Sort.Sort;
 import com.example.gshare.ModelClasses.User.User;
+import com.example.gshare.Notice.ActivityContqactTry;
 import com.example.gshare.Notice.ContactPurpleNoticeFragment;
 import com.example.gshare.Notice.ContactYellowNoticeFragment;
 import com.example.gshare.Notice.CreatePurpleNoticeFragment;
@@ -139,14 +141,16 @@ onAttach(c);
 
 
                 //if(notices.get(position).getNoticeType() =='L'){
-                
+
 
 
                 ContactYellowNoticeFragment fragmentForLending = new ContactYellowNoticeFragment();
                     fragmentForLending.setArguments(args);
                     FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransactionForLending.replace(R.id.main_Layout,fragmentForLending);
+                    fragmentTransactionForLending.replace(R.id.main_layout,fragmentForLending);
                     fragmentTransactionForLending.commit();
+                //Intent i = new Intent(getContext(), ActivityContqactTry.class);
+                //startActivity(i);
 
                 //}else if(notşces.get(position).getNoticeType() =='R'){
                 //ContactPurpleNoticeFragment fragmentForBorrowing= new ContactPurpleNoticeFragment();
@@ -243,7 +247,7 @@ onAttach(c);
             }
         });
         //button should be changed later
-        ImageButton buttonSports = (ImageButton) view.findViewById(R.id.sportsButton);
+        ImageButton buttonSports = (ImageButton) view.findViewById(R.id.othersButton);
         buttonSports.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

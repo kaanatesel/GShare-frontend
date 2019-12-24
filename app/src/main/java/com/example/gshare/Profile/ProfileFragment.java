@@ -42,7 +42,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         userName = bundle.getString("userName");
         password = bundle.getString("password");
-        //user = DBHelper.getUser(userName,password);
+       // user = DBHelper.getUser(userName,password);
 
         editButton = view.findViewById(R.id.editProfileButton);
         nameAndSurname = view.findViewById(R.id.nameTextView);

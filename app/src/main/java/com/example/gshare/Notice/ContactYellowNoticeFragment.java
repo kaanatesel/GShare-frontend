@@ -11,7 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.Chat.ChatNotAgreedFragment;
 import com.example.gshare.ChatActivity;
 import com.example.gshare.ModelClasses.ChatModel.Chat;
 import com.example.gshare.ModelClasses.ChatModel.ChatCollection;
@@ -84,10 +87,14 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
             //DBHelper.updateChatCollection( chatCollection );
         }*/
 
-        Intent intent = new Intent(getActivity(), ChatActivity.class );
+        /*Intent intent = new Intent(getActivity(), ChatActivity.class );
         intent.putExtra("USERNAME" , user.getUserName() );
         intent.putExtra("PASSWORD", user.getPassword());
-        startActivity(intent);
+        startActivity(intent);*/
+        ChatNotAgreedFragment fragmentChatNotAgreed = new ChatNotAgreedFragment();
+        FragmentTransaction fragmentManagerForNotAgreedChat = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentManagerForNotAgreedChat.replace(R.id.main_layout,fragmentChatNotAgreed);
+        fragmentManagerForNotAgreedChat.commit();
 
     }
 

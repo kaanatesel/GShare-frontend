@@ -10,10 +10,10 @@
     android:id="@+id/main_Biglayout"
     >
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="692dp"></RelativeLayout>
+        android:layout_height="692dp"></FrameLayout>
 
 <include
 layout="@layout/bottom_navigation_view"

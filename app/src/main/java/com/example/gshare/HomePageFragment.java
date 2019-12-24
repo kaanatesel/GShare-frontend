@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 
 import android.graphics.Typeface;
@@ -42,6 +43,7 @@ import java.util.ArrayList;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.Sort.Sort;
 import com.example.gshare.ModelClasses.User.User;
+import com.example.gshare.Notice.ActivityContqactTry;
 import com.example.gshare.Notice.ContactPurpleNoticeFragment;
 import com.example.gshare.Notice.ContactYellowNoticeFragment;
 import com.example.gshare.Notice.CreatePurpleNoticeFragment;
@@ -141,10 +143,15 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
 
                 ContactYellowNoticeFragment fragmentForLending = new ContactYellowNoticeFragment();
-                fragmentForLending.setArguments(args);
-                FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransactionForLending.replace(R.id.main_layout, fragmentForLending);
-                fragmentTransactionForLending.commit();
+                    fragmentForLending.setArguments(args);
+                    FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransactionForLending.replace(R.id.main_layout,fragmentForLending);
+                    fragmentTransactionForLending.commit();
+                //Intent i = new Intent(getContext(), ActivityContqactTry.class);
+                //startActivity(i);
+
+                
+                
 
                 //}else if(notşces.get(position).getNoticeType() =='R'){
                 //ContactPurpleNoticeFragment fragmentForBorrowing= new ContactPurpleNoticeFragment();

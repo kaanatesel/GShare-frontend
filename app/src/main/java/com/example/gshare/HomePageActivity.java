@@ -68,42 +68,42 @@ public class HomePageActivity extends AppCompatActivity  {
                     switch (item.getItemId()) {
 
                         case R.id.navigation_home:
-                            openHomePage();
-                                    /*HomePageFragment fragment1 = new HomePageFragment();
+
+                                    HomePageFragment fragment1 = new HomePageFragment();
                                     FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction1.replace(R.id.main_layout,fragment1);
-                                    fragmentTransaction1.commit();*/
+                                    fragmentTransaction1.commit();
                             return true;
 
                         case R.id.navigation_Map:
 
-                                    /*HomePageFragment fragment2 = new HomePageFragment();
+                                    HomePageFragment fragment2 = new HomePageFragment();
                                     FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction2.replace(R.id.main_layout,fragment2);
-                                    fragmentTransaction2.commit();*/
+                                    fragmentTransaction2.commit();
                             return true;
 
                         case R.id.navigation_Notices:
-                            openMyNoticesPage();
-                                    /*MyNoticesFragment fragment3 = new MyNoticesFragment();
+
+                                    MyNoticesFragment fragment3 = new MyNoticesFragment();
                                     FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction3.replace(R.id.main_layout,fragment3);
-                                    fragmentTransaction3.commit();*/
+                                    fragmentTransaction3.commit();
                             return true;
                         case R.id.navigation_Chat:
-                            openChatPage();
-                                    /*ChatFragment fragment4 = new ChatFragment();
+
+                                    ChatFragment fragment4 = new ChatFragment();
                                     FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction4.replace(R.id.main_layout,fragment4);
-                                    fragmentTransaction4.commit();*/
+                                    fragmentTransaction4.commit();
                             return true;
 
 
                         case R.id.navigation_Profilet:
-                                    /*ProfileFragment fragment5 = new ProfileFragment();
+                                    ProfileFragment fragment5 = new ProfileFragment();
                                     FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction5.replace(R.id.main_layout,fragment5);
-                                    fragmentTransaction5.commit();*/
+                                    fragmentTransaction5.commit();
                             return true;
                     }
                     return false;
@@ -118,18 +118,7 @@ public class HomePageActivity extends AppCompatActivity  {
         );
     }
 
-    public void openHomePage(){
-        Intent intentHome = new Intent(this,HomePageActivity.class);
-        startActivity(intentHome);
-    }
-    public void openMyNoticesPage(){
-        Intent intentMyNotices = new Intent(this,MyNoticesActivity.class);
-        startActivity(intentMyNotices);
-    }
-    public void openChatPage(){
-        Intent intentChat = new Intent(this,ChatActivity.class);
-        startActivity(intentChat);
-    }
+
 
 
 

@@ -3,7 +3,9 @@ package com.example.gshare.ModelClasses.NoticeModel;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.User.User;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -15,7 +17,7 @@ This site probably gonna be usefull
 https://www.youtube.com/watch?v=XQJiiuk8Feo
 This class will create a notice and do aproper things
  */
-public class Notice {
+public class Notice implements Serializable {
     public static final int LEND_NOTICE = 1;
     public static final int BORROW_NOTICE = 2;
 
@@ -382,5 +384,24 @@ public class Notice {
         String output;
         output = name + " " + g;
         return output;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Notice notice = (Notice) o;
+        return noticeType == notice.noticeType &&
+                day == notice.day &&
+                category == notice.category &&
+                agreed == notice.agreed &&
+                over == notice.over &&
+                postingTime == notice.postingTime &&
+                g == notice.g &&
+                startTime == notice.startTime &&
+                Objects.equals(name, notice.name) &&
+                Objects.equals(note, notice.note) &&
+                Objects.equals(noticeOwner, notice.noticeOwner) &&
+                Objects.equals(noticeTaker, notice.noticeTaker);
     }
 }

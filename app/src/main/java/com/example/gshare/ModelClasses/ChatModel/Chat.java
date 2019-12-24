@@ -1,6 +1,8 @@
 package com.example.gshare.ModelClasses.ChatModel;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
 
@@ -155,4 +157,13 @@ import com.example.gshare.ModelClasses.User.User;
             }
         }
 
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Chat chat = (Chat) o;
+            return Objects.equals(notice, chat.notice) &&
+                    Objects.equals(noticeOwner, chat.noticeOwner) &&
+                    Objects.equals(customer, chat.customer);
+        }
     }

@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.fragment_my_notices);
         DBHelper.getInstance(this);
 
-        /*
         buttonLogin = (Button) findViewById(R.id.regloginButton);
         buttonRegister = (Button) findViewById(R.id.regregisterButton);
         userName = (EditText) findViewById(R.id.loginUserName);
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         buttonLogin.setOnClickListener(this);
         buttonRegister.setOnClickListener(this);
-         */
+
     }
 
 
@@ -71,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent( this, RegisterActivity.class);
         startActivity(intent);
     }
+
     public void openHomePage(){
         String u_name = userName.getText().toString();
         String p_word = password.getText().toString();

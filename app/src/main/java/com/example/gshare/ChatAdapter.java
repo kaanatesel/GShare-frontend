@@ -17,10 +17,10 @@ import java.util.ArrayList;
 public class ChatAdapter extends ArrayAdapter<ChatTry> {
 
     Context context;
-    ChatTry[] myChats;
+    ArrayList<ChatTry> myChats;
 
     private ArrayList<NoticeTry> notices;
-    public ChatAdapter(@NonNull Context c, @NonNull ChatTry[] chats){
+    public ChatAdapter(@NonNull Context c, @NonNull ArrayList<ChatTry> chats){
         super(c, R.layout.chatlayout,chats);
         this.context = c;
         this.myChats = chats;
@@ -33,7 +33,7 @@ public class ChatAdapter extends ArrayAdapter<ChatTry> {
         LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = layoutInflater.inflate(R.layout.chatlayout,parent,false);
         TextView chatMessage = row.findViewById(R.id.textView);
-        chatMessage.setText(myChats[position].getMessage());
+        chatMessage.setText(myChats.get(position).getMessage());
         return row;
     }
 }

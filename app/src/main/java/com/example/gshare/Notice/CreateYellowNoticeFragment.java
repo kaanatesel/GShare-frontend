@@ -43,7 +43,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
     @Override
     public void onClick(View v) {
         Bundle bundle = getArguments();
-
+/*
         try {
             Notice notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), 0,
                     DBHelper.getUser( getArguments().getString("userName"), getArguments().getString("password")), Integer.parseInt(gValue.getText().toString()),
@@ -57,7 +57,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
         }
         catch (Exception e ){
             e.printStackTrace();
-        }
+        }*/
         HomePageFragment homePageFragment = new HomePageFragment();
         homePageFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

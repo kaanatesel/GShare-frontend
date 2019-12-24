@@ -33,7 +33,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
         gValue = view.findViewById(R.id.ginput);
         day = view.findViewById(R.id.daysinput);
         note = view.findViewById(R.id.noteinput);
-        addNotice = view.findViewById(R.id.PublishButton);
+        addNotice = view.findViewById(R.id.PublishButtonYellow);
         addNotice.setOnClickListener(this);
 
         return view;

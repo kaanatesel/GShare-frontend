@@ -27,11 +27,11 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_createnoticeyellow, container,false);
+        View view= inflater.inflate(R.layout.fragment_createnoticepurple, container,false);
         itemName = view.findViewById(R.id.itemNameinput);
         day = view.findViewById(R.id.daysinput);
         note = view.findViewById(R.id.noteinput);
-        addNotice = view.findViewById(R.id.PublishButton);
+        addNotice = view.findViewById(R.id.PublishButtonPurple);
         addNotice.setOnClickListener(this);
 
         return view;

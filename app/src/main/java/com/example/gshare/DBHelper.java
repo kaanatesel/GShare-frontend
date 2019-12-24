@@ -128,8 +128,6 @@ public class DBHelper {
         return primaryUser;
     }
 
-
-
     public static User callUserByID(int ID){
 
         String url = "http://35.246.134.158/member/" + ID + "/";
@@ -166,6 +164,10 @@ public class DBHelper {
 
         return  tempUser;
     }
+
+//  public static void register(String email, String name, String password)
+
+//  public static void validateLogin()
 
 
     //Helper Methods for Users
@@ -288,7 +290,7 @@ public class DBHelper {
 
         String postURL = "";
 
-        int requesterId ;
+        int requesterId ; //TODO notice objesinden parametreleri al ve bunları gir. Ayrıca registiration methodundan ID al buraya gir.
         String productDescription;
         int categoryId;
 

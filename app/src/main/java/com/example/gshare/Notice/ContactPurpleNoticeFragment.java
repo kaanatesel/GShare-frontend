@@ -24,6 +24,9 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+/**
+ * Fix the DBHElper parts when it is added
+ */
 public class ContactPurpleNoticeFragment extends Fragment implements View.OnClickListener {
 
     Notice notice;

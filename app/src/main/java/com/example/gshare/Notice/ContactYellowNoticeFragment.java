@@ -25,7 +25,9 @@ import com.example.gshare.R;
  */
 public class ContactYellowNoticeFragment extends Fragment implements View.OnClickListener {
     Notice notice;
+
     int noticeId;
+
     TextView title;
     TextView days;
     TextView note;

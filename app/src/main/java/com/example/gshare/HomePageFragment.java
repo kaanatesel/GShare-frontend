@@ -51,7 +51,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_home_page, container,false);
         sortMode = LENDING_MODE;
 
-        if( getArguments()!= null ){
+        if( getArguments().getString("userName")!= null ){
             String userName = getArguments().getString("userName");
             String password = getArguments().getString("password");
             user = new User( "Cagri Eren", "asdas","asdfasdf","sdfasdf",100);//DBHelper.getUser(userName,password);
@@ -112,8 +112,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.sortby_button:
+                Bundle bundle = new Bundle();
+                bundle.putString("userName",user.getUserName());
+                bundle.putString("password",user.getPassword());
                 PopupSortByFragment popupSortByFragment = new PopupSortByFragment();
-                popupSortByFragment.setArguments(getArguments());
+                popupSortByFragment.setArguments(bundle);
                 popupSortByFragment.show( getFragmentManager(), "SortPopUp");
                 break;
 

@@ -28,10 +28,16 @@ public class PopupSortByFragment extends DialogFragment implements View.OnClickL
     EditText maxGText;
     Button applyButton;
 
+    String userName;
+    String password;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_popup_sort_by, container, false);
+
+        userName = getArguments().getString("userName" );
+        password = getArguments().getString("password");
 
         gCheckBox = view.findViewById(R.id.gIntervalCheckBox);
         newestFirstCheckBox = view.findViewById(R.id.newestFirstCheckBox);
@@ -83,6 +89,8 @@ public class PopupSortByFragment extends DialogFragment implements View.OnClickL
                 bundle.putBoolean("ALPHABETICAL",alphabetical);
                 bundle.putInt("MIN",min);
                 bundle.putInt("MAX",max);
+                bundle.putString("userName",userName);
+                bundle.putString("password",password);
 
                 HomePageFragment homePageFragment = new HomePageFragment();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

@@ -12,23 +12,26 @@
         android:orientation="vertical">
 
 
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/backButton"
-                android:layout_width="56dp"
-                android:layout_height="51dp"
+                android:layout_width="45dp"
+                android:layout_height="35dp"
+                android:layout_row="0"
+                android:layout_column="0"
                 app:srcCompat="@drawable/android_arrow_back_1161833" />
+
 
             <ImageView
                 android:id="@+id/gLogo"
-                android:layout_width="291dp"
+                android:layout_width="320dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/g_share_logo" />
-        </LinearLayout>
+        </GridLayout>
 
         <TextView
             android:id="@+id/addNotice"

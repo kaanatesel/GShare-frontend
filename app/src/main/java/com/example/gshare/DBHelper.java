@@ -430,63 +430,63 @@ public class DBHelper {
     /////////////////////////////////GET CHAT COLLECTION////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public static Chat getChat(int otherUserID){
-
-    }
-
-    public static ArrayList<Message> getChatMessages(int msgSenderId , int msgRecieverId ){
-
-    }
-
-    public static void submitMessage(Message message, Notice notice){
-
-        String postURL = "http://35.242.192.20/demand/create/";
-
-
-        String msg = message.getMessage();
-        callUserByEmail( message.getReciever().getEmail() ); //After that tempUserID will set to receiver ID
-        int recieverID = tempUserID;
-        int senderID = primaryUserID;
-
-
-
-        Gson gson = new Gson();
-
-        gson.toJson(productDescription);
-        gson.toJson(requesterId);
-        String postParams = gson.toString();
-        //TODO write json by hand
-
-        JsonObjectRequest jsonObjReq = null;
-        try {
-            jsonObjReq = new JsonObjectRequest(
-                    Request.Method.POST,
-                    postURL, new JSONObject(postParams),
-
-
-                    new Response.Listener<JSONObject>()
-                    {
-                        @Override
-                        public void onResponse(JSONObject response) {
-
-                        }
-                    },
-
-
-                    new Response.ErrorListener()
-                    {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                        }
-                    }
-            );
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        instance.addToRequestQueue(jsonObjReq);
-    }//Lending notice end
+//    public static Chat getChat(int otherUserID){
+//
+//    }
+//
+//    public static ArrayList<Message> getChatMessages(int msgSenderId , int msgRecieverId ){
+//
+//    }
+//
+//    public static void submitMessage(Message message, Notice notice){
+//
+//        String postURL = "http://35.242.192.20/demand/create/";
+//
+//
+//        String msg = message.getMessage();
+//        callUserByEmail( message.getReciever().getEmail() ); //After that tempUserID will set to receiver ID
+//        int recieverID = tempUserID;
+//        int senderID = primaryUserID;
+//
+//
+//
+//        Gson gson = new Gson();
+//
+//        gson.toJson(productDescription);
+//        gson.toJson(requesterId);
+//        String postParams = gson.toString();
+//        //TODO write json by hand
+//
+//        JsonObjectRequest jsonObjReq = null;
+//        try {
+//            jsonObjReq = new JsonObjectRequest(
+//                    Request.Method.POST,
+//                    postURL, new JSONObject(postParams),
+//
+//
+//                    new Response.Listener<JSONObject>()
+//                    {
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//
+//                        }
+//                    },
+//
+//
+//                    new Response.ErrorListener()
+//                    {
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//
+//                        }
+//                    }
+//            );
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        instance.addToRequestQueue(jsonObjReq);
+//    }//Lending notice end
 
 
 }

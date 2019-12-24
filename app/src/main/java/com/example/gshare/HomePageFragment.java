@@ -1,5 +1,8 @@
 package com.example.gshare;
 
+import android.app.Activity;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,6 +25,8 @@ import com.example.gshare.Notice.CreatePurpleNoticeFragment;
 import com.example.gshare.Notice.CreateYellowNoticeFragment;
 import com.example.gshare.Popup.PopupSortByFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import android.graphics.Color;
 
 import java.util.ArrayList;
 
@@ -104,13 +110,20 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             case R.id.borrowingSortButton:
                 sortMode = BORROWING_MODE;
                 notices = Sort.getBorrowings( notices);
+                borrowModeButton.setBackgroundColor(Color.parseColor("#6a0dad"));
+                lendModeButton.setBackgroundColor(Color.parseColor("#FF9800") );
+                addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6a0dad")));
                 //CONNECT TO THE ADAPTER
                 break;
             case R.id.lendingSortiButton:
                 sortMode = LENDING_MODE;
                 notices = Sort.getLendings( notices);
+                lendModeButton.setBackgroundColor(Color.parseColor("#FFFF00") );
+                borrowModeButton.setBackgroundColor(Color.parseColor("#B201D8"));
+                addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF681F")));
                 //CONNECT TO THE ADAPTER
                 break;
+
         }
     }
 

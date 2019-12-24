@@ -129,7 +129,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 notices = Sort.getBorrowings( notices);
                 borrowModeButton.setBackgroundColor(Color.parseColor("#F000FF"));
                 lendModeButton.setBackgroundColor(Color.parseColor("#FF9800") );
-                addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F000FF")));
+                addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#492A4B")));
                 lendModeButton.setTypeface(null, Typeface.NORMAL);
                 borrowModeButton.setTypeface(null , Typeface.BOLD_ITALIC);
                 //CONNECT TO THE ADAPTER

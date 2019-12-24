@@ -32,6 +32,7 @@ public class User {
     private int fiveStarLendingRates;
     private int fiveStarBorrowinRates;
     private boolean firstPost; //Only for lending
+    private int ID;
 
     /**
      * This constructor constructs a user object.
@@ -421,4 +422,11 @@ public class User {
         return user.getUserName().equals( this.getUserName() );
     }
 
+    public int getID(){
+        return ID;
+    }
+
+    public void setID(int ID){
+        this.ID = ID;
+    }
 }

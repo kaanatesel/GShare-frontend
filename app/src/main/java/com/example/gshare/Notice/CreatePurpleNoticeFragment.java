@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,12 +17,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.HomePageActivity;
 import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.R;
 
-public class CreatePurpleNoticeFragment extends Fragment implements View.OnClickListener {
+public class CreatePurpleNoticeFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     EditText itemName;
     EditText day;
     EditText note;
@@ -38,6 +42,14 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
         back = view.findViewById(R.id.backButton);
         addNotice.setOnClickListener(this);
         back.setOnClickListener(this);
+
+        Spinner spinner = view.findViewById(R.id.spinner);
+        // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , android.R.layout.simple_spinner_item , R.array.categories );
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource( getParentFragment().getContext() , R.array.categories, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemClickListener(this);
+
 
         return view;
 
@@ -70,6 +82,13 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
         fragmentTransaction.replace(R.id.main_layout,homePageFragment);
         fragmentTransaction.commit();
 
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT);
     }
 
 }

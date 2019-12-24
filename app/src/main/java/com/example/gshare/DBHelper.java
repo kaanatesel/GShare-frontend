@@ -1,4 +1,4 @@
-/*package com.example.gshare;
+package com.example.gshare;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,8 +19,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+import com.example.gshare.ModelClasses.ChatModel.Chat;
+import com.example.gshare.ModelClasses.ChatModel.Message;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +41,8 @@ public class DBHelper {
     //******************
     private static User primaryUser; //This is the client User OBJ
     private static User tempUser;    //This is for temp user objects. Helps callUserByID
+    private static int primaryUserID;
+    private static int tempUserID;
 
     private DBHelper(Context context) {
         ctx = context;
@@ -87,6 +93,7 @@ public class DBHelper {
     /////////////////////////////////GET USER DATA//////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /** Creates the clients user object **/
     public static User getUser() {
 
         String url = "http://www.mocky.io/v2/5dfff58e2f00004b0013b24d";
@@ -100,12 +107,12 @@ public class DBHelper {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            createPrimaryUser(
-                                    response.getString("id"),
+                            createUserOBJ(
+                                    response.getInt("id"),
                                     response.getString("email"),
                                     response.getString("password"),
                                     response.getString("name"),
-                                    response.getString("createDate")
+                                    response.getInt("g")
                             );
                         } catch (JSONException e) {
 
@@ -141,15 +148,16 @@ public class DBHelper {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            tempUser = createUser(response.getString("id"),
+                            tempUser = createUserOBJ(response.getInt("id"),
                                     response.getString("email"),
                                     response.getString("password"),
                                     response.getString("name"),
-                                    response.getString("createDate")
+                                    response.getInt("g")
                             );
                         } catch (JSONException e) {
 
                             Log.e("exception: ", "DBHelper JSON Exception");
+
                         }
 
                     }
@@ -162,23 +170,62 @@ public class DBHelper {
                     }
                 });
 
+        instance.addToRequestQueue(jsonObjectRequest);
+
         return  tempUser;
     }
 
-//  public static void register(String email, String name, String password)
+    public static User callUserByEmail(String email){
+
+        String url = "http://35.246.134.158/member/getMyEmail/" + email + "/";
+
+
+        //Create a JSON OBJ request
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            tempUser = createUserOBJ(response.getInt("id"),
+                                    response.getString("email"),
+                                    response.getString("password"),
+                                    response.getString("name"),
+                                    response.getInt("g")
+                            );
+                        } catch (JSONException e) {
+
+                            Log.e("exception: ", "DBHelper JSON Exception");
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e( "error" , error.toString() ) ;
+
+                    }
+                });
+
+        instance.addToRequestQueue(jsonObjectRequest);
+
+        return  tempUser;
+    }
+
 
 //  public static void validateLogin()
 
 
     //Helper Methods for Users
 
-    private static void createPrimaryUser(String id, String email, String password, String name, String createDate) {
-        primaryUser =  createUser(id,name,password,email,createDate);
+    private static User createUserOBJ(int id, String name , String password, String email, int g){
 
-    }
-
-    private static User createUser(String id, String name , String password, String email, String createDate){
-        return new User(name,"userNameTODO",password,email,100); //TODO
+        tempUser = new User(name,email,password,email,g);
+        tempUser.setID(id);
+        return tempUser;
     }
 
 
@@ -236,7 +283,7 @@ public class DBHelper {
     public static ArrayList<Notice> getBorrowingNotices(){
 
         final ArrayList<Notice> list = new ArrayList<Notice>();
-        String url = "http://35.246.134.158/demand/findAll/"; //TODO replace the url
+        String url = "http://35.246.134.158/demand/getAll/"; //TODO replace the url
 
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url ,null,  new Response.Listener<JSONArray>(){
@@ -284,62 +331,172 @@ public class DBHelper {
     /////////////////////////////////CREATE NOTICE IN DB////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private void createLendingNotice(Notice notice) {
+    public void createLendingNotice(Notice notice) {
 
-        String tag_json_obj = "json_obj_req";
+        String postURL = "http://35.242.192.20/demand/create/";
 
-        String postURL = "";
-
-        int requesterId ; //TODO notice objesinden parametreleri al ve bunları gir. Ayrıca registiration methodundan ID al buraya gir.
-        String productDescription;
-        int categoryId;
+        int requesterId = primaryUserID;
+        String productDescription = notice.getName();
+        int categoryId = notice.getCategory();
 
 
+        Gson gson = new Gson();
+        gson.toJson(categoryId);
+        gson.toJson(productDescription);
+        gson.toJson(requesterId);
+        String postParams = gson.toString();
         //TODO write json by hand
-//        final HashMap<String, String> postParams = new HashMap<String, String>();
-//            postParams.put("requesterId", value1);
-//            postParams.put("productDescription", value2);
-//            postParams.put("categoryId", value3);
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                postURL, new JSONObject(postParams),
-                new com.android.volley.Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjReq = null;
+        try {
+            jsonObjReq = new JsonObjectRequest(
+                    Request.Method.POST,
+                    postURL, new JSONObject(postParams),
 
-                    @Override
-                    public void onResponse(JSONObject response) {
 
-                    }
-                }, new com.android.volley.Response.ErrorListener() {
+                    new Response.Listener<JSONObject>()
+                    {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                        }
+                    },
 
+
+                    new Response.ErrorListener()
+                    {
+                         @Override
+                          public void onErrorResponse(VolleyError error) {
+
+                     }
             }
+            );
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        );
 
         instance.addToRequestQueue(jsonObjReq);
     }//Lending notice end
 
+    public void createBorrowingNotice(Notice notice) {
+
+        String postURL = "http://35.242.192.20/product/create/";
+
+        String description = notice.getNote();
+        int memberId = primaryUserID;
+        String name = notice.getName();
+        int price = notice.getG();
+        int productCategory = notice.getCategory();
+
+        Gson gson = new Gson();
+        gson.toJson(description);
+        gson.toJson(memberId);
+        gson.toJson(name);
+        gson.toJson(price);
+        gson.toJson(productCategory);
+        String postParams = gson.toString();
+
+        JsonObjectRequest jsonObjReq = null;
+        try {
+            jsonObjReq = new JsonObjectRequest(
+                    Request.Method.POST,
+                    postURL, new JSONObject(postParams),
 
 
+                    new Response.Listener<JSONObject>()
+                    {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                        }
+                    },
 
 
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    }
+            );
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        instance.addToRequestQueue(jsonObjReq);
+    }//Borrowing notice end
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////GET CHAT COLLECTION////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+//    public static Chat getChat(int otherUserID){
+//
+//    }
+//
+//    public static ArrayList<Message> getChatMessages(int msgSenderId , int msgRecieverId ){
+//
+//    }
+//
+//    public static void submitMessage(Message message, Notice notice){
+//
+//        String postURL = "http://35.242.192.20/demand/create/";
+//
+//
+//        String msg = message.getMessage();
+//        callUserByEmail( message.getReciever().getEmail() ); //After that tempUserID will set to receiver ID
+//        int recieverID = tempUserID;
+//        int senderID = primaryUserID;
+//
+//
+//
+//        Gson gson = new Gson();
+//
+//        gson.toJson(productDescription);
+//        gson.toJson(requesterId);
+//        String postParams = gson.toString();
+//        //TODO write json by hand
+//
+//        JsonObjectRequest jsonObjReq = null;
+//        try {
+//            jsonObjReq = new JsonObjectRequest(
+//                    Request.Method.POST,
+//                    postURL, new JSONObject(postParams),
+//
+//
+//                    new Response.Listener<JSONObject>()
+//                    {
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//
+//                        }
+//                    },
+//
+//
+//                    new Response.ErrorListener()
+//                    {
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//
+//                        }
+//                    }
+//            );
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        instance.addToRequestQueue(jsonObjReq);
+//    }//Lending notice end
 
 
+//}
 
 }//DBHelper end
 
 // POST isteği gönderildikten sonra response alıyor JSON id name email password createDATE
 
+
+
 // validateLogin() PU ın id sini kaydetsin
 
-////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////Sending Data///////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-//Template for JSON file upload
-
-
-
-//}*/

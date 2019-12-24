@@ -1,223 +1,204 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainFrameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-
-    <RelativeLayout
-        android:id="@+id/main_layout"
+    <ImageView
+        android:id="@+id/homepageBackgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="687dp">
+        android:layout_height="730dp"
+        android:contentDescription="@string/homepage_background"
+        app:srcCompat="@drawable/homepage_background" />
 
-        <ImageView
-            android:id="@+id/homepageBackgroundImage"
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="730dp"
-            android:contentDescription="@string/homepage_background"
-            app:srcCompat="@drawable/homepage_background" />
+            android:layout_height="115dp">
 
+            <ImageButton
+                android:id="@+id/sortby_button"
+                android:layout_width="47dp"
+                android:layout_height="46dp"
+                android:contentDescription="@string/sortby_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.951"
+                app:layout_constraintStart_toEndOf="@+id/homepageSearchView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.869"
+                app:srcCompat="@drawable/sortby_icon" />
 
-        <LinearLayout
-            android:id="@+id/linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            <SearchView
+                android:id="@+id/homepageSearchView"
+                android:layout_width="357dp"
+                android:layout_height="45dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:iconifiedByDefault="false"
+                android:queryHint="@string/search"
+                app:iconifiedByDefault="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.052"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.895">
 
+            </SearchView>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="115dp">
-
-                <ImageButton
-                    android:id="@+id/sortby_button"
-                    android:layout_width="39dp"
-                    android:layout_height="46dp"
-                    android:contentDescription="@string/sortby_button"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.951"
-                    app:layout_constraintStart_toEndOf="@+id/homepageSearchView"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.869"
-                    app:srcCompat="@drawable/sortby_icon" />
-
-                <SearchView
-                    android:id="@+id/homepageSearchView"
-                    android:layout_width="357dp"
-                    android:layout_height="45dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:iconifiedByDefault="false"
-                    android:queryHint="@string/search"
-                    app:iconifiedByDefault="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.052"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.895"></SearchView>
-
-                <TextView
-                    android:id="@+id/moneyTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    app:layout_constraintBottom_toTopOf="@+id/sortby_button"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.928"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.39" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <LinearLayout
-                android:id="@+id/categoryTab"
+            <TextView
+                android:id="@+id/moneyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginRight="25dp"
-                android:orientation="horizontal">
+                android:text="0"
+                app:layout_constraintBottom_toTopOf="@+id/sortby_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.928"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.39" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageButton
-                    android:id="@+id/transportButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/transport"
-                    app:srcCompat="@drawable/ic_car_black_24dp" />
-
-                <ImageButton
-                    android:id="@+id/schoolButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/school"
-                    app:srcCompat="@drawable/ic_school_black_24dp" />
-
-                <ImageButton
-                    android:id="@+id/laptopButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/laptop"
-                    app:srcCompat="@drawable/ic_laptop_black_24dp" />
-
-                <ImageButton
-                    android:id="@+id/cameraButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/camera"
-                    app:srcCompat="@drawable/ic_photo_camera_black_24dp" />
-
-                <ImageButton
-                    android:id="@+id/stationaryButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/stationary"
-                    app:srcCompat="@drawable/ic_scissors_black_24dp" />
-
-                <ImageButton
-                    android:id="@+id/petsButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/pets"
-                    app:srcCompat="@drawable/ic_pets_black_24dp" />
-
-                <ImageButton
-                    android:id="@+id/sportsButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/sports"
-                    app:srcCompat="@drawable/ic_fitness_center_black_24dp" />
-
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/categoryTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:orientation="horizontal">
 
 
-            <LinearLayout
-                android:id="@+id/lending_borrowing_buttons"
+            <ImageButton
+                android:id="@+id/transportButton"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginRight="30dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/transport"
+                app:srcCompat="@drawable/ic_car_black_24dp" />
 
-                <Button
-                    android:id="@+id/lendingSortiButton"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="121dp"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:background="#FF9800"
-                    android:text="@string/lending"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <ImageButton
+                android:id="@+id/schoolButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/school"
+                app:srcCompat="@drawable/ic_school_black_24dp" />
 
-                <TextView
-                    android:id="@+id/emptyText"
-                    android:layout_width="92dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/empty_string" />
+            <ImageButton
+                android:id="@+id/laptopButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/laptop"
+                app:srcCompat="@drawable/ic_laptop_black_24dp" />
 
-                <Button
-                    android:id="@+id/borrowingSortButton"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="121dp"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:background="#B201D8"
-                    android:text="@string/borrowing"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <ImageButton
+                android:id="@+id/cameraButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/camera"
+                app:srcCompat="@drawable/ic_photo_camera_black_24dp" />
 
-            </LinearLayout>
+            <ImageButton
+                android:id="@+id/stationaryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/stationary"
+                app:srcCompat="@drawable/ic_scissors_black_24dp" />
 
+            <ImageButton
+                android:id="@+id/petsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/pets"
+                app:srcCompat="@drawable/ic_pets_black_24dp" />
 
-            <LinearLayout
-                android:id="@+id/mainLinearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="492dp"
-                android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/booksButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/books"
+                app:srcCompat="@drawable/bookiconforhome" />
 
-                <ListView
-                    android:id="@+id/list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="490dp" />
+            <ImageButton
+                android:id="@+id/othersButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/img_350691"
+                android:contentDescription="TODO" />
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lending_borrowing_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/lendingSortiButton"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="121dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="#FF9800"
+                android:text="@string/lending"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/emptyText"
+                android:layout_width="92dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/empty_string" />
+
+            <Button
+                android:id="@+id/borrowingSortButton"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="121dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="#B201D8"
+                android:text="@string/borrowing"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/mainLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="492dp"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="wrap_content"
+                android:layout_height="490dp" />
 
         </LinearLayout>
 
-    </RelativeLayout>
+
+    </LinearLayout>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="39dp"
-        android:layout_gravity="bottom">
-
-        <include
-            layout="@layout/bottom_navigation_view"
-            android:layout_width="match_parent"
-            android:layout_height="39dp"
-            android:layout_gravity="bottom" />
-
-    </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addNoticeButton"
@@ -233,6 +214,11 @@
         android:tint="#FF0000"
         app:backgroundTint="#2191F3"
         app:srcCompat="@android:drawable/ic_input_add" />
-
-
+    <include
+        layout="@layout/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_gravity="bottom" />
 </FrameLayout>
+
+

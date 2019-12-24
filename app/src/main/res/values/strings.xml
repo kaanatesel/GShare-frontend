@@ -81,7 +81,19 @@
     <string name="camera">Camera</string>
     <string name="stationary">Stationary</string>
     <string name="pets">Pets</string>
-    <string name="sports">Sports</string>
+    <string name="books">Books</string>
+    <string name="others">Others</string>
+    <string name="spinner">Spinner</string>
+    <string-array name="categories">
+        <item>Transport</item>
+        <item>School</item>
+        <item>Technology</item>
+        <item>Camera</item>
+        <item>Stationary</item>
+        <item>Pets</item>
+        <item>Books</item>
+        <item>Others</item>
+    </string-array>
 
     <!--Lending/Borrowing-->
     <string name="borrowing">Borrowing</string>

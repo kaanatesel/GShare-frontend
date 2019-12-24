@@ -126,11 +126,11 @@
                 app:srcCompat="@drawable/ic_pets_black_24dp" />
 
             <ImageButton
-                android:id="@+id/sportsButton"
+                android:id="@+id/booksButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:contentDescription="@string/sports"
+                android:contentDescription="@string/books"
                 app:srcCompat="@drawable/bookiconforhome" />
 
             <ImageButton
@@ -138,7 +138,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/img_350691" />
+                app:srcCompat="@drawable/img_350691"
+                android:contentDescription="TODO" />
         </LinearLayout>
 
         <LinearLayout

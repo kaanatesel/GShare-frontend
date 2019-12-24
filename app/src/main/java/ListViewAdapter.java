@@ -10,19 +10,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentTransaction;
 
 
-
+import com.example.gshare.Notice.ContactYellowNoticeFragment;
 import com.example.gshare.Notice.NoticeTry;
 import java.util.ArrayList;
 
 public class ListViewAdapter extends ArrayAdapter<NoticeTry> {
 
     Context context;
-    NoticeTry[] myNotices;
+    ArrayList<NoticeTry> myNotices;
 
     private ArrayList<NoticeTry> notices;
-    public ListViewAdapter(@NonNull Context c,@NonNull NoticeTry[] notices){
+    public ListViewAdapter(@NonNull Context c,@NonNull ArrayList<NoticeTry> notices){
         super(c, R.layout.noticelayout,notices);
         this.context = c;
         this.myNotices = notices;
@@ -37,26 +38,25 @@ public class ListViewAdapter extends ArrayAdapter<NoticeTry> {
         TextView noticeNameView = row.findViewById(R.id.textView4);
         TextView noticeDayView = row.findViewById(R.id.textView6);
         TextView noticeGView = row.findViewById(R.id.textView5);
-        noticeNameView.setText(myNotices[position].getName());
-        noticeDayView.setText(myNotices[position].getDay());
-        noticeGView.setText(myNotices[position].getG());
+        noticeNameView.setText(myNotices.get(position).getName());
+        noticeDayView.setText(myNotices.get(position).getDay());
+        noticeGView.setText(myNotices.get(position).getG());
         return row;
     }
-    list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-        @Override
-        public void onItemClick(AdapterView<?> adapterView ,View view, int position, long l){
-
+    public ListViewAdapter update(ArrayList<NoticeTry> noticeTries){
+        ListViewAdapter adapterNew = new ListViewAdapter(this.context,noticeTries);
+        return adapterNew;
+    }
 
         }
 
 
 
-    }
 
 
 
-            )
-}
+
+
 
 
 

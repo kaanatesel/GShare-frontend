@@ -27,6 +27,7 @@ import com.example.gshare.Chat.ChatTry;
 import com.example.gshare.Notice.NoticeTry;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import static com.example.gshare.R.layout.activity_login;
 import static com.example.gshare.R.layout.blank_layout;
 import static com.example.gshare.R.layout.fragment_home_page;
 import static com.example.gshare.R.layout.fragment_profile;
@@ -66,9 +67,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setContentView(R.layout.activity_main);
         }*/
 
-        setContentView(R.layout.fragment_my_notices);
 
-        /*
+
+        setContentView(activity_login);
         buttonLogin = (Button) findViewById(R.id.regloginButton);
         buttonRegister = (Button) findViewById(R.id.regregisterButton);
         userName = (EditText) findViewById(R.id.loginUserName);
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         buttonLogin.setOnClickListener(this);
         buttonRegister.setOnClickListener(this);
-         */
+
     }
 
 
@@ -167,8 +168,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean tryLogin(String userName, String password) {//FIX THIS AT FINAL PRODUCT
         /*if( DBHelper.getUser( userName , password) == null ){
             return false;
-        }
-        return true;*/
+        }*/
+        return true;
     }
 
 
@@ -176,8 +177,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.regloginButton:
-                boolean result = tryLogin(userName.getText().toString(), password.getText().toString());
-;
+               // boolean result = tryLogin(userName.getText().toString(), password.getText().toString());
+boolean result = true;
                 if (result) {
                     openHomePage();
                 }

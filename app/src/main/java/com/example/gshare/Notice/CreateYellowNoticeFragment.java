@@ -41,7 +41,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v) {//FIX AT FINAL
         Bundle bundle = getArguments();
 /*
         try {

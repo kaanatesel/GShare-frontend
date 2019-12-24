@@ -1,6 +1,7 @@
 package com.example.gshare;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -70,12 +71,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         borrowModeButton = view.findViewById(R.id.borrowingSortButton);
         addNoticeButton = view.findViewById(R.id.addNoticeButton);
         gText = view.findViewById(R.id.moneyTextView);
-        button = view.findViewById(R.id.button13);
         addNoticeButton.setOnClickListener(this);
         borrowModeButton.setOnClickListener(this);
         lendModeButton.setOnClickListener(this);
         sortButton.setOnClickListener(this);
-        button.setOnClickListener(this);
 
         // just setting colors and fonts
         lendModeButton.setBackgroundColor(Color.parseColor("#FFFF00") );
@@ -144,6 +143,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 borrowModeButton.setTypeface(null , Typeface.NORMAL);
                 //CONNECT TO THE ADAPTER
                 break;
+
         }
     }
 

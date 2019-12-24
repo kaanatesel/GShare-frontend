@@ -61,7 +61,7 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
         title.setText(notice.getName());
         days.setText(notice.getDay() + "");
         note.setText(notice.getNote());
-        g.setText(notice.getG());
+        g.setText(notice.getG()+"");
 
         contactButton.setOnClickListener(this);
 

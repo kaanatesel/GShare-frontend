@@ -113,6 +113,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
             case R.id.sortby_button:
                 PopupSortByFragment popupSortByFragment = new PopupSortByFragment();
+                popupSortByFragment.setArguments(getArguments());
                 popupSortByFragment.show( getFragmentManager(), "SortPopUp");
                 break;
 

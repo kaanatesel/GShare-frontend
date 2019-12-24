@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.Sort.Sort;
 import com.example.gshare.ModelClasses.User.User;
+import com.example.gshare.Notice.ContactPurpleNoticeFragment;
 import com.example.gshare.Notice.CreatePurpleNoticeFragment;
 import com.example.gshare.Notice.CreateYellowNoticeFragment;
 import com.example.gshare.Popup.PopupSortByFragment;
@@ -41,6 +42,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     FloatingActionButton addNoticeButton;
     Button lendModeButton;
     Button borrowModeButton;
+    Button button;
     ImageButton sortButton;
     ArrayList<Notice> notices;
     char sortMode;
@@ -60,7 +62,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         Bundle bundle = getArguments();
 
         notices = new ArrayList<Notice>();
-        notices = sort( notices , bundle.getBoolean("ACCEPTED"), bundle.getBoolean("G"),bundle.getInt("MIN"),
+        notices = sort( notices , bundle.getBoolean("ACCEPTED" , false), bundle.getBoolean("G"),bundle.getInt("MIN"),
                 bundle.getInt("MAX"),bundle.getBoolean("NEWEST"),bundle.getBoolean("ALPHABETICAL"));
 
         sortButton = view.findViewById(R.id.sortby_button);
@@ -68,10 +70,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         borrowModeButton = view.findViewById(R.id.borrowingSortButton);
         addNoticeButton = view.findViewById(R.id.addNoticeButton);
         gText = view.findViewById(R.id.moneyTextView);
+        button = view.findViewById(R.id.button13);
         addNoticeButton.setOnClickListener(this);
         borrowModeButton.setOnClickListener(this);
         lendModeButton.setOnClickListener(this);
         sortButton.setOnClickListener(this);
+        button.setOnClickListener(this);
 
         // just setting colors and fonts
         lendModeButton.setBackgroundColor(Color.parseColor("#FFFF00") );
@@ -140,7 +144,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 borrowModeButton.setTypeface(null , Typeface.NORMAL);
                 //CONNECT TO THE ADAPTER
                 break;
-
         }
     }
 

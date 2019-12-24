@@ -117,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra( "USERNAME" , u_name );
             intent.putExtra("PASSWORD", p_word );
             startActivity(intent);
+
+            
         }
 
     }

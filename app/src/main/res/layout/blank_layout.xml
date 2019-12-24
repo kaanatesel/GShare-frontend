@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,14 +10,14 @@
     android:id="@+id/main_Biglayout"
     >
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="692dp"></RelativeLayout>
+        android:layout_height="692dp"></FrameLayout>
 
-<include
-layout="@layout/bottom_navigation_view"
-    android:layout_height="39dp"
-android:layout_gravity="bottom"
-android:layout_width="match_parent"></include>
-</FrameLayout>
+    <include
+        layout="@layout/bottom_navigation_view"
+        android:layout_height="39dp"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"></include>
+</LinearLayout>

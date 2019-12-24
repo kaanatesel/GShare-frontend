@@ -74,8 +74,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
 
 
-ListView listView = null;
-Context c = null;
+    ListView listView = null;
+    Context c = null;
 
     com.example.gshare.ListViewAdapter adapter;
     @Nullable
@@ -121,11 +121,11 @@ Context c = null;
         gText.setText( user.getG() + "" );
 
         listView = (ListView) view.findViewById(R.id.list);
-    notices = new ArrayList<Notice>();
+        notices = new ArrayList<Notice>();
         notices.add(new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                 100,new LocationG()));
 
-onAttach(c);
+        onAttach(c);
         adapter = new com.example.gshare.ListViewAdapter(c, notices);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -133,11 +133,11 @@ onAttach(c);
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //
                 Bundle args = new Bundle();
-            args.putString("notice_name",notices.get(position).getName());
+                args.putString("notice_name",notices.get(position).getName());
                 args.putString("day",String.valueOf(notices.get(position).getDay()));
                 args.putString("userName",userName);
                 args.putString("password",password);
-                        args.putString("G",String.valueOf(notices.get(position).getG()));
+                args.putString("G",String.valueOf(notices.get(position).getG()));
 
 
                 //if(notices.get(position).getNoticeType() =='L'){
@@ -145,12 +145,16 @@ onAttach(c);
 
 
                 ContactYellowNoticeFragment fragmentForLending = new ContactYellowNoticeFragment();
+
                     fragmentForLending.setArguments(args);
                     FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransactionForLending.replace(R.id.main_layout,fragmentForLending);
                     fragmentTransactionForLending.commit();
                 //Intent i = new Intent(getContext(), ActivityContqactTry.class);
                 //startActivity(i);
+
+                
+
 
                 //}else if(notşces.get(position).getNoticeType() =='R'){
                 //ContactPurpleNoticeFragment fragmentForBorrowing= new ContactPurpleNoticeFragment();
@@ -191,8 +195,8 @@ onAttach(c);
     notices = DbHelper.getAllNotices().sort
      */
 
-    ;
-    listView.setAdapter(adapter.update(notices));
+                ;
+                listView.setAdapter(adapter.update(notices));
 
             }
         });

@@ -104,7 +104,3 @@ onAttach(c);
             fragmentTransactionForSmallProfile.replace(R.id.UserButton,fragment);
             fragmentTransactionForSmallProfile.commit();*/
 }
-
-
-
-

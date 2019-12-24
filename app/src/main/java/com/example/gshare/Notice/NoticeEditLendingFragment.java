@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ public class NoticeEditLendingFragment extends Fragment implements View.OnClickL
     EditText g;
     EditText note;
     Button applyButton;
+    ImageButton backButton;
 
     String userName;
     String password;
@@ -51,12 +53,14 @@ public class NoticeEditLendingFragment extends Fragment implements View.OnClickL
         g = view.findViewById(R.id.ginput);
         note = view.findViewById(R.id.noteinput);
         applyButton = view.findViewById(R.id.ApplyEditNoticeLending);
+        backButton = view.findViewById(R.id.backButton);
 
         name.setText(notice.getName());
         day.setText(notice.getDay());
         g.setText(notice.getG()+"");
         note.setText(notice.getNote());
         applyButton.setOnClickListener(this);
+        backButton.setOnClickListener(this);
 
         return view;
     }

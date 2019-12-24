@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,7 @@ public class NoticeEditBorrowingFragment extends Fragment implements View.OnClic
     EditText day;
     EditText note;
     Button applyButton;
+    ImageButton backButton;
 
     String userName;
     String password;
@@ -48,11 +50,13 @@ public class NoticeEditBorrowingFragment extends Fragment implements View.OnClic
         day = view.findViewById(R.id.daysinput);
         note = view.findViewById(R.id.noteinput);
         applyButton = view.findViewById(R.id.ApplyEditNoticeBorrowing);
+        backButton = view.findViewById(R.id.backButton);
 
         name.setText(notice.getName());
         day.setText(notice.getDay());
         note.setText(notice.getNote());
         applyButton.setOnClickListener(this);
+        backButton.setOnClickListener(this);
 
         return view;
     }

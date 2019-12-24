@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +27,7 @@ public class NoticeViewBorrowing extends Fragment implements View.OnClickListene
     EditText days;
     EditText note;
     Button editNoticeButton;
-    Button backButton;
+    ImageButton backButton;
 
     String userName;
     String password;

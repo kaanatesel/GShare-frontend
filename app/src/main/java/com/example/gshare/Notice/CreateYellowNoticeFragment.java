@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
     EditText day;
     EditText note;
     Button addNotice;
+    ImageButton back;
 
     @Nullable
     @Override
@@ -34,8 +36,9 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
         day = view.findViewById(R.id.daysinput);
         note = view.findViewById(R.id.noteinput);
         addNotice = view.findViewById(R.id.PublishButton);
+        back = view.findViewById(R.id.backButton);
         addNotice.setOnClickListener(this);
-
+        back.setOnClickListener(this);
         return view;
 
     }
@@ -43,26 +46,31 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
     @Override
     public void onClick(View v) {//FIX AT FINAL
         Bundle bundle = getArguments();
-/*
-        try {
-            Notice notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), 0,
-                    DBHelper.getUser( getArguments().getString("userName"), getArguments().getString("password")), Integer.parseInt(gValue.getText().toString()),
-                    new LocationG());
-        }
-        catch(Exception e){
-            Toast.makeText(getActivity(),"Wrong values please try again", Toast.LENGTH_LONG).show();
-        }
-        try{
-            DBHelper.addNotice(notice);
-        }
-        catch (Exception e ){
-            e.printStackTrace();
-        }*/
+        /*
+        if ( v.getId() == R.id.PublishButton ) {
+            try {
+               Notice notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), 0,
+                  DBHelper.getUser( getArguments().getString("userName"), getArguments().getString("password")), Integer.parseInt(gValue.getText().toString()),
+                     new LocationG());
+             }
+               catch(Exception e){
+                  Toast.makeText(getActivity(),"Wrong values please try again", Toast.LENGTH_LONG).show();
+               }
+                try{
+                  DBHelper.addNotice(notice);
+                }
+               catch (Exception e ){
+                  e.printStackTrace();
+               }
+            }
+              */
         HomePageFragment homePageFragment = new HomePageFragment();
         homePageFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.homepage_placeholder,homePageFragment);
+        fragmentTransaction.replace(R.id.homepage_placeholder, homePageFragment);
         fragmentTransaction.commit();
+
+
 
     }
 

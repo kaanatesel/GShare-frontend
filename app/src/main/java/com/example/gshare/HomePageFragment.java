@@ -3,6 +3,7 @@ package com.example.gshare;
 import android.app.Activity;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,6 +73,14 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         lendModeButton.setOnClickListener(this);
         sortButton.setOnClickListener(this);
 
+        // just setting colors and fonts
+        lendModeButton.setBackgroundColor(Color.parseColor("#FFFF00") );
+        borrowModeButton.setBackgroundColor(Color.parseColor("#B201D8"));
+        addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF681F")));
+        lendModeButton.setTypeface(null, Typeface.BOLD_ITALIC);
+        borrowModeButton.setTypeface(null , Typeface.NORMAL);
+        // end
+
         gText.setText( user.getG() + "" );
         bundle.putBoolean("ACCEPTED",false);
         return view;
@@ -113,6 +122,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 borrowModeButton.setBackgroundColor(Color.parseColor("#6a0dad"));
                 lendModeButton.setBackgroundColor(Color.parseColor("#FF9800") );
                 addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6a0dad")));
+                lendModeButton.setTypeface(null, Typeface.NORMAL);
+                borrowModeButton.setTypeface(null , Typeface.BOLD_ITALIC);
                 //CONNECT TO THE ADAPTER
                 break;
             case R.id.lendingSortiButton:
@@ -121,6 +132,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 lendModeButton.setBackgroundColor(Color.parseColor("#FFFF00") );
                 borrowModeButton.setBackgroundColor(Color.parseColor("#B201D8"));
                 addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF681F")));
+                lendModeButton.setTypeface(null, Typeface.BOLD_ITALIC);
+                borrowModeButton.setTypeface(null , Typeface.NORMAL);
                 //CONNECT TO THE ADAPTER
                 break;
 

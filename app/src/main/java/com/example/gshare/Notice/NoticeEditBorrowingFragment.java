@@ -41,8 +41,8 @@ public class NoticeEditBorrowingFragment extends Fragment implements View.OnClic
         userName = bundle.getString("userName");
         password = bundle.getString("password");
 
-        notice =  new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                100,new LocationG());//DBHelper.getNotice(noticeId);
+        notice =  new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 )
+                ,new LocationG());//DBHelper.getNotice(noticeId);
 
         name = view.findViewById(R.id.itemNameinput);
         day = view.findViewById(R.id.daysinput);

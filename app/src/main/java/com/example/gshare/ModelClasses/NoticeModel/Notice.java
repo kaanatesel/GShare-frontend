@@ -3,6 +3,7 @@ package com.example.gshare.ModelClasses.NoticeModel;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.User.User;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -15,7 +16,7 @@ This site probably gonna be usefull
 https://www.youtube.com/watch?v=XQJiiuk8Feo
 This class will create a notice and do aproper things
  */
-public class Notice {
+public class Notice implements Serializable {
     public static final int LEND_NOTICE = 1;
     public static final int BORROW_NOTICE = 2;
 

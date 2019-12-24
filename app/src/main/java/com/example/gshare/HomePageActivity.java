@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class HomePageActivity extends AppCompatActivity {
 
-    String userName = "a";
+    String userName;
     String password;
 
     @Override

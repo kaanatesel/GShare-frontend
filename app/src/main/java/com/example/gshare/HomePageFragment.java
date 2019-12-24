@@ -22,10 +22,12 @@ import com.example.gshare.Notice.CreateYellowNoticeFragment;
 import com.example.gshare.Popup.PopupSortByFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 public class HomePageFragment extends Fragment implements View.OnClickListener {
 
-    public final static int LENDING_MODE = 1;
-    public final static int BORROWING_MODE = 0;
+    public final static char LENDING_MODE = 'L';
+    public final static char BORROWING_MODE = 'B';
 
     User user;
     TextView gText;
@@ -33,8 +35,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     Button lendModeButton;
     Button borrowModeButton;
     ImageButton sortButton;
-    Notice[] notices;
-    int sortMode;
+    ArrayList<Notice> notices;
+    char sortMode;
 
     @Nullable
     @Override
@@ -48,6 +50,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             user = new User( "Cagri Eren", "asdas","asdfasdf","sdfasdf",100);//DBHelper.getUser(userName,password);
             //notices = DBHelper.getAllNotices();
         }
+        Bundle bundle = getArguments();
+
+        notices = new ArrayList<Notice>();
+        notices = sort( notices , bundle.getBoolean("ACCEPTED"), bundle.getBoolean("G"),bundle.getInt("MIN"),
+                bundle.getInt("MAX"),bundle.getBoolean("NEWEST"),bundle.getBoolean("ALPHABETICAL"));
+
         sortButton = view.findViewById(R.id.sortby_button);
         lendModeButton = view.findViewById(R.id.lendingSortiButton);
         borrowModeButton = view.findViewById(R.id.borrowingSortButton);
@@ -59,6 +67,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         sortButton.setOnClickListener(this);
 
         gText.setText( user.getG() + "" );
+        bundle.putBoolean("ACCEPTED",false);
         return view;
     }
     @Override
@@ -78,24 +87,42 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     fragmentTransaction.commit();
                 }
                 break;
+
             case R.id.sortby_button:
                 PopupSortByFragment popupSortByFragment = new PopupSortByFragment();
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace( R.id.homepage_placeholder, popupSortByFragment);
-                fragmentTransaction.commit();
+                popupSortByFragment.show( getFragmentManager(), "SortPopUp");
+                //FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                //fragmentTransaction.replace( R.id.homepage_placeholder, popupSortByFragment);
+                //fragmentTransaction.commit();
                 break;
 
             case R.id.borrowingSortButton:
                 sortMode = BORROWING_MODE;
-                notices = HomePageActivity.toArray( Sort.getBorrowings( HomePageActivity.toArrayList( notices) ) );
+                notices = Sort.getBorrowings( notices);
                 //CONNECT TO THE ADAPTER
                 break;
             case R.id.lendingSortiButton:
                 sortMode = LENDING_MODE;
-                notices = HomePageActivity.toArray( Sort.getLendings( HomePageActivity.toArrayList( notices) ) );
+                notices = Sort.getLendings( notices);
                 //CONNECT TO THE ADAPTER
                 break;
         }
+    }
+    public ArrayList<Notice> sort( ArrayList<Notice> list ,boolean accepted , boolean g, int min, int max, boolean newest, boolean alphabetical ){
+        if( accepted ){
+            if(sortMode==LENDING_MODE) {
+                if (g) {
+                    list = Sort.sortByGInterval(list, min, max);
+                }
+            }
+            if(newest){
+                list = Sort.sortByPostTime(list,sortMode);
+            }
+            if(alphabetical){
+                list = Sort.sortByLexiography(list,sortMode);
+            }
+        }
+        return list;
     }
 
 

@@ -1,79 +1,101 @@
 package com.example.gshare.Notice;
 
-import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import com.example.gshare.Chat.ChatFragment;
+import com.example.gshare.ChatActivity;
+import com.example.gshare.ModelClasses.ChatModel.Chat;
+import com.example.gshare.ModelClasses.ChatModel.ChatCollection;
+import com.example.gshare.ModelClasses.Location.LocationG;
+import com.example.gshare.ModelClasses.NoticeModel.Notice;
+import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.R;
 
-import static com.example.gshare.R.layout.fragment_profile_small;
+/**
+ * Fix these when DBHElper added
+ */
+public class ContactYellowNoticeFragment extends Fragment implements View.OnClickListener {
+    Notice notice;
 
-public class ContactYellowNoticeFragment extends Fragment  {
+    int noticeId;
 
-    private String name = "NoticeTitle";
-  private String day = "NoticeDay";
-  private String g = "NoticeG";
+    TextView title;
+    TextView days;
+    TextView note;
+    TextView g;
+    Button contactButton;
+
+    String userName;
+    String password;
+
+
+
+    @Nullable
     @Override
-  public void onCreate(Bundle savedInstanceState){
-      super.onCreate(savedInstanceState);
-      Bundle args = getArguments();
-      if(args != null){
-          name = getArguments().getString("NoticeName");
-          day = getArguments().getString("NoticeDay");
-          g = getArguments().getString("NoticeG");
-      }
-
-  }
-   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_noticecontactyellow, container, false);
+        Bundle bundle = getArguments();
+        if(bundle != null) {
+            noticeId = bundle.getInt("notice_id");
+            userName = bundle.getString("userName");
+            password = bundle.getString("password");
+        }
 
-        TextView nameView = (TextView) view.findViewById(R.id.noticeTitle);
-            TextView dayView = (TextView) view.findViewById(R.id.noticedays);
-            TextView gView = (TextView) view.findViewById(R.id.noticeg);
-            /*ContactSmallProfileFragment fragment = new ContactSmallProfileFragment();
-onAttach(c);
-            FragmentTransaction fragmentTransactionForSmallProfile = mContext.getSupportFragmentManager().beginTransaction();
-            fragmentTransactionForSmallProfile.replace(R.id.UserButton,fragment);
-            fragmentTransactionForSmallProfile.commit();*/
-            nameView.setText(name);
-            dayView.setText(day);
-            gView.setText(g);
+        notice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
+                100,new LocationG());//DBHelper.getNotice(noticeId);
 
-       //Button contactButton = (Button) getView().findViewById(R.id.contactButton);
-       //contactButton.setOnClickListener(this);
+        g = view.findViewById(R.id.noticeg);
+        title = view.findViewById(R.id.noticeTitle);
+        days = view.findViewById(R.id.noticedays);
+        note = view.findViewById(R.id.noticenote);
+        contactButton = view.findViewById(R.id.contactButton);
+
+        title.setText(notice.getName());
+        days.setText(notice.getDay() + "");
+        note.setText(notice.getNote());
+        g.setText(notice.getG() + "");
+
+        contactButton.setOnClickListener(this);
+
 
 
         return view;
     }
 
-
-    /*@Override
+    @Override
     public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.contactButton:
-            ChatFragment chatFragment = new ChatFragment();
+        User user = new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 );//DBHelper.getUser( userName , password);
+        Chat chat = new Chat( notice , notice.getNoticeOwner(), user );
+        //ChatCollection chatCollection = DBHelper.getChatCollection( DBHelper.getUserId( user ) );
 
-            FragmentTransaction chatTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-            chatTransaction.replace(R.id.main_layout, chatFragment);
-            chatTransaction.commit();
-            break;
-        }
-    }*/
+        /*
+        if( !chatCollection.getAllChat().contains(chat)) {
+            //chatCollection.addChat( chat );
+            //DBHelper.addChat( chat );
+            //DBHelper.updateChatCollection( chatCollection );
+        }*/
+
+        Intent intent = new Intent(getActivity(), ChatActivity.class );
+        intent.putExtra("USERNAME" , user.getUserName() );
+        intent.putExtra("PASSWORD", user.getPassword());
+        startActivity(intent);
+
+    }
+
+    /*ContactSmallProfileFragment fragment = new ContactSmallProfileFragment();
+onAttach(c);
+            FragmentTransaction fragmentTransactionForSmallProfile = mContext.getSupportFragmentManager().beginTransaction();
+            fragmentTransactionForSmallProfile.replace(R.id.UserButton,fragment);
+            fragmentTransactionForSmallProfile.commit();*/
 }
 
 

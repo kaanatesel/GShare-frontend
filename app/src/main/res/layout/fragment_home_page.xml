@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainFrameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/mainFrameLayout"
-    >
+    android:orientation="vertical">
+
 
     <RelativeLayout
         android:id="@+id/main_layout"
@@ -20,11 +21,13 @@
             android:contentDescription="@string/homepage_background"
             app:srcCompat="@drawable/homepage_background" />
 
+
         <LinearLayout
             android:id="@+id/linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -57,9 +60,7 @@
                     app:layout_constraintHorizontal_bias="0.052"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.895">
-
-                </SearchView>
+                    app:layout_constraintVertical_bias="0.895"></SearchView>
 
                 <TextView
                     android:id="@+id/moneyTextView"
@@ -72,7 +73,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.39" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <LinearLayout
                 android:id="@+id/categoryTab"
@@ -83,7 +86,6 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
                 android:orientation="horizontal">
-
 
                 <ImageButton
                     android:id="@+id/transportButton"
@@ -140,7 +142,9 @@
                     android:layout_weight="1"
                     android:contentDescription="@string/sports"
                     app:srcCompat="@drawable/ic_fitness_center_black_24dp" />
+
             </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/lending_borrowing_buttons"
@@ -193,27 +197,27 @@
                 <ListView
                     android:id="@+id/list"
                     android:layout_width="wrap_content"
-                    android:layout_height="490dp"></ListView>
+                    android:layout_height="490dp" />
+
             </LinearLayout>
 
-
         </LinearLayout>
+
     </RelativeLayout>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="39dp"
-    android:layout_gravity="bottom"
-    >
-    <include
-        layout="@layout/bottom_navigation_view"
-        android:layout_height="39dp"
 
+    <RelativeLayout
         android:layout_width="match_parent"
-   android:layout_gravity="bottom"
-        ></include>
+        android:layout_height="39dp"
+        android:layout_gravity="bottom">
 
-</RelativeLayout>
+        <include
+            layout="@layout/bottom_navigation_view"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="bottom" />
+
+    </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addNoticeButton"
@@ -222,12 +226,13 @@
         android:layout_marginStart="330dp"
         android:layout_marginTop="520dp"
         android:background="#F0F0F0"
-        android:backgroundTint="#FAE316"
+        android:backgroundTint="#FFFF00"
         android:clickable="true"
         android:focusable="true"
         android:foregroundTint="#F51505"
         android:tint="#FF0000"
         app:backgroundTint="#2191F3"
         app:srcCompat="@android:drawable/ic_input_add" />
+
 
 </FrameLayout>

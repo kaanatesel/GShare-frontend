@@ -426,7 +426,7 @@ public class User {
         return ID;
     }
 
-    public int setID(int ID){
+    public void setID(int ID){
         this.ID = ID;
     }
 }

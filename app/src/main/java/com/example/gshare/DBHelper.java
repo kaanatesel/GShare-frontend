@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +38,7 @@ public class DBHelper {
     //******************
     private static User primaryUser; //This is the client User OBJ
     private static User tempUser;    //This is for temp user objects. Helps callUserByID
+    private static int primaryUserID;
 
     private DBHelper(Context context) {
         ctx = context;
@@ -101,7 +103,7 @@ public class DBHelper {
 
                         try {
                             createPrimaryUser(
-                                    response.getString("id"),
+                                    response.getInt("id"),
                                     response.getString("email"),
                                     response.getString("password"),
                                     response.getString("name"),
@@ -141,7 +143,7 @@ public class DBHelper {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            tempUser = createUser(response.getString("id"),
+                            tempUser = createUser(response.getInt("id"),
                                     response.getString("email"),
                                     response.getString("password"),
                                     response.getString("name"),
@@ -150,6 +152,7 @@ public class DBHelper {
                         } catch (JSONException e) {
 
                             Log.e("exception: ", "DBHelper JSON Exception");
+
                         }
 
                     }
@@ -172,12 +175,13 @@ public class DBHelper {
 
     //Helper Methods for Users
 
-    private static void createPrimaryUser(String id, String email, String password, String name, String createDate) {
+    private static void createPrimaryUser(int id, String email, String password, String name, String createDate) {
         primaryUser =  createUser(id,name,password,email,createDate);
 
     }
 
-    private static User createUser(String id, String name , String password, String email, String createDate){
+    private static User createUser(int id, String name , String password, String email, String createDate){
+        primaryUserID = id;
         return new User(name,"userNameTODO",password,email,100); //TODO
     }
 
@@ -236,7 +240,7 @@ public class DBHelper {
     public static ArrayList<Notice> getBorrowingNotices(){
 
         final ArrayList<Notice> list = new ArrayList<Notice>();
-        String url = "http://35.246.134.158/demand/findAll/"; //TODO replace the url
+        String url = "http://35.246.134.158/demand/getAll/"; //TODO replace the url
 
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url ,null,  new Response.Listener<JSONArray>(){
@@ -284,46 +288,105 @@ public class DBHelper {
     /////////////////////////////////CREATE NOTICE IN DB////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private void createLendingNotice(Notice notice) {
+    public void createLendingNotice(Notice notice) {
 
-        String tag_json_obj = "json_obj_req";
+        String postURL = "http://35.242.192.20/demand/create/";
 
-        String postURL = "";
-
-        int requesterId ; //TODO notice objesinden parametreleri al ve bunları gir. Ayrıca registiration methodundan ID al buraya gir.
-        String productDescription;
-        int categoryId;
+        int requesterId = primaryUserID; //TODO notice objesinden parametreleri al ve bunları gir. Ayrıca registiration methodundan ID al buraya gir.
+        String productDescription = notice.getName();
+        int categoryId = notice.getCategory();
 
 
+        Gson gson = new Gson();
+        gson.toJson(categoryId);
+        gson.toJson(productDescription);
+        gson.toJson(requesterId);
+        String postParams = gson.toString();
         //TODO write json by hand
-//        final HashMap<String, String> postParams = new HashMap<String, String>();
-//            postParams.put("requesterId", value1);
-//            postParams.put("productDescription", value2);
-//            postParams.put("categoryId", value3);
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                postURL, new JSONObject(postParams),
-                new com.android.volley.Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjReq = null;
+        try {
+            jsonObjReq = new JsonObjectRequest(
+                    Request.Method.POST,
+                    postURL, new JSONObject(postParams),
 
-                    @Override
-                    public void onResponse(JSONObject response) {
 
-                    }
-                }, new com.android.volley.Response.ErrorListener() {
+                    new Response.Listener<JSONObject>()
+                    {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                        }
+                    },
 
+
+                    new Response.ErrorListener()
+                    {
+                         @Override
+                          public void onErrorResponse(VolleyError error) {
+
+                     }
             }
+            );
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        );
 
         instance.addToRequestQueue(jsonObjReq);
     }//Lending notice end
 
+    public void createBorrowingNotice(Notice notice) {
+
+        String postURL = "http://35.242.192.20/product/create/";
+
+        String description = notice.getNote();
+        int memberId = primaryUserID;
+        String name = notice.getName();
+        int price = notice.getG();
+        int productCategory = notice.getCategory();
+
+        Gson gson = new Gson();
+        gson.toJson(description);
+        gson.toJson(memberId);
+        gson.toJson(name);
+        gson.toJson(price);
+        gson.toJson(productCategory);
+        String postParams = gson.toString();
+
+        JsonObjectRequest jsonObjReq = null;
+        try {
+            jsonObjReq = new JsonObjectRequest(
+                    Request.Method.POST,
+                    postURL, new JSONObject(postParams),
 
 
+                    new Response.Listener<JSONObject>()
+                    {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
+                        }
+                    },
+
+
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    }
+            );
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        instance.addToRequestQueue(jsonObjReq);
+    }//Borrowing notice end
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////GET CHAT COLLECTION////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -333,13 +396,3 @@ public class DBHelper {
 // POST isteği gönderildikten sonra response alıyor JSON id name email password createDATE
 
 // validateLogin() PU ın id sini kaydetsin
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////Sending Data///////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-//Template for JSON file upload
-
-
-
-//}

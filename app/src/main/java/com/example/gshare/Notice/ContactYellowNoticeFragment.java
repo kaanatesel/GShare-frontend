@@ -14,11 +14,15 @@ import androidx.fragment.app.Fragment;
 
 import com.example.gshare.ChatActivity;
 import com.example.gshare.ModelClasses.ChatModel.Chat;
+import com.example.gshare.ModelClasses.ChatModel.ChatCollection;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.R;
 
+/**
+ * Fix these when DBHElper added
+ */
 public class ContactYellowNoticeFragment extends Fragment implements View.OnClickListener {
     Notice notice;
     int noticeId;
@@ -68,11 +72,14 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
     public void onClick(View v) {
         User user = new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 );//DBHelper.getUser( userName , password);
         Chat chat = new Chat( notice , notice.getNoticeOwner(), user );
-        // ChatCollection chatCollection = DBHelper.getChatCollection( DBHelper.getUserId( user ) );
+        //ChatCollection chatCollection = DBHelper.getChatCollection( DBHelper.getUserId( user ) );
 
-        //chatCollection.addChat( chat );
-        //DBHelper.addChat( chat );
-        //DBHelper.updateChatCollection( chatCollection );
+        /*
+        if( !chatCollection.getAllChat().contains(chat)) {
+            //chatCollection.addChat( chat );
+            //DBHelper.addChat( chat );
+            //DBHelper.updateChatCollection( chatCollection );
+        }*/
 
         Intent intent = new Intent(getActivity(), ChatActivity.class );
         intent.putExtra("USERNAME" , user.getUserName() );

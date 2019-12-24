@@ -5,6 +5,7 @@ import com.example.gshare.ModelClasses.User.User;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -383,5 +384,24 @@ public class Notice implements Serializable {
         String output;
         output = name + " " + g;
         return output;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Notice notice = (Notice) o;
+        return noticeType == notice.noticeType &&
+                day == notice.day &&
+                category == notice.category &&
+                agreed == notice.agreed &&
+                over == notice.over &&
+                postingTime == notice.postingTime &&
+                g == notice.g &&
+                startTime == notice.startTime &&
+                Objects.equals(name, notice.name) &&
+                Objects.equals(note, notice.note) &&
+                Objects.equals(noticeOwner, notice.noticeOwner) &&
+                Objects.equals(noticeTaker, notice.noticeTaker);
     }
 }

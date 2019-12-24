@@ -76,10 +76,12 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
         Chat chat = new Chat( notice , notice.getNoticeOwner(), user );
        // ChatCollection chatCollection = DBHelper.getChatCollection( DBHelper.getUserId( user ) );
 
-        //chatCollection.addChat( chat );
-        //DBHelper.addChat( chat );
-        //DBHelper.updateChatCollection( chatCollection );
-
+        /*
+        if( !chatCollection.getAllChat().contains(chat)) {
+            //chatCollection.addChat( chat );
+            //DBHelper.addChat( chat );
+            //DBHelper.updateChatCollection( chatCollection );
+        }*/
         Intent intent = new Intent(getActivity(), ChatActivity.class );
         intent.putExtra("USERNAME" , user.getUserName() );
         intent.putExtra("PASSWORD", user.getPassword());

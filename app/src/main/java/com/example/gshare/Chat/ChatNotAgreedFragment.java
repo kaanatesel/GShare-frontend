@@ -186,7 +186,11 @@ public class ChatNotAgreedFragment extends Fragment {
 
 
                 if (!textBeSend.matches("")) {
+
                     // Message message = new Message(textBeSend, recieverUser, DBHelper.getUser() );
+
+                   // Message message = new Message(textBeSend, recieverUser, DBHelper.getUser() );
+
                     //stringMessages.add(message.toString());
                     chatFragmentTry.add(new ChatTry(textBeSend, true));
                     listView.setAdapter(new ChatAdapter(a, chatFragmentTry));

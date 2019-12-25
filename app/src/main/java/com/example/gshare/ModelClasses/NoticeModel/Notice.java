@@ -240,7 +240,7 @@ public class Notice implements Serializable {
             throw new IllegalArgumentException( "Notice owner does not have enough money");
         }
     }
-    /*
+    /**
         Please add try/catch to this and show a pop up message something like you don't have enough money so you don't have
         negative money
         Only use for lending notices and use when users agree on the notice
@@ -286,6 +286,12 @@ public class Notice implements Serializable {
         long diff = current.getTime() - startTime;
         return (day - TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
     }
+
+    public long computeTimeLeftHours(){//TESTED AND WORKS
+        Date current = new Date();
+        long diff = current.getTime() - startTime;
+        return (day*24 - TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS));
+    }
     /*
     For checking if the notice time is over ( did not test yet these computeTimeLeft methods definietly need testing)
     @return diffInMillies time left in milli seconds
@@ -306,6 +312,10 @@ public class Notice implements Serializable {
      */
     public void doTransaction( User noticeOwner, User noticeTaker){//TESTED AND WORKS
         double gToTransact = ( g / ( day * 1.0 ) ) * ( day - ( computeTimeLeft() * 1.0 ) );//DO NOT FORGET
+
+        if(computeTimeLeft() <= 0 ){
+            gToTransact = g;
+        }
 
         if( noticeType == BORROW_NOTICE ) {
            noticeOwner.withdraw( (int)gToTransact );

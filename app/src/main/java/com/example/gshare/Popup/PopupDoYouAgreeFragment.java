@@ -41,31 +41,36 @@ public class PopupDoYouAgreeFragment extends DialogFragment implements View.OnCl
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_popup_doyouagree, container, false);
-
-        notice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                100,new LocationG());//DBHelper.getNotice( getArguments().getInt("noticeId"));
-
-        yes = view.findViewById(R.id.agreeButton);
-        no = view.findViewById(R.id.dontAgreeButton);
-        gValue = view.findViewById(R.id.G);
-        returnDateValue = view.findViewById(R.id.returndate);
-
-        yes.setOnClickListener(this);
-        no.setOnClickListener(this);
-
-        if(notice.getNoticeType()==Notice.BORROW_NOTICE){
-            gValue.setText(getArguments().getInt("g") + "");
-        }
-        else{
-            gValue.setText(notice.getG()+"");
-        }
-        returnDateValue.setText("Return " + notice.getDay() + " days later"  );
 
 
+       View view = inflater.inflate(R.layout.fragment_popup_doyouagree, container, false);
+
+       notice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
+               100,new LocationG());//DBHelper.getNotice( getArguments().getInt("noticeId"));
+
+       yes = view.findViewById(R.id.agreeButton);
+       no = view.findViewById(R.id.dontAgreeButton);
+       gValue = view.findViewById(R.id.G);
+       returnDateValue = view.findViewById(R.id.returndate);
+
+       yes.setOnClickListener(this);
+       no.setOnClickListener(this);
+
+       if(notice.getNoticeType()==Notice.BORROW_NOTICE){
+           gValue.setText(getArguments().getInt("g") + "");
+       }
+       else{
+           gValue.setText(notice.getG()+"");
+       }
+       returnDateValue.setText("Return " + notice.getDay() + " days later"  );
 
 
-        return view;
+
+
+
+
+       return view;
+
     }
 
     @Override
@@ -76,7 +81,9 @@ public class PopupDoYouAgreeFragment extends DialogFragment implements View.OnCl
                     notice.agreeOnBorrowNotice( chat.getCustomer() ,getArguments().getInt("g"));
                 }
                 if(notice.getNoticeType() == Notice.LEND_NOTICE){
+
                     notice.agreeOnLendNotice( chat.getCustomer() );
+
                 }
                 getActivity().setContentView(R.layout.fullyblanklayout);
                 ChatAgreedFragment fragment = new ChatAgreedFragment();

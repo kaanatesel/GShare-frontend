@@ -21,9 +21,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+
 import android.widget.SearchView;
-
-
 import android.widget.TextView;
 
 
@@ -48,6 +47,7 @@ import com.example.gshare.Notice.ContactPurpleNoticeFragment;
 import com.example.gshare.Notice.ContactYellowNoticeFragment;
 import com.example.gshare.Notice.CreatePurpleNoticeFragment;
 import com.example.gshare.Notice.CreateYellowNoticeFragment;
+import com.example.gshare.Notice.ListViewAdapter;
 import com.example.gshare.Notice.ProductHomeListDisplayModel;
 import com.example.gshare.Popup.PopupSortByFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -86,7 +86,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     ListView listView = null;
     Context c = null;
 
-    com.example.gshare.ListViewAdapter adapter;
+    ListViewAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -130,7 +130,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                adapter = new com.example.gshare.ListViewAdapter(c,  notices);
+                adapter = new ListViewAdapter(c,  notices);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -150,7 +150,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
         }, 1000);
 
-      /*  SearchView searchView = (SearchView) view.findViewById(R.id.homepageSearchView);
+       SearchView searchView = (SearchView) view.findViewById(R.id.homepageSearchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -168,17 +168,17 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
             public void callSearch(String query) {
                 //notices = DBHelper.getAllNotices();
-                notices = new ArrayList<Notice>();
-                notices.add(new  Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                        100,new LocationG()));
-                notices.add(new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                        100,new LocationG()));
+                //notices = new ArrayList<Notice>();
+                //notices.add(new  Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
+                //        100,new LocationG()));
+               // notices.add(new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
+                 //       100,new LocationG()));
 
                 listView.setAdapter(adapter.update(notices));
 
             }
         });
-        */
+
 
         ImageButton buttonTransport = (ImageButton) view.findViewById(R.id.transportButton);
         buttonTransport.setOnClickListener(new View.OnClickListener() {
@@ -329,7 +329,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
             case R.id.borrowingSortButton:
                 sortMode = BORROWING_MODE;
-             //   notices = Sort.getBorrowings( notices);
+                //   notices = Sort.getBorrowings( notices);
                 borrowModeButton.setBackgroundColor(Color.parseColor("#F000FF"));
                 lendModeButton.setBackgroundColor(Color.parseColor("#FF9800") );
                 addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#492A4B")));
@@ -339,7 +339,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.lendingSortiButton:
                 sortMode = LENDING_MODE;
-               // notices = Sort.getLendings( notices);
+                // notices = Sort.getLendings( notices);
                 lendModeButton.setBackgroundColor(Color.parseColor("#FFFF00") );
                 borrowModeButton.setBackgroundColor(Color.parseColor("#B201D8"));
                 addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF681F")));

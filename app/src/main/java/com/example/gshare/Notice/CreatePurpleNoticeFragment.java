@@ -45,10 +45,10 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
 
         Spinner spinner = view.findViewById(R.id.spinner);
         // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , android.R.layout.simple_spinner_item , R.array.categories );
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource( getParentFragment().getContext() , R.array.categories, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemClickListener(this);
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource( getParentFragment().getContext() , R.array.categories, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //spinner.setAdapter(adapter);
+        //spinner.setOnItemClickListener(this);
 
 
         return view;

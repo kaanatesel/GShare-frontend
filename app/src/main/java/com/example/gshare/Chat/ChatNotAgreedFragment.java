@@ -52,6 +52,7 @@ public class ChatNotAgreedFragment extends Fragment {
 
     Notice chatNotice;
     Chat chat;
+    User recieverUser;
 
     String userName;
     int noticeId;
@@ -99,9 +100,11 @@ public class ChatNotAgreedFragment extends Fragment {
 
         if( DBHelper.getUser().equals(chat.getCustomer()) ) {
             userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
+            recieverUser = chat.getNoticeOwner();
         }
         if( DBHelper.getUser().equals(chat.getNoticeOwner() ) ) {
             userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
+            recieverUser = chat.getCustomer();
         }
 
         Button agreeButton = (Button) view.findViewById(R.id.terminateButton);
@@ -162,8 +165,8 @@ public class ChatNotAgreedFragment extends Fragment {
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
                 if (textBeSend != "") {
-                    //Message message = new Message();
-                    //stringMessages.add(message.toString());
+                    Message message = new Message(textBeSend, recieverUser, DBHelper.getUser() );
+                    stringMessages.add(message.toString());
                     chatFragmentTry.add(new ChatTry(textBeSend, true));
                     listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
                 }

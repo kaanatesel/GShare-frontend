@@ -286,6 +286,12 @@ public class Notice implements Serializable {
         long diff = current.getTime() - startTime;
         return (day - TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
     }
+
+    public long computeTimeLeftHours(){//TESTED AND WORKS
+        Date current = new Date();
+        long diff = current.getTime() - startTime;
+        return (day*24 - TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS));
+    }
     /*
     For checking if the notice time is over ( did not test yet these computeTimeLeft methods definietly need testing)
     @return diffInMillies time left in milli seconds

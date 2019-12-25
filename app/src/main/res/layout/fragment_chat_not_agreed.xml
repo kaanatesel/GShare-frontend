@@ -119,10 +119,10 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/chatListVİew"
+        android:id="@+id/chatListView"
         android:layout_width="wrap_content"
-        android:layout_height="464dp"
-        android:layout_gravity="bottom"></ListView>
+        android:layout_height="426dp"
+        android:layout_gravity="top"></ListView>
 
     <LinearLayout
         android:id="@+id/horizontalLayoutEdit"
@@ -140,7 +140,7 @@
             android:inputType="textPersonName" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/imageButtonSend"
             style="@android:style/Widget.Material.ImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -95,6 +95,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         Bundle bundle = getArguments();
 
         notices = new ArrayList<Notice>();
+
         notices = sort(notices, bundle.getBoolean("ACCEPTED"), bundle.getBoolean("G"), bundle.getInt("MIN"),
                 bundle.getInt("MAX"), bundle.getBoolean("NEWEST"), bundle.getBoolean("ALPHABETICAL"));
 
@@ -137,21 +138,20 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 args.putString("userName", userName);
                 args.putString("password", password);
                 args.putString("G", String.valueOf(notices.get(position).getG()));
+                args.putInt("noticeId",1234);//notices.get(position).getId());
 
 
                 //if(notices.get(position).getNoticeType() =='L'){
 
 
                 ContactYellowNoticeFragment fragmentForLending = new ContactYellowNoticeFragment();
-                    fragmentForLending.setArguments(args);
-                    FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransactionForLending.replace(R.id.main_layout,fragmentForLending);
-                    fragmentTransactionForLending.commit();
+                fragmentForLending.setArguments(args);
+                FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransactionForLending.replace(R.id.main_layout, fragmentForLending);
+                fragmentTransactionForLending.commit();
                 //Intent i = new Intent(getContext(), ActivityContqactTry.class);
                 //startActivity(i);
 
-                
-                
 
                 //}else if(notşces.get(position).getNoticeType() =='R'){
                 //ContactPurpleNoticeFragment fragmentForBorrowing= new ContactPurpleNoticeFragment();

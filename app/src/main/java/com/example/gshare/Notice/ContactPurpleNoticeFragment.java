@@ -11,7 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.Chat.ChatNotAgreedFragment;
 import com.example.gshare.ChatActivity;
 import com.example.gshare.ModelClasses.ChatModel.Chat;
 import com.example.gshare.ModelClasses.Location.LocationG;
@@ -75,10 +77,20 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
             //DBHelper.addChat( chat );
             //DBHelper.updateChatCollection( chatCollection );
         }*/
+        /*
         Intent intent = new Intent(getActivity(), ChatActivity.class );
         intent.putExtra("USERNAME" , user.getUserName() );
         intent.putExtra("PASSWORD", user.getPassword());
-        startActivity(intent);
+        startActivity(intent);*/
+
+        Bundle bundle;
+        bundle = getArguments();
+
+        ChatNotAgreedFragment fragmentChatNotAgreed = new ChatNotAgreedFragment();
+        fragmentChatNotAgreed.setArguments(bundle);
+        FragmentTransaction fragmentManagerForNotAgreedChat = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentManagerForNotAgreedChat.replace(R.id.main_layout,fragmentChatNotAgreed);
+        fragmentManagerForNotAgreedChat.commit();
     }
 
 }

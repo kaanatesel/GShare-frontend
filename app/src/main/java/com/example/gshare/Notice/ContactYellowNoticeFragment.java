@@ -91,7 +91,11 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
         intent.putExtra("USERNAME" , user.getUserName() );
         intent.putExtra("PASSWORD", user.getPassword());
         startActivity(intent);*/
+        Bundle bundle;
+        bundle = getArguments();
+
         ChatNotAgreedFragment fragmentChatNotAgreed = new ChatNotAgreedFragment();
+        fragmentChatNotAgreed.setArguments(bundle);
         FragmentTransaction fragmentManagerForNotAgreedChat = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentManagerForNotAgreedChat.replace(R.id.main_layout,fragmentChatNotAgreed);
         fragmentManagerForNotAgreedChat.commit();

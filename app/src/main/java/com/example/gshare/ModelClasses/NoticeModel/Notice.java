@@ -240,7 +240,7 @@ public class Notice implements Serializable {
             throw new IllegalArgumentException( "Notice owner does not have enough money");
         }
     }
-    /*
+    /**
         Please add try/catch to this and show a pop up message something like you don't have enough money so you don't have
         negative money
         Only use for lending notices and use when users agree on the notice

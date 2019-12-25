@@ -331,7 +331,7 @@ public class DBHelper {
     /////////////////////////////////CREATE NOTICE IN DB////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public static void createLendingNotice(Notice notice) {
+    public void createLendingNotice(Notice notice) {
 
         String postURL = "http://35.242.192.20/demand/create/";
 
@@ -378,7 +378,7 @@ public class DBHelper {
         instance.addToRequestQueue(jsonObjReq);
     }//Lending notice end
 
-    public static void createBorrowingNotice(Notice notice) {
+    public void createBorrowingNotice(Notice notice) {
 
         String postURL = "http://35.242.192.20/product/create/";
 

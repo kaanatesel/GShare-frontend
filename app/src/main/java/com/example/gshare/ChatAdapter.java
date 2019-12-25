@@ -17,14 +17,13 @@ import java.util.ArrayList;
 public class ChatAdapter extends ArrayAdapter<ChatTry> {
 
     Context context;
-    ArrayList<ChatTry> myChats = new ArrayList<ChatTry>();;
+    ArrayList<ChatTry> myChats;
 
-
-    private ArrayList<String> notices;
-    public ChatAdapter(@NonNull Context c, @NonNull ArrayList<ChatTry> stringMessages){
-        super(c, R.layout.chatlayout,stringMessages);
+    private ArrayList<NoticeTry> notices;
+    public ChatAdapter(@NonNull Context c, @NonNull ArrayList<ChatTry> chats){
+        super(c, R.layout.chatlayout,chats);
         this.context = c;
-        this.myChats = stringMessages;
+        this.myChats = chats;
 
     }
 
@@ -32,18 +31,9 @@ public class ChatAdapter extends ArrayAdapter<ChatTry> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    View row = null;
-        if(position <= myChats.size()){
-        if(myChats.get(position).getUser()){
-            row = layoutInflater.inflate(R.layout.chatlayoutsended,parent,false);
-            TextView chatMessage = (TextView) row.findViewById(R.id.textViewSended);
-            chatMessage.setText(myChats.get(position).getMessage());
-        }else{
-            row = layoutInflater.inflate(R.layout.chatlayout,parent,false);
-            TextView chatMessageOther = (TextView) row.findViewById(R.id.textViewChat);
-            chatMessageOther.setText(myChats.get(position).getMessage());
-        }}
+        View row = layoutInflater.inflate(R.layout.chatlayout,parent,false);
+        TextView chatMessage = row.findViewById(R.id.textView);
+        chatMessage.setText(myChats.get(position).getMessage());
         return row;
     }
-
 }

@@ -118,13 +118,103 @@
             android:inputType="number" />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/chatListView"
-        android:layout_width="wrap_content"
-        android:layout_height="426dp"
-        android:layout_gravity="top"
-        android:stackFromBottom="true"
-        ></ListView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="412dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutForMessages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <fragment
+                android:id="@+id/fragment4"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment5"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment6"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment7"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment8"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment9"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment14"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment13"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment12"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment11"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment50"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment40"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment30"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:id="@+id/fragment20"
+                android:name="com.example.gshare.Chat.SingleMessageFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/horizontalLayoutEdit"
@@ -142,7 +232,7 @@
             android:inputType="textPersonName" />
 
         <ImageButton
-            android:id="@+id/imageButtonSend"
+            android:id="@+id/imageButton"
             style="@android:style/Widget.Material.ImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

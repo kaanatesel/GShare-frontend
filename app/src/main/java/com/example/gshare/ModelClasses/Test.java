@@ -68,6 +68,8 @@ public class Test {
 
 
 
+
+
         int g = 30;
         try {
             user2Notice.setG(30);

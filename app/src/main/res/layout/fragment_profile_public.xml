@@ -34,14 +34,6 @@
                 android:layout_height="208dp">
 
                 <ImageButton
-                    android:id="@+id/backButton"
-                    android:layout_width="64dp"
-                    android:layout_height="29dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/android_arrow_back_1161833" />
-
-                <ImageButton
                     android:id="@+id/editProfileButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

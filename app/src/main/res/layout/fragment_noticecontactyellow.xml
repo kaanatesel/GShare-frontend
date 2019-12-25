@@ -172,6 +172,18 @@
             app:layout_constraintTop_toBottomOf="@+id/noticenote"
             app:layout_constraintVertical_bias="0.33" />
 
+        <Button
+            android:id="@+id/userButton"
+            android:layout_width="345dp"
+            android:layout_height="83dp"
+            android:text="@string/user_button_going_to_be_a_user_fragment"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@+id/contactButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticenote"
+            app:layout_constraintVertical_bias="0.33" />
+
         <ImageView
             android:id="@+id/categoryImageView"
             android:layout_width="wrap_content"

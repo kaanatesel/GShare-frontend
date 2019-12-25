@@ -23,6 +23,7 @@ import com.example.gshare.ModelClasses.ChatModel.ChatCollection;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
+import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
 
 /**
@@ -40,8 +41,9 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
     Button contactButton;
     ImageButton backButton;
 
-    String userName;
-    String password;
+    Button goToProfile;
+
+    String email;
 
 
     @Nullable
@@ -52,8 +54,7 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
         Bundle bundle = getArguments();
         if (bundle != null) {
             noticeId = bundle.getInt("notice_id");
-            userName = bundle.getString("userName");
-            password = bundle.getString("password");
+            email = bundle.getString("email");
         }
 
         notice = new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
@@ -65,14 +66,17 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
         note = view.findViewById(R.id.noticenote);
         contactButton = view.findViewById(R.id.contactButton);
         backButton = view.findViewById(R.id.backButton);
+        goToProfile = view.findViewById(R.id.userButton);
 
         title.setText(notice.getName());
         days.setText(notice.getDay() + "");
         note.setText(notice.getNote());
         g.setText(notice.getG() + "");
+        goToProfile.setText( "Go to " + notice.getNoticeOwner().getNameAndSurname() + " 's profile");
 
         contactButton.setOnClickListener(this);
         backButton.setOnClickListener(this);
+        goToProfile.setOnClickListener(this);
 
 
         return view;
@@ -114,6 +118,15 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
                 FragmentTransaction fragmentManagerForHomePage = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentManagerForHomePage.replace(R.id.main_layout, homePageFragment);
                 fragmentManagerForHomePage.commit();
+                break;
+            case R.id.userButton:
+                Bundle bundle3;
+                bundle3 = getArguments();
+                bundle3.putString("userEmail",notice.getNoticeOwner().getEmail());
+                ProfilePublicFragment profilePublicFragment = new ProfilePublicFragment();
+                profilePublicFragment.setArguments(bundle3);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_biglayout, profilePublicFragment);
                 break;
 
         }

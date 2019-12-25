@@ -31,7 +31,7 @@ public class ProfileEditFragment extends DialogFragment implements View.OnClickL
         applyButton = view.findViewById(R.id.changeNameButton);
         editName = view.findViewById(R.id.changeNameEditText);
         email = getArguments().getString("email");
-        //user = DBHelper.getUser(email);
+        user = DBHelper.getUser(email);
         applyButton.setOnClickListener(this);
         return view;
     }

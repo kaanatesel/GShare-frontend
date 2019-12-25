@@ -27,21 +27,24 @@ private Context c;
 private ListView chatList;
 private UserChatsAdapter chatUsersAdapter;
 private ArrayList<Chat> chats;
+
+private String email;
     @Nullable
 //We will change ChatTry to Chat
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_chat, container,false);
+        email = getArguments().getString("email");
         chatList = (ListView)view.findViewById(R.id.chatList);
         chatList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onItemClickListener(AdapterView<?> parent, View view, int position, long id){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 
             }
 
         });
         chats = new ArrayList<Chat>();
-        chatUsersAdapter = new UserChatsAdapter();
-        chatList.setAdapter(chatUsersAdapter);
+        //chatUsersAdapter = new UserChatsAdapter();
+        //chatList.setAdapter(chatUsersAdapter);
 
     return view;
     }

@@ -77,8 +77,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     Button borrowModeButton;
     Button button;
     ImageButton sortButton;
-    String userName;
-    String password;
+    String email;
     OkHttpClient httpClient;
     ArrayList<ProductHomeListDisplayModel> notices;
     char sortMode;
@@ -97,8 +96,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         sortMode = LENDING_MODE;
 
         if( getArguments() != null ){
-            userName = getArguments().getString("userName");
-            password = getArguments().getString("password");
+            email = getArguments().getString("email");
         }
         Bundle bundle = getArguments();
 
@@ -150,7 +148,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
         }, 1000);
 
-       SearchView searchView = (SearchView) view.findViewById(R.id.homepageSearchView);
+        SearchView searchView = (SearchView) view.findViewById(R.id.homepageSearchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -171,8 +169,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 //notices = new ArrayList<Notice>();
                 //notices.add(new  Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                 //        100,new LocationG()));
-               // notices.add(new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                 //       100,new LocationG()));
+                // notices.add(new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
+                //       100,new LocationG()));
 
                 listView.setAdapter(adapter.update(notices));
 
@@ -285,6 +283,45 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         });
         return notices;
     }
+   /*public ArrayList<ProductHomeListDisplayModel> getBorrowingNotices(){
+        String url = "http://35.242.192.20/demand/getAllActive/";
+        notices = new ArrayList<ProductHomeListDisplayModel>();
+        Request request = new Request.Builder()
+                .url(url)
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .build();
+
+        httpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                String mMessage = e.getMessage().toString();
+                Log.w("failure Response", mMessage);
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String mMessage = response.body().string();
+                try {
+                    JSONArray jsonArray = new JSONArray(mMessage);
+
+                    for(int i = 0; i < jsonArray.length();i++)
+                    {
+                        JSONObject json = jsonArray.getJSONObject(i);
+                        ProductHomeListDisplayModel p1 = new ProductHomeListDisplayModel(
+                                json.getInt("id"),
+                                json.getInt("price"),
+                                json.getString("name"),
+                                json.getString("description"));
+                        notices.add(p1);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.e("adapeter", mMessage);
+            }
+        });
+        return notices;
+    }*/
 
     @Override
     public void onAttach(Context con){
@@ -335,7 +372,30 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#492A4B")));
                 lendModeButton.setTypeface(null, Typeface.NORMAL);
                 borrowModeButton.setTypeface(null , Typeface.BOLD_ITALIC);
-                //CONNECT TO THE ADAPTER
+                /*notices = getNotices();
+                final Handler borrowerHandler = new Handler();
+                borrowerHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter = new ListViewAdapter(c,  notices);
+                        listView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Bundle args = new Bundle();
+                                args.putInt("noticeId",notices.get(position).getId());
+
+                                ContactYellowNoticeFragment fragmentForLending = new ContactYellowNoticeFragment();
+                                fragmentForLending.setArguments(args);
+                                FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
+                                fragmentTransactionForLending.replace(R.id.main_layout,fragmentForLending);
+                                fragmentTransactionForLending.commit();
+                            }
+                        });
+                    }
+
+                }, 1000);*/
                 break;
             case R.id.lendingSortiButton:
                 sortMode = LENDING_MODE;

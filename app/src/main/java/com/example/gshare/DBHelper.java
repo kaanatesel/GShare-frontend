@@ -7,6 +7,8 @@ import android.util.LogPrinter;
 import android.util.LruCache;
 import android.widget.EditText;
 import android.widget.TextView;
+import java.util.concurrent.TimeUnit;
+
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -35,6 +37,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -43,8 +48,6 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.*;
-
-import static com.android.volley.Request.Method.HEAD;
 
 public class DBHelper {
     private static DBHelper instance;
@@ -59,11 +62,12 @@ public class DBHelper {
     String passDB;
 
 
-    //******************
+    //******
     private static User primaryUser; //This is the client User OBJ
     private static User tempUser = null;
     private static int primaryUserID;
     private static int tempUserID;
+    ArrayList<User> userList;
 
     private DBHelper(Context context) {
         ctx = context;
@@ -114,107 +118,129 @@ public class DBHelper {
     /////////////////////////////////GET USER DATA//////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /**
-     * Works partially. Returns null in the first time. Returns obj in second time.
+    /**Works partially. Returns null in the first time. Returns obj in second time.
      *
      * @param email The users email
      * @return User Object
      */
     public static User getUser(String email) { //void for now
-        instance.callUserByEmail(email);
-        return tempUser;
+        return instance.callUserByEmail(email);
+
     }
 
-    private void callUserByEmail(String email) {
-        RequestQueue mQueue = Volley.newRequestQueue(ctx);
+    private User callUserByEmail(String email){
+
 
         String url = "http://35.246.134.158/member/getMyEmail/" + email + "/";
 
-        User tempUser;
+        OkHttpClient client = new OkHttpClient();
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+        userList = new ArrayList<User>();
 
+        okhttp3.Request request = new okhttp3.Request.Builder()
+                .url(url)
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .build();
 
-                        try {
-                            DBHelper.createUserOBJ(
-                                    response.getInt("id"),
-                                    response.getString("name"),
-                                    response.getString("password"),
-                                    response.getString("email"),
-                                    response.getInt("g"));
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
+        client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
             }
+
+            @Override
+            public void onResponse(Call call, okhttp3.Response response) throws IOException {
+
+                String mMessage = response.body().string();
+                try {
+                    JSONObject jsonOBJ = new JSONObject(mMessage);
+
+
+                    JSONObject json = jsonOBJ;
+                    User p1 = new User(
+                            json.getString("id"),           //Name and Surname
+                            json.getString("email"),        //userName
+                            json.getString("password"),     //Password
+                            json.getString("email"),        //email
+                            json.getInt("g")         );     //g
+
+                    userList.add( p1);
+
+                } catch (JSONException e) { e.printStackTrace(); }
+
+            }
+
         });
+        try {
+            return userList.get(0);
+        }catch (java.lang.IndexOutOfBoundsException e){
+            return null;
+        }
 
-
-        mQueue.add(request);
     }
 
-    /**
-     * Dikkat ilk seferinde null dönüyor 2. seferinde doluyor. Çözemedim
+    /**Depricated and redundent but intuitive naming for user object
      *
      * @param ID user ID
      * @return The User
      */
-    public static User getUser(int ID) {
-        instance.callUserByID(ID);
-        return tempUser;
+    public static User getUser(int ID){
+        return instance.callUserByID(ID);
     }
 
-    private void callUserByID(int ID) {
+    private User callUserByID(int ID) {
 
-        RequestQueue mQueue = Volley.newRequestQueue(ctx);
-
+        OkHttpClient client = new OkHttpClient();
         String url = "http://35.242.192.20/member/" + ID + "/";
+        userList = new ArrayList<User>();
 
-        User tempUser;
+        okhttp3.Request request = new okhttp3.Request.Builder()
+                .url(url)
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .build();
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-
-                        try {
-                            DBHelper.createUserOBJ(
-                                    response.getInt("id"),
-                                    response.getString("name"),
-                                    response.getString("password"),
-                                    response.getString("email"),
-                                    response.getInt("g"));
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
+        client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
             }
+
+            @Override
+            public void onResponse(Call call, okhttp3.Response response) throws IOException {
+
+                String mMessage = response.body().string();
+                try {
+                    JSONObject jsonOBJ = new JSONObject(mMessage);
+
+
+                    JSONObject json = jsonOBJ;
+                    User p1 = new User(
+                            json.getString("id"),           //Name and Surname
+                            json.getString("email"),        //userName
+                            json.getString("password"),     //Password
+                            json.getString("email"),        //email
+                            json.getInt("g")         );     //g
+
+                    userList.add( p1);
+
+                } catch (JSONException e) { e.printStackTrace(); }
+
+            }
+
         });
-
-
-        mQueue.add(request);
-
+        try {
+            return userList.get(0);
+        }catch (java.lang.IndexOutOfBoundsException e){
+            return null;
+        }
     }
 
     //Helper Methods for Users
 
     private static void createUserOBJ(int id, String name, String password, String email, int g) {
+
 
         tempUser = new User(name, email, password, email, g);
         tempUser.setID(id);
@@ -228,7 +254,7 @@ public class DBHelper {
      * @param borrowingNoticeID
      * @return messages Messages ArrayList
      * */
-    public static ArrayList<Message> getMessages(int borrowingNoticeID) {
+    public static ArrayList<Message> getMessages(int borrowingNoticeID){
 
         String url = "http://35.242.192.20//message/findByProductRequestId/" + borrowingNoticeID;
 
@@ -245,13 +271,13 @@ public class DBHelper {
                         try {
 
 
-                            for (int i = 0; i < response.length(); i++) {
+                            for(int i = 0; i < response.length(); i++){
                                 JSONObject jresponse = response.getJSONObject(i);
 
-                                String message = jresponse.getString("message");
+                                String message  = jresponse.getString("message");
                                 int receiverMemberId = jresponse.getInt("receiverMemberId");
                                 int senderMemberId = jresponse.getInt("senderMemberId");
-                                Message msg = new Message(message, getUser(receiverMemberId), getUser(senderMemberId));
+                                Message msg = new Message( message, getUser(receiverMemberId) , getUser( senderMemberId) );
                                 messages.add(msg);
                             }
 
@@ -271,410 +297,67 @@ public class DBHelper {
         return messages;
     }
 
+    private static  ArrayList<Notice> noticeArrayList = new ArrayList<Notice>();
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////CREATE NOTICE IN DB////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+    public static ArrayList<Notice> getLendingNotices(){
 
-    public static void createLendingNotice(Notice notice) {
-
-        String postURL = "http://35.242.192.20/demand/create/";
-
-        int requesterId = primaryUserID;
-        String productDescription = notice.getName();
-        int categoryId = notice.getCategory();
+        String url = "http://35.242.192.20/demand/findAll/";
 
 
-        Gson gson = new Gson();
-        gson.toJson(categoryId);
-        gson.toJson(productDescription);
-        gson.toJson(requesterId);
-        String postParams = gson.toString();
-        //TODO write json by hand
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url ,null,  new Response.Listener<JSONArray>(){
 
-        JsonObjectRequest jsonObjReq = null;
-        try {
-            jsonObjReq = new JsonObjectRequest(
-                    Request.Method.POST,
-                    postURL, new JSONObject(postParams),
+            @Override
+            public void onResponse(JSONArray response) {
 
-        }
+                System.out.println(response.length());
+                for(int i = 0 ; i< response.length() ; i++){
+
+                    try {
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        System.out.println( jsonObject.getString("productDescription" ) );
+                        System.out.println( jsonObject.getInt("categoryId" ) );
 
 
+
+
+                        User owner = getUser( jsonObject.getInt("requesterId") );
+
+                        Notice tempNotice = new Notice(
+                                jsonObject.getString("productDescription" ),                    //Name
+                                10,                                                              //Day
+                                jsonObject.getString("productDescription" ),                    //Note
+                                jsonObject.getInt("categoryId"),                                //Catagory
+                                owner,                                                                  //Owner
+                                100,                                                              //g
+                                null                                                          //Location
+                        );
+
+                        System.out.println( jsonObject.getString("productDescription" ) );
+
+                        noticeArrayList.add( tempNotice );
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e( "error JSON ARRAY" , error.toString() ) ;
+
+            }
+        });
+
+
+        instance.addToRequestQueue(jsonArrayRequest);
+
+
+
+        return noticeArrayList;
     }
-},
 
-
-        new Response.ErrorListener()
-        {
-@Override
-public void onErrorResponse(VolleyError error){
-
-        }
-        }
-        );
-        }catch(JSONException e){
-        e.printStackTrace();
-        }
-
-        instance.addToRequestQueue(jsonObjReq);
-        }//Lending notice end
-
-public static void createBorrowingNotice(Notice notice){
-
-        String postURL="http://35.242.192.20/product/create/";
-
-        String description=notice.getNote();
-        int memberId=primaryUserID;
-        String name=notice.getName();
-        int price=notice.getG();
-        int productCategory=notice.getCategory();
-""
-        Gson gson=new Gson();
-        gson.toJson(description);
-        gson.toJson(memberId);
-        gson.toJson(name);
-        gson.toJson(price);
-        gson.toJson(productCategory);
-        String postParams=gson.toString();
-
-        JsonObjectRequest jsonObjReq=null;
-        try{
-        jsonObjReq=new JsonObjectRequest(
-        Request.Method.POST,
-        postURL,new JSONObject(postParams),
-
-
-        new Response.Listener<JSONObject>()
-        {
-@Override
-public void onResponse(JSONObject response){
-
-        }
-        },
-
-
-        new Response.ErrorListener()
-        {
-@Override
-public void onErrorResponse(VolleyError error){
-
-        }
-        }
-        );
-        }catch(JSONException e){
-        e.printStackTrace();
-        }
-
-        instance.addToRequestQueue(jsonObjReq);
-        }//Borrowing notice end
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////GET NOTICE DATA////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////////////////////
-//    public static ArrayList<Notice> getLendingNotices(){
-//
-//        final ArrayList<Notice> list = new ArrayList<Notice>();
-//        String url = "http://35.246.134.158/demand/findAll/";
-//
-//
-//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url ,null,  new Response.Listener<JSONArray>(){
-//
-//            @Override
-//            public void onResponse(JSONArray response) {
-//
-//                for(int i = 0 ; i< response.length() ; i++){
-//
-//                    try {
-//                        JSONObject jsonObject = response.getJSONObject(i);
-//                        Notice tempNotice = new Notice(
-//                                jsonObject.getString("name" ),
-//                                jsonObject.getInt("day " ),
-//                                jsonObject.getString("note"),
-//                                jsonObject.getInt("catagory "),
-//                                instance.callUserByID( jsonObject.getInt("id") ),
-//                                500,                                            //TODO replace with response
-//                                null );
-//
-//
-//                        list.add( tempNotice );
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                }
-//
-//            }
-//        }, new Response.ErrorListener() {
-//
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e( "error JSON ARRAY" , error.toString() ) ;
-//
-//            }
-//        });
-//
-//
-//        instance.addToRequestQueue(jsonArrayRequest);
-//
-//        return list;
-//    }
-//
-//    public static ArrayList<Notice> getBorrowingNotices(){
-//
-//        final ArrayList<Notice> list = new ArrayList<Notice>();
-//        String url = "http://35.246.134.158/demand/getAll/"; //TODO replace the url
-//
-//
-//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url ,null,  new Response.Listener<JSONArray>(){
-//
-//            @Override
-//            public void onResponse(JSONArray response) {
-//
-//                for(int i = 0 ; i< response.length() ; i++){
-//
-//                    try {
-//                        JSONObject jsonObject = response.getJSONObject(i);
-//                        Notice tempNotice = new Notice(
-//                                jsonObject.getString("name" ),
-//                                jsonObject.getInt("day " ),
-//                                jsonObject.getString("note"),
-//                                jsonObject.getInt("catagory "),
-//                                instance.callUserByID( jsonObject.getInt("id") ),
-//                                null );
-//
-//
-//                        list.add( tempNotice );
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                }
-//
-//            }
-//        }, new Response.ErrorListener() {
-//
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e( "error JSON ARRAY" , error.toString() ) ;
-//
-//            }
-//        });
-//
-//
-//        instance.addToRequestQueue(jsonArrayRequest);
-//
-//        return list;
-//    }
-//
-//    ////////////////////////////////////////////////////////////////////////////////////////////////
-//    /////////////////////////////////CREATE NOTICE IN DB////////////////////////////////////////////
-//    ////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//    public void createLendingNotice(Notice notice) {
-//
-//        String postURL = "http://35.242.192.20/demand/create/";
-//
-//        int requesterId = primaryUserID;
-//        String productDescription = notice.getName();
-//        int categoryId = notice.getCategory();
-//
-//
-//        Gson gson = new Gson();
-//        gson.toJson(categoryId);
-//        gson.toJson(productDescription);
-//        gson.toJson(requesterId);
-//        String postParams = gson.toString();
-//        //TODO write json by hand
-//
-//        JsonObjectRequest jsonObjReq = null;
-//        try {
-//            jsonObjReq = new JsonObjectRequest(
-//                    Request.Method.POST,
-//                    postURL, new JSONObject(postParams),
-//
-//
-//                    new Response.Listener<JSONObject>()
-//                    {
-//                        @Override
-//                        public void onResponse(JSONObject response) {
-//
-//                        }
-//                    },
-//
-//
-//                    new Response.ErrorListener()
-//                    {
-//                         @Override
-//                          public void onErrorResponse(VolleyError error) {
-//
-//                     }
-//            }
-//            );
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-//        instance.addToRequestQueue(jsonObjReq);
-//    }//Lending notice end
-//
-//    public void createBorrowingNotice(Notice notice) {
-//
-//        String postURL = "http://35.242.192.20/product/create/";
-//
-//        String description = notice.getNote();
-//        int memberId = primaryUserID;
-//        String name = notice.getName();
-//        int price = notice.getG();
-//        int productCategory = notice.getCategory();
-//
-//        Gson gson = new Gson();
-//        gson.toJson(description);
-//        gson.toJson(memberId);
-//        gson.toJson(name);
-//        gson.toJson(price);
-//        gson.toJson(productCategory);
-//        String postParams = gson.toString();
-//
-//        JsonObjectRequest jsonObjReq = null;
-//        try {
-//            jsonObjReq = new JsonObjectRequest(
-//                    Request.Method.POST,
-//                    postURL, new JSONObject(postParams),
-//
-//
-//                    new Response.Listener<JSONObject>()
-//                    {
-//                        @Override
-//                        public void onResponse(JSONObject response) {
-//
-//                        }
-//                    },
-//
-//
-//                    new Response.ErrorListener()
-//                    {
-//                        @Override
-//                        public void onErrorResponse(VolleyError error) {
-//
-//                        }
-//                    }
-//            );
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-//        instance.addToRequestQueue(jsonObjReq);
-        //}//Borrowing notice end
-        >>>>>>>24c7a7ef5edcb816b251e6873821c4bf6da5ada3
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////GET CHAT COLLECTION////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-//    public static Chat getChat(int otherUserID){
-//
-//    }
-//
-//    public static ArrayList<Message> getChatMessages(int msgSenderId , int msgRecieverId ){
-//
-//    }
-//
-//    public static void submitMessage(Message message, Notice notice){
-//
-//        String postURL = "http://35.242.192.20/demand/create/";
-//
-//
-//        String msg = message.getMessage();
-//        callUserByEmail( message.getReciever().getEmail() ); //After that tempUserID will set to receiver ID
-//        int recieverID = tempUserID;
-//        int senderID = primaryUserID;
-//
-//
-//
-//        Gson gson = new Gson();
-//
-//        gson.toJson(productDescription);
-//        gson.toJson(requesterId);
-//        String postParams = gson.toString();
-//        //TODO write json by hand
-//
-//        JsonObjectRequest jsonObjReq = null;
-//        try {
-//            jsonObjReq = new JsonObjectRequest(
-//                    Request.Method.POST,
-//                    postURL, new JSONObject(postParams),
-//
-//
-//                    new Response.Listener<JSONObject>()
-//                    {
-//                        @Override
-//                        public void onResponse(JSONObject response) {
-//
-//                        }
-//                    },
-//
-//
-//                    new Response.ErrorListener()
-//                    {
-//                        @Override
-//                        public void onErrorResponse(VolleyError error) {
-//
-//                        }
-//                    }
-//            );
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-//        instance.addToRequestQueue(jsonObjReq);
-//    }//Lending notice end
-
-
-//}
-
-//}//DBHelper end
-
-// POST isteği gönderildikten sonra response alıyor JSON id name email password createDATE
-
-// validateLogin() PU ın id sini kaydetsin
-
-//    public static User callUserByEmail(String email) {
-
-//    String url = "http://35.246.134.158/member/getMyEmail/" + email + "/";
-
-
-//    //Create a JSON OBJ request
-//    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-//            (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-//
-//                @Override
-//                public void onResponse(JSONObject response) {
-//
-//                    try {
-//                        createUserOBJ(response.getInt("id"),
-//                                response.getString("email"),
-//                                response.getString("password"),
-//                                response.getString("name"),
-//                                response.getInt("g")
-//                        );
-//                    } catch (JSONException e) {
-//
-//                        Log.e("exception: ", "DBHelper JSON Exception");
-//
-//                    }
-//
-//                }
-//            }, new Response.ErrorListener() {
-//
-//                @Override
-//                public void onErrorResponse(VolleyError error) {
-//                    Log.e("error", error.toString());
-//
-//                }
-//            });
-//
-//        instance.addToRequestQueue(jsonObjectRequest);
-//
-//                return tempUser;
-//                }
+}

@@ -109,10 +109,9 @@ public class MainActivity extends AppCompatActivity {
             err.setText("Login Err");
         }
         else{
-            String u_name = userName.getText().toString();
-            String p_word = password.getText().toString();
+            String email = userName.getText().toString();
             Intent intent = new Intent( this, HomePageActivity.class);
-            intent.putExtra( "USERNAME" , u_name );
+            intent.putExtra( "email" , email );
             startActivity(intent);
         }
 

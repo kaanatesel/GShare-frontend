@@ -173,6 +173,7 @@ public class ChatAgreedFragment extends Fragment {
                     //stringMessages.add(message.toString());
                     chat.getAllMessage().add(message);
                     listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
+                    editText.setText("");
                 }
             }
         });

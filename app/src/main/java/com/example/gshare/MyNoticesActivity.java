@@ -6,26 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gshare.Chat.ChatFragment;
+import com.example.gshare.Notice.MyNoticesFragment;
 
-
-import static com.example.gshare.R.id.linearLayoutForChatsFragment;
-
-public class ChatActivity extends AppCompatActivity {
+public class MyNoticesActivity extends AppCompatActivity {
     String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.fragment_my_notices);
 
         email = getIntent().getStringExtra("email");
 
-        ChatFragment chatsFragment = new ChatFragment();
+        MyNoticesFragment fragment = new MyNoticesFragment();
         Bundle bundle = new Bundle();
         bundle.putString("email",email);
-        chatsFragment.setArguments(bundle);
+        fragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.main_layout,chatsFragment);
+        fragmentTransaction.replace(R.id.main_layout,fragment);
         fragmentTransaction.commit();
     }
 }

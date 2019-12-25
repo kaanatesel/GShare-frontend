@@ -9,5 +9,6 @@
         android:layout_height="50dp"
         android:layout_weight="5"
         android:paddingLeft="100dp"
-        android:text="TextView" />
+        android:text="TextView"
+        />
 </LinearLayout>

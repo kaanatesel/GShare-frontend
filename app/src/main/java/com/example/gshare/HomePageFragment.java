@@ -136,11 +136,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Bundle args = new Bundle();
                         args.putInt("noticeId",notices.get(position).getId());
-
+                        getActivity().setContentView(R.layout.fullyblanklayout);
                         ContactYellowNoticeFragment fragmentForLending = new ContactYellowNoticeFragment();
                         fragmentForLending.setArguments(args);
                         FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragmentTransactionForLending.replace(R.id.main_layout,fragmentForLending);
+                        fragmentTransactionForLending.replace(R.id.main_biglayout,fragmentForLending);
                         fragmentTransactionForLending.commit();
                     }
                 });
@@ -171,7 +171,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 //        100,new LocationG()));
                 // notices.add(new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                 //       100,new LocationG()));
-
+                    
                 listView.setAdapter(adapter.update(notices));
 
             }

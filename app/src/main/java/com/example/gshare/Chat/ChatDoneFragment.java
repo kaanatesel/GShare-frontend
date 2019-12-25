@@ -180,6 +180,7 @@ public class ChatDoneFragment extends Fragment {
                     //stringMessages.add(message.toString());
                     chat.getAllMessage().add(message);
                     listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
+                    editText.setText("");
                 }
             }
         });

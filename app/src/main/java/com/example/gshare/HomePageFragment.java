@@ -1,17 +1,13 @@
 package com.example.gshare;
 
-import android.app.Activity;
-
 import android.content.Context;
 
 
-import android.content.Intent;
 import android.content.res.ColorStateList;
 
 import android.graphics.Typeface;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 
 import android.view.View;
@@ -43,15 +39,16 @@ import java.util.ArrayList;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.Sort.Sort;
 import com.example.gshare.ModelClasses.User.User;
-import com.example.gshare.Notice.ActivityContqactTry;
-import com.example.gshare.Notice.ContactPurpleNoticeFragment;
 import com.example.gshare.Notice.ContactYellowNoticeFragment;
 import com.example.gshare.Notice.CreatePurpleNoticeFragment;
 import com.example.gshare.Notice.CreateYellowNoticeFragment;
+import com.example.gshare.Notice.ListViewAdapter;
 import com.example.gshare.Popup.PopupSortByFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.graphics.Color;
+
+import com.example.gshare.Notice.ListViewAdapter;
 
 
 public class HomePageFragment extends Fragment implements View.OnClickListener {
@@ -75,7 +72,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     ListView listView = null;
     Context c = null;
 
-    com.example.gshare.ListViewAdapter adapter;
+    ListViewAdapter adapter;
 
     @Nullable
     @Override
@@ -126,7 +123,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 100, new LocationG()));
 
         onAttach(c);
-        adapter = new com.example.gshare.ListViewAdapter(c, notices);
+        adapter = new ListViewAdapter(c, notices);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gshare.Chat.ChatNotAgreedFragment;
 import com.example.gshare.ChatActivity;
+import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.ChatModel.Chat;
 import com.example.gshare.ModelClasses.ChatModel.ChatCollection;
 import com.example.gshare.ModelClasses.Location.LocationG;
@@ -36,10 +38,10 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
     TextView note;
     TextView g;
     Button contactButton;
+    ImageButton backButton;
 
     String userName;
     String password;
-
 
 
     @Nullable
@@ -47,20 +49,21 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_noticecontactyellow, container, false);
         Bundle bundle = getArguments();
-        if(bundle != null) {
+        if (bundle != null) {
             noticeId = bundle.getInt("notice_id");
             userName = bundle.getString("userName");
             password = bundle.getString("password");
         }
 
-        notice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                100,new LocationG());//DBHelper.getNotice(noticeId);
+        notice = new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
+                100, new LocationG());//DBHelper.getNotice(noticeId);
 
         g = view.findViewById(R.id.noticeg);
         title = view.findViewById(R.id.noticeTitle);
         days = view.findViewById(R.id.noticedays);
         note = view.findViewById(R.id.noticenote);
         contactButton = view.findViewById(R.id.contactButton);
+        backButton = view.findViewById(R.id.backButton);
 
         title.setText(notice.getName());
         days.setText(notice.getDay() + "");
@@ -68,7 +71,7 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
         g.setText(notice.getG() + "");
 
         contactButton.setOnClickListener(this);
-
+        backButton.setOnClickListener(this);
 
 
         return view;
@@ -76,9 +79,11 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        User user = new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 );//DBHelper.getUser( userName , password);
-        Chat chat = new Chat( notice , notice.getNoticeOwner(), user );
-        //ChatCollection chatCollection = DBHelper.getChatCollection( DBHelper.getUserId( user ) );
+        switch (v.getId()) {
+            case R.id.contactButton:
+                User user = new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100);//DBHelper.getUser( userName , password);
+                Chat chat = new Chat(notice, notice.getNoticeOwner(), user);
+                //ChatCollection chatCollection = DBHelper.getChatCollection( DBHelper.getUserId( user ) );
 
         /*
         if( !chatCollection.getAllChat().contains(chat)) {
@@ -91,15 +96,26 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
         intent.putExtra("USERNAME" , user.getUserName() );
         intent.putExtra("PASSWORD", user.getPassword());
         startActivity(intent);*/
-        Bundle bundle;
-        bundle = getArguments();
+                Bundle bundle;
+                bundle = getArguments();
 
-        ChatNotAgreedFragment fragmentChatNotAgreed = new ChatNotAgreedFragment();
-        fragmentChatNotAgreed.setArguments(bundle);
-        FragmentTransaction fragmentManagerForNotAgreedChat = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentManagerForNotAgreedChat.replace(R.id.main_layout,fragmentChatNotAgreed);
-        fragmentManagerForNotAgreedChat.commit();
+                ChatNotAgreedFragment fragmentChatNotAgreed = new ChatNotAgreedFragment();
+                fragmentChatNotAgreed.setArguments(bundle);
+                FragmentTransaction fragmentManagerForNotAgreedChat = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentManagerForNotAgreedChat.replace(R.id.main_layout, fragmentChatNotAgreed);
+                fragmentManagerForNotAgreedChat.commit();
+                break;
+            case R.id.backButton:
+                Bundle bundle2;
+                bundle2 = getArguments();
+                HomePageFragment homePageFragment = new HomePageFragment();
+                homePageFragment.setArguments(bundle2);
+                FragmentTransaction fragmentManagerForHomePage = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentManagerForHomePage.replace(R.id.main_layout, homePageFragment);
+                fragmentManagerForHomePage.commit();
+                break;
 
+        }
     }
 
     /*ContactSmallProfileFragment fragment = new ContactSmallProfileFragment();

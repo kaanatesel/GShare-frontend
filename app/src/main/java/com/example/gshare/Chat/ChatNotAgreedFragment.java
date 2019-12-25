@@ -46,6 +46,7 @@ public class ChatNotAgreedFragment extends Fragment {
     EditText editG;
     EditText editDay;
     TextView noticeName;
+    EditText editText;
 
     Notice chatNotice;
     Chat chat;
@@ -118,19 +119,19 @@ public class ChatNotAgreedFragment extends Fragment {
             }
         });
 
-
+        editText = (EditText) view.findViewById(R.id.editText);
         listView = (ListView) view.findViewById(R.id.chatListView);
         listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
         ImageButton buttonSend = (ImageButton) view.findViewById(R.id.imageButtonSend);
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textBeSend = editG.getText().toString();
+                textBeSend = editText.getText().toString();
                 if (textBeSend != "") {
                     //Message message = new Message();
                     //stringMessages.add(message.toString());
                     chatFragmentTry.add(new ChatTry(textBeSend, true));
-                    listView.setAdapter(new ChatAdapter(getContext(), chatFragmentTry));
+                    listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
                 }
             }
         });

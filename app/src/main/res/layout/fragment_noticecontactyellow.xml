@@ -172,6 +172,31 @@
             app:layout_constraintTop_toBottomOf="@+id/noticenote"
             app:layout_constraintVertical_bias="0.33" />
 
+        <ImageView
+            android:id="@+id/categoryImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.281"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.598"
+            app:srcCompat="@drawable/ic_car_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/backButton"
+            style="@android:style/Widget.Material.Light.ImageButton"
+            android:layout_width="46dp"
+            android:layout_height="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.027"
+            app:srcCompat="@drawable/android_arrow_back_1161833" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 </RelativeLayout>

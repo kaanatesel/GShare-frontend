@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.gshare.ChatAdapter;
+import com.example.gshare.ModelClasses.ChatModel.Chat;
 import com.example.gshare.R;
 
 import java.util.ArrayList;
@@ -20,19 +22,23 @@ import java.util.ArrayList;
 public class ChatFragment extends Fragment {
 private Context c;
 private ListView chatList;
-private ChatAdapter chatAdapter;
-private ArrayList<ChatTry> chats;
+private UserChatsAdapter chatUsersAdapter;
+private ArrayList<Chat> chats;
     @Nullable
 //We will change ChatTry to Chat
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        @SuppressLint("ResourceType") View view = inflater.inflate(R.layout.activity_chat, container,false);
+        View view = inflater.inflate(R.layout.activity_chat, container,false);
         chatList = (ListView)view.findViewById(R.id.chatList);
+        chatList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClickListener(AdapterView<?> parent, View view, int position, long id){
 
-        chats = new ArrayList<ChatTry>();
-        chats.add(new ChatTry("message 1",false));
-        onAttach(c);
-        chatAdapter = new ChatAdapter(c,chats);
-        chatList.setAdapter(chatAdapter);
+            }
+
+        });
+        chats = new ArrayList<Chat>();
+        chatUsersAdapter = new UserChatsAdapter();
+        chatList.setAdapter(chatUsersAdapter);
 
     return view;
     }

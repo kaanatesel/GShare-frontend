@@ -1,10 +1,7 @@
 package com.example.gshare;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-
-import android.widget.ListView;
 
 
 import androidx.annotation.NonNull;
@@ -14,14 +11,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gshare.Chat.ChatFragment;
 
+import com.example.gshare.Notice.ListViewAdapter;
 import com.example.gshare.Notice.MyNoticesFragment;
-import com.example.gshare.Notice.NoticeTry;
 
 import com.example.gshare.Profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-
-import java.util.ArrayList;
 
 /**
  * This class is not final and will be changed by ONUR
@@ -32,7 +26,7 @@ public class HomePageActivity extends AppCompatActivity  {
     String password;
 
 
-    com.example.gshare.ListViewAdapter adapter;
+    ListViewAdapter adapter;
 
 
     @Override

@@ -66,6 +66,7 @@
     <string name="top_bar">Top Bar</string>
     <string name="g_logo">G Logo</string>
     <string name="delete_notice">Delete Notice</string>
+    <string name="category_image">Category Image</string>
 
     <!--tabs-->
     <string name="home">Home</string>

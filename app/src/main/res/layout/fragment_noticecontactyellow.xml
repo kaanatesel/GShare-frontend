@@ -172,6 +172,7 @@
             app:layout_constraintTop_toBottomOf="@+id/noticenote"
             app:layout_constraintVertical_bias="0.33" />
 
+
         <ImageView
             android:id="@+id/categoryImageView"
             android:layout_width="wrap_content"

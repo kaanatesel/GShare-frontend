@@ -18,6 +18,7 @@ import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
+import com.example.gshare.ModelClasses.Sort.Sort;
 import com.example.gshare.R;
 
 public class CreateYellowNoticeFragment extends Fragment implements View.OnClickListener {
@@ -27,6 +28,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
     EditText note;
     Button addNotice;
     ImageButton back;
+    int category;
 
     //Category Buttons
     ImageButton category1;
@@ -62,6 +64,59 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
         category7 = (ImageButton) view.findViewById(R.id.booksButton);
         category8 = (ImageButton) view.findViewById(R.id.othersButton);
 
+        //Initialize the catgory as OTHER in case the user doesnt choose.
+        category = Sort.OTHER;
+
+        //Set click listeners for the category buttons
+        category1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.TRANSPORT;
+            }
+        });
+        category2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.EDUCATION;
+            }
+        });
+        category3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.ELECTRONIC;
+            }
+        });
+        category4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.LECTURE_NOTES;
+            }
+        });
+        category5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.STATIONARY;
+            }
+        });
+        category6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.PET;
+            }
+        });
+        category7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.BOOKS;
+            }
+        });
+        category8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.OTHER;
+            }
+        });
+
         return view;
 
     }
@@ -74,7 +129,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
         if (v.getId() == R.id.PublishButtonYellow) {
             Notice notice = null;
             try {
-                notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), 0,
+                notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), category,
                         DBHelper.getUser(getArguments().getString("userName"), getArguments().getString("password")), Integer.parseInt(gValue.getText().toString()),
                         new LocationG());
             } catch (Exception e) {

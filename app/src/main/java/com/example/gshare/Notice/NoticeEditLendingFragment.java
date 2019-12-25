@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,9 @@ import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NoticeEditLendingFragment extends Fragment implements View.OnClickListener{
 
     Notice notice;
@@ -30,9 +35,20 @@ public class NoticeEditLendingFragment extends Fragment implements View.OnClickL
     EditText note;
     Button applyButton;
     ImageButton backButton;
+    Spinner spinner;
 
     String userName;
     String password;
+
+    //Category Buttons
+    ImageButton category1;
+    ImageButton category2;
+    ImageButton category3;
+    ImageButton category4;
+    ImageButton category5;
+    ImageButton category6;
+    ImageButton category7;
+    ImageButton category8;
 
     @Nullable
     @Override
@@ -62,6 +78,15 @@ public class NoticeEditLendingFragment extends Fragment implements View.OnClickL
         applyButton.setOnClickListener(this);
         backButton.setOnClickListener(this);
 
+        //Category buttons initialized
+        category1 = (ImageButton) view.findViewById(R.id.transportButton);
+        category2 = (ImageButton) view.findViewById(R.id.schoolButton);
+        category3 = (ImageButton) view.findViewById(R.id.laptopButton);
+        category4 = (ImageButton) view.findViewById(R.id.cameraButton);
+        category5 = (ImageButton) view.findViewById(R.id.stationaryButton);
+        category6 = (ImageButton) view.findViewById(R.id.petsButton);
+        category7 = (ImageButton) view.findViewById(R.id.booksButton);
+        category8 = (ImageButton) view.findViewById(R.id.othersButton);
 
         return view;
     }

@@ -197,7 +197,7 @@ public class Test {
         System.out.println();
         System.out.println();
         User you = user1;
-        System.out.printf("%1s%34s",user2.getNameAndSurname(), user1.getNameAndSurname());
+        System.out.printf("%1s%34s",user2.getName(), user1.getName());
         printChat(chat1 , you);
         chat1.addMessage( new Message( "tamamdır", user2 , user1 ));
         printChat(chat1 , you);

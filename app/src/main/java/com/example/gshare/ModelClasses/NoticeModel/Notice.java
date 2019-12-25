@@ -89,7 +89,7 @@ public class Notice implements Serializable {
         ratedLend = false;
         ratedLend = false;
         postingTime = (new Date()).getTime();
-        noticeOwner.setFirstPost(false);
+        //noticeOwner.setFirstPost(false);
     }
 
     public int getDay() {

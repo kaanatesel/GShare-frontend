@@ -30,6 +30,16 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
     Button addNotice;
     ImageButton back;
 
+    //Category Buttons
+    ImageButton category1;
+    ImageButton category2;
+    ImageButton category3;
+    ImageButton category4;
+    ImageButton category5;
+    ImageButton category6;
+    ImageButton category7;
+    ImageButton category8;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,13 +53,15 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
         addNotice.setOnClickListener(this);
         back.setOnClickListener(this);
 
-        Spinner spinner = view.findViewById(R.id.spinner);
-        // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , android.R.layout.simple_spinner_item , R.array.categories );
-        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource( getParentFragment().getContext() , R.array.categories, android.R.layout.simple_spinner_item);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //spinner.setAdapter(adapter);
-        //spinner.setOnItemClickListener(this);
-
+        //Category buttons initialized
+        category1 = (ImageButton) view.findViewById(R.id.transportButton);
+        category2 = (ImageButton) view.findViewById(R.id.schoolButton);
+        category3 = (ImageButton) view.findViewById(R.id.laptopButton);
+        category4 = (ImageButton) view.findViewById(R.id.cameraButton);
+        category5 = (ImageButton) view.findViewById(R.id.stationaryButton);
+        category6 = (ImageButton) view.findViewById(R.id.petsButton);
+        category7 = (ImageButton) view.findViewById(R.id.booksButton);
+        category8 = (ImageButton) view.findViewById(R.id.othersButton);
 
         return view;
 

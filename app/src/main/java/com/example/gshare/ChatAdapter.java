@@ -1,6 +1,7 @@
 package com.example.gshare;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,14 @@ import java.util.ArrayList;
 
 public class ChatAdapter extends ArrayAdapter<Message> {
 
+    String email;
     Context context;
     ArrayList<Message> myMessages = new ArrayList<Message>();
-    String email;
 
 
     private ArrayList<String> notices;
     public ChatAdapter(@NonNull Context c, @NonNull ArrayList<Message> stringMessages , String email){
+
         super(c, R.layout.chatlayout,stringMessages);
         this.context = c;
         this.myMessages = stringMessages;

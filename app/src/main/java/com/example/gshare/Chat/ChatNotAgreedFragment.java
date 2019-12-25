@@ -3,6 +3,7 @@ package com.example.gshare.Chat;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,13 +29,25 @@ import com.example.gshare.ModelClasses.ChatModel.Message;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
+//import com.example.gshare.Notice.ProductHomeListDisplayModel;
 import com.example.gshare.Popup.PopupDoYouAgreeFragment;
 import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class ChatNotAgreedFragment extends Fragment {
     HomePageActivity a;
@@ -70,6 +83,23 @@ public class ChatNotAgreedFragment extends Fragment {
 
 
         email = getArguments().getString("email");
+        /*
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));*/
+
+
         noticeId = getArguments().getInt("noticeId");
 
         editG = view.findViewById(R.id.gEditText);
@@ -88,7 +118,7 @@ public class ChatNotAgreedFragment extends Fragment {
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
 
-        if( DBHelper.getUser().equals(chat.getCustomer()) ) {
+        if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
             userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
             recieverUser = chat.getNoticeOwner();
             if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
@@ -98,7 +128,7 @@ public class ChatNotAgreedFragment extends Fragment {
                 itemOwner = chat.getNoticeOwner();
             }
         }
-        if( DBHelper.getUser().equals(chat.getNoticeOwner() ) ) {
+        if( DBHelper.getUser(email).equals(chat.getNoticeOwner() ) ) {
             userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
             recieverUser = chat.getCustomer();
             if(chat.getNotice().getNoticeType()== Notice.LEND_NOTICE){
@@ -113,7 +143,7 @@ public class ChatNotAgreedFragment extends Fragment {
         agreeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (DBHelper.getUser().equals(itemOwner)) {
+                if (DBHelper.getUser(email).equals(itemOwner)) {
                     Bundle bundle = new Bundle();
                     bundle.putString("email", email);
                     bundle.putInt("noticeId", noticeId);
@@ -144,11 +174,11 @@ public class ChatNotAgreedFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
 
-                if( DBHelper.getUser().equals(chat.getCustomer()) ) {
+                if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
                     bundle.putString("personUserName", chat.getNoticeOwner().getUserName());
                     bundle.putString("personPassword", chat.getNoticeOwner().getPassword());
                 }
-                if( DBHelper.getUser().equals(chat.getNoticeOwner()) ) {
+                if( DBHelper.getUser(email).equals(chat.getNoticeOwner()) ) {
                     bundle.putString("personUserName", chat.getCustomer().getUserName());
                     bundle.putString("personPassword", chat.getCustomer().getPassword());
                 }
@@ -168,12 +198,11 @@ public class ChatNotAgreedFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
-                Message message = new Message(textBeSend, recieverUser, DBHelper.getUser());//email) );
+                Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email));
                 textBeSend = message.getMessage() + "\t" + " ( " + message.getCurrentTime() + " ) ";
                 message.setMsg(textBeSend);
 
                 if (!textBeSend.matches("")) {
-                    //Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email) );
                     //stringMessages.add(message.toString());
                     chat.getAllMessage().add(message);
                     listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
@@ -206,3 +235,4 @@ public class ChatNotAgreedFragment extends Fragment {
         }, 0, 10000);
     }
 }
+

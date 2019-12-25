@@ -422,10 +422,18 @@ public class User {
         return user.getEmail().equals( this.getEmail() );
     }
 
+    /**
+     * gets the id to the user.
+     * @return ID the id.
+     */
     public int getID(){
         return ID;
     }
 
+    /**
+     * sets the id.
+     * @param ID the id to set.
+     */
     public void setID(int ID){
         this.ID = ID;
     }
@@ -433,4 +441,5 @@ public class User {
     public void setNameAndSurname(String nameAndSurname) {
         this.nameAndSurname = nameAndSurname;
     }
+
 }

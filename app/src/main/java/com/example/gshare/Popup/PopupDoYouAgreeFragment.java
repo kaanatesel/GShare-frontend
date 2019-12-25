@@ -41,6 +41,8 @@ public class PopupDoYouAgreeFragment extends DialogFragment implements View.OnCl
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
        View view = inflater.inflate(R.layout.fragment_popup_doyouagree, container, false);
 
        notice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
@@ -65,7 +67,10 @@ public class PopupDoYouAgreeFragment extends DialogFragment implements View.OnCl
 
 
 
+
+
        return view;
+
     }
 
     @Override
@@ -76,7 +81,9 @@ public class PopupDoYouAgreeFragment extends DialogFragment implements View.OnCl
                     notice.agreeOnBorrowNotice( chat.getCustomer() ,getArguments().getInt("g"));
                 }
                 if(notice.getNoticeType() == Notice.LEND_NOTICE){
-                   notice.agreeOnLendNotice( chat.getCustomer() );
+
+                    notice.agreeOnLendNotice( chat.getCustomer() );
+
                 }
                 getActivity().setContentView(R.layout.fullyblanklayout);
                 ChatAgreedFragment fragment = new ChatAgreedFragment();

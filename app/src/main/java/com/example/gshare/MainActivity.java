@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginOnClick() {
-        String url = "http://35.242.192.20/member/getByEmail/" +userName.getText().toString() ;
+        String url = "http://35.242.192.20/member/getByEmail/" + userName.getText().toString() ;
         final String uPass = password.getText().toString();
 
         Request request = new Request.Builder()
@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
             String p_word = password.getText().toString();
             Intent intent = new Intent( this, HomePageActivity.class);
             intent.putExtra( "USERNAME" , u_name );
-            intent.putExtra("PASSWORD", p_word );
             startActivity(intent);
         }
 

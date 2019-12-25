@@ -87,8 +87,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         sortMode = LENDING_MODE;
 
         if (getArguments() != null) {
-            userName = getArguments().getString("userName");
-            password = getArguments().getString("password");
+            userName = getArguments().getString("USERNAME");
+            password = getArguments().getString("PASSWORD");
             user = new User("Cagri Eren", "asdas", "asdfasdf", "sdfasdf", 100);//DBHelper.getUser(userName,password);
             //notices = DBHelper.getAllNotices();
         }

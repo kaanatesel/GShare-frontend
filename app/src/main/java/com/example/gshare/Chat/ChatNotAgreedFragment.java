@@ -26,7 +26,7 @@ import com.example.gshare.R;
 import java.util.ArrayList;
 
 public class ChatNotAgreedFragment extends Fragment {
-   HomePageActivity a;
+    HomePageActivity a;
     ListView listView;
     ChatAdapter chatAdapter;
     String textBeSend;
@@ -37,60 +37,62 @@ public class ChatNotAgreedFragment extends Fragment {
     String notice;
     ArrayList<ChatTry> chatFragmentTry;
     EditText editText;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
+        View view = inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
         chatFragmentTry = new ArrayList<ChatTry>();
-        chatFragmentTry.add(new ChatTry("message 1",false));
-        chatFragmentTry.add(new ChatTry("message 2",true));
-        chatFragmentTry.add(new ChatTry("message 1",false));
-        chatFragmentTry.add(new ChatTry("message 2",true));
-        chatFragmentTry.add(new ChatTry("message 1",false));
-        chatFragmentTry.add(new ChatTry("message 2",true));
-        chatFragmentTry.add(new ChatTry("message 1",false));
-        chatFragmentTry.add(new ChatTry("message 2",true));
-        chatFragmentTry.add(new ChatTry("message 1",false));
-        chatFragmentTry.add(new ChatTry("message 2",true));
-        chatFragmentTry.add(new ChatTry("message 1",false));
-        chatFragmentTry.add(new ChatTry("message 2",true));
-        chatFragmentTry.add(new ChatTry("message 1",false));
-        chatFragmentTry.add(new ChatTry("message 2",true));
-        Button agreeButton =(Button) view.findViewById(R.id.terminateButton);
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 1", false));
+        chatFragmentTry.add(new ChatTry("message 2", true));
+        Button agreeButton = (Button) view.findViewById(R.id.terminateButton);
         agreeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ChatAgreedFragment fragment = new ChatAgreedFragment();
+                ChatAgreedFragment fragment = new ChatAgreedFragment();
                 FragmentTransaction fragmentTransaction = a.getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_layout,fragment);
+                fragmentTransaction.replace(R.id.main_layout, fragment);
                 fragmentTransaction.commit();
             }
         });
 
 
-                listView = (ListView) view.findViewById(R.id.chatListView);
-        listView.setAdapter(new ChatAdapter(a,chatFragmentTry));
+        listView = (ListView) view.findViewById(R.id.chatListView);
+        listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
         editText = view.findViewById(R.id.gEditText);
-        ImageButton buttonSend = (ImageButton)view.findViewById(R.id.imageButtonSend);
+        ImageButton buttonSend = (ImageButton) view.findViewById(R.id.imageButtonSend);
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
-                if(textBeSend != ""){
+                if (textBeSend != "") {
                     //Message message = new Message();
                     //stringMessages.add(message.toString());
                     chatFragmentTry.add(new ChatTry(textBeSend, true));
-                    listView.setAdapter(new ChatAdapter(getContext(),chatFragmentTry));
+                    listView.setAdapter(new ChatAdapter(getContext(), chatFragmentTry));
                 }
             }
         });
 
-return view;
+        return view;
     }
-    public void onAttach(Context con){
+
+    public void onAttach(Context con) {
         super.onAttach(con);
 
-        if(con instanceof Activity){
+        if (con instanceof Activity) {
             a = (HomePageActivity) con;
         }
     }

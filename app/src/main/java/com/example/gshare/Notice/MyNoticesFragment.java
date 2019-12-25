@@ -55,16 +55,27 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.lendingButton:
-                notices = DBHelper.getLendingNotices();
+                notices = getUserNotices(DBHelper.getUser() , 'L');
+                break;
+            case R.id.borrowingButton:
+                notices = getUserNotices(DBHelper.getUser(),'B');
+                break;
+
         }
 
     }
 
-    public static ArrayList<Notice> getUserNotices(User user ){
-        ArrayList<Notice> userList = new ArrayList<Notice>;
-        ArrayList<Notice> allNotice = DBHelper.getLendingNotices();
+    public static ArrayList<Notice> getUserNotices(User user , char type){
+        ArrayList<Notice> userList = new ArrayList<Notice>();
+        ArrayList<Notice> allNotice = new ArrayList<>();
+        if(type == 'L') {
+            allNotice = DBHelper.getLendingNotices();
+        }
+        if( type == 'B'){
+            allNotice = DBHelper.getBorrowingNotices();
+        }
 
-        for( int i = 0; i<allNotice.size(); i++){
+        for( int i = 0; i< allNotice.size(); i++){
             if(allNotice.get(i).getNoticeOwner().equals(user)){
                 userList.add(allNotice.get(i));
             }

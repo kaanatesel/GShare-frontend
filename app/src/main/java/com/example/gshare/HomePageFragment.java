@@ -45,6 +45,7 @@ import com.example.gshare.Notice.ContactYellowNoticeFragment;
 import com.example.gshare.Notice.CreatePurpleNoticeFragment;
 import com.example.gshare.Notice.CreateYellowNoticeFragment;
 import com.example.gshare.Notice.ListViewAdapter;
+import com.example.gshare.Notice.ProductHomeListDisplayModel;
 import com.example.gshare.Popup.PopupSortByFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.JsonObject;
@@ -106,10 +107,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
         Bundle bundle = getArguments();
 
-        notices = new ArrayList<Notice>();
+        notices = new ArrayList<>();
 
-        notices = sort(notices, bundle.getBoolean("ACCEPTED"), bundle.getBoolean("G"), bundle.getInt("MIN"),
-                bundle.getInt("MAX"), bundle.getBoolean("NEWEST"), bundle.getBoolean("ALPHABETICAL"));
 
         sortButton = view.findViewById(R.id.sortby_button);
         lendModeButton = view.findViewById(R.id.lendingSortiButton);
@@ -133,11 +132,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         gText.setText(user.getG() + "");
 
         listView = (ListView) view.findViewById(R.id.list);
-        notices = new ArrayList<Notice>();
-        notices.add(new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
-                100, new LocationG()));
-
-
+        
         adapter = new ListViewAdapter(c, notices);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

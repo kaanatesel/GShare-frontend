@@ -104,7 +104,7 @@ public class ChatReturnedFragment extends Fragment {
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
 
-        if( DBHelper.getUser().equals(chat.getCustomer()) ) {
+        if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
             userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
             recieverUser = chat.getNoticeOwner();
             if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
@@ -114,7 +114,7 @@ public class ChatReturnedFragment extends Fragment {
                 itemOwner = chat.getNoticeOwner();
             }
         }
-        if( DBHelper.getUser().equals(chat.getNoticeOwner() ) ) {
+        if( DBHelper.getUser(email).equals(chat.getNoticeOwner() ) ) {
             userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
             recieverUser = chat.getCustomer();
             if(chat.getNotice().getNoticeType()== Notice.LEND_NOTICE){
@@ -131,11 +131,11 @@ public class ChatReturnedFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
 
-                if( DBHelper.getUser().equals(chat.getCustomer()) ) {
+                if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
                     bundle.putString("personEmail", chat.getNoticeOwner().getEmail());
                     bundle.putString("personPassword", chat.getNoticeOwner().getPassword());
                 }
-                if( DBHelper.getUser().equals(chat.getNoticeOwner()) ) {
+                if( DBHelper.getUser(email).equals(chat.getNoticeOwner()) ) {
                     bundle.putString("personEmail", chat.getCustomer().getUserName());
                     bundle.putString("personPassword", chat.getCustomer().getPassword());
                 }
@@ -155,7 +155,7 @@ public class ChatReturnedFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
-                Message message = new Message(textBeSend, recieverUser, DBHelper.getUser() );//email) );
+                Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email) );
                 textBeSend = message.getMessage() + "\t" + " ( " + message.getCurrentTime() + " ) ";
                 message.setMsg(textBeSend);
 

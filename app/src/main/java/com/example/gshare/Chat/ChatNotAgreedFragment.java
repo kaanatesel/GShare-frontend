@@ -54,6 +54,7 @@ public class ChatNotAgreedFragment extends Fragment {
     Notice chatNotice;
     Chat chat;
     User recieverUser;
+    User itemOwner;
 
     String userName;
     int noticeId;
@@ -92,9 +93,10 @@ public class ChatNotAgreedFragment extends Fragment {
         noticeName = view.findViewById(R.id.itemName);
         userNumaAndSurname = view.findViewById(R.id.nameButton);
 
+        //chat = DBHelper.getChat();
         chatNotice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                 100,new LocationG());//DBHelper.getNotice(noticeId);
-        //chat = DBHelper.getChat();
+        chat.setStatus(Chat.NOT_AGREED);
 
 
         noticeName.setText(chatNotice.getName());
@@ -104,38 +106,51 @@ public class ChatNotAgreedFragment extends Fragment {
         if( DBHelper.getUser().equals(chat.getCustomer()) ) {
             userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
             recieverUser = chat.getNoticeOwner();
+            if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
+                itemOwner = chat.getCustomer();
+            }
+            if(chat.getNotice().getNoticeType()==Notice.LEND_NOTICE){
+                itemOwner = chat.getNoticeOwner();
+            }
         }
         if( DBHelper.getUser().equals(chat.getNoticeOwner() ) ) {
             userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
             recieverUser = chat.getCustomer();
+            if(chat.getNotice().getNoticeType()== Notice.LEND_NOTICE){
+                itemOwner = chat.getNoticeOwner();
+            }
+            if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
+                itemOwner = chat.getCustomer();
+            }
         }
 
         Button agreeButton = (Button) view.findViewById(R.id.terminateButton);
         agreeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("userName",userName);
-                bundle.putInt("noticeId",noticeId);
-                chat.setStatus(Chat.AGREED);
+                if (DBHelper.getUser().equals(itemOwner)) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("userName", userName);
+                    bundle.putInt("noticeId", noticeId);
+                    chat.setStatus(Chat.AGREED);
 
-                if(chatNotice.getNoticeType() == Notice.BORROW_NOTICE){
-                    bundle.putInt("g",chatNotice.getG());
-                    chatNotice.setDay(Integer.parseInt(editDay.getText().toString()));
-                    //DBHelper.updateNotice(chatNotice);
-                }
-                else {
-                    try {
-                        chatNotice.setG(Integer.parseInt(editG.getText().toString()));
-                    } catch (IllegalArgumentException e) {
-                        Toast.makeText(getActivity(), "You can't make g value higher", Toast.LENGTH_SHORT).show();
+                    if (chatNotice.getNoticeType() == Notice.BORROW_NOTICE) {
+                        bundle.putInt("g", chatNotice.getG());
+                        chatNotice.setDay(Integer.parseInt(editDay.getText().toString()));
+                        //DBHelper.updateNotice(chatNotice);
+                    } else {
+                        try {
+                            chatNotice.setG(Integer.parseInt(editG.getText().toString()));
+                        } catch (IllegalArgumentException e) {
+                            Toast.makeText(getActivity(), "You can't make g value higher", Toast.LENGTH_SHORT).show();
+                        }
+                        chatNotice.setDay(Integer.parseInt(editDay.getText().toString()));
+                        //DBHelper.updateNotice(chatNotice);
                     }
-                    chatNotice.setDay(Integer.parseInt(editDay.getText().toString()));
-                    //DBHelper.updateNotice(chatNotice);
+                    PopupDoYouAgreeFragment agreePopUp = new PopupDoYouAgreeFragment();
+                    agreePopUp.setArguments(bundle);
+                    agreePopUp.show(getFragmentManager(), "AgreePopUp");
                 }
-                PopupDoYouAgreeFragment agreePopUp = new PopupDoYouAgreeFragment();
-                agreePopUp.setArguments(bundle);
-                agreePopUp.show(getFragmentManager(), "AgreePopUp");
             }
         });
 

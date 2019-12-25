@@ -63,7 +63,7 @@ public class ChatAgreedFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
+        View view = inflater.inflate(R.layout.fragment_chat_agreed, container, false);
 
         chatFragmentTry = new ArrayList<ChatTry>();
         /*

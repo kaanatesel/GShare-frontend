@@ -422,11 +422,21 @@ public class User {
         return user.getUserName().equals( this.getUserName() );
     }
 
+    /**
+     * gets the id to the user.
+     * @return ID the id.
+     */
     public int getID(){
         return ID;
     }
 
+    /**
+     * sets the id.
+     * @param ID the id to set.
+     */
     public void setID(int ID){
         this.ID = ID;
     }
+
+
 }

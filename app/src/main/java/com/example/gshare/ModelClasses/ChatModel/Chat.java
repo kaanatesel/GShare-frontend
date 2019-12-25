@@ -157,6 +157,12 @@ import com.example.gshare.ModelClasses.User.User;
             }
         }
 
+        /**
+         * equals method to check whether two chats is equal
+         * @param o the object to compare to.
+         * @return true equal.
+         * @return false they are not equal.
+         */
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;

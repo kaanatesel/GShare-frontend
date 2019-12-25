@@ -41,7 +41,7 @@ public class Notice implements Serializable {
     private User noticeTaker;
     private LocationG location;
 
-    /*
+    /**
     Use this constructor when creating a Borrow Notice since g amount is not a parameter here
 
     @param name name of the notice
@@ -65,7 +65,7 @@ public class Notice implements Serializable {
         ratedBorrow = false;
         postingTime = (new Date()).getTime();
     }
-    /*
+    /**
     This constructor should be used when creating lend notices
     @param name name of the notice
     @param day how many days will be agreed on
@@ -92,103 +92,204 @@ public class Notice implements Serializable {
         noticeOwner.setFirstPost(false);
     }
 
+    /**
+     * gets the day
+     * @return day the day.
+     */
     public int getDay() {
         return day;
     }
 
+    /**
+     * sets the day to user.
+     * @param day
+     */
     public void setDay(int day) {
         this.day = day;
     }
 
+    /**
+     * sets the category
+     * @return category the category.
+     */
     public int getCategory() {
         return category;
     }
 
+    /**
+     * sets the category
+     * @param category the category
+     */
     public void setCategory(int category) {
         this.category = category;
     }
 
+    /**
+     * gets the lend rate
+     * @return rateLend the rate lend
+     */
     public int getRateLend() {
         return rateLend;
     }
 
+    /**
+     * sets the lend rate
+     * @param rateLend the rate lend.
+     */
     public void setRateLend(int rateLend) {
         if( isOver() ) {
             this.rateLend = rateLend;
             ratedLend = true;
         }
     }
+
+    /**
+     * sets the database lend rate
+     * @param rateLend the lend rate to set.
+     */
     public void setForDatabaseRateLend( int rateLend ){
         this.rateLend = rateLend;
     }
 
-
+    /**
+     * gets the borrow rare
+     * @return the borrow rate
+     */
     public int getRateBorrow(){
         return rateBorrow;
     }
 
+    /**
+     * sets the borrow rate.
+     * @param rateBorrow the borrow rate.
+     */
     public void setRateBorrow(int rateBorrow) {
         if( isOver() ) {
             this.rateBorrow = rateBorrow;
             ratedBorrow = true;
         }
     }
+
+    /**
+     * sets the borrow rate for database
+     * @param rateBorrow the borrow rate.
+     */
     public void setForDatabaseRateBorrow( int rateBorrow ){
         this.rateBorrow = rateBorrow;
     }
 
+    /**
+     * checks if it is agreed
+     * @return agreed the agreed status.
+     */
     public boolean isAgreed() {
         return agreed;
     }
 
+    /**
+     * checks if the notice is over
+     * @return over the over status
+     */
     public boolean isOver() {
         return over;
     }
 
+    /**
+     * gets the name to user.
+     * @return name the name.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * sets the name.
+     * @param name the name to set.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * gets the note
+     * @return note the note.
+     */
     public String getNote() {
         return note;
     }
 
+    /**
+     * sets the note
+     * @param note the note.
+     */
     public void setNote(String note) {
         this.note = note;
     }
 
+    /**
+     * gets posting time.
+     * @return postingTime the posting time.
+     */
     public long getPostingTime() {
         return postingTime;
     }
+
+    /**
+     * sets the posting time.
+     * @param time the time.
+     */
     public void setPostingTime( long time ){
         this.postingTime = time;
     }
+
+    /**
+     * gets comment borrowing.
+     * @return commentBorrowing the comment on borrowing.
+     */
     public String getCommentBorrowing() {
         return commentBorrowing;
     }
+
+    /**
+     * gets the comment lending.
+     * @return commentLending the comment lending.
+     */
     public String getCommentLending() {
         return commentLending;
     }
 
+    /**
+     * sets the comment borrowing
+     * @param comment the comment to set
+     */
     public void setCommentBorrowing(String comment) {
         if( isOver() ) {
             this.commentBorrowing = comment;
         }
     }
+
+    /**
+     * sets the comment lending
+     * @param comment the comment to set.
+     */
     public void setCommentLending( String comment ) {
         if( isOver() ) {
             this.commentLending = comment;
         }
     }
 
+    /**
+     * gets the G to user.
+     * @return g the g value.
+     */
     public int getG() {
         return g;
     }
 
+    /**
+     * sets the G cdfepending on parameter.
+     * @param g the g to set
+     */
     public void setG(int g) {//TESTED AND WORKS
 
         if( this.g < g || isAgreed() ){
@@ -199,14 +300,26 @@ public class Notice implements Serializable {
         }
     }
 
+    /**
+     * sets the g for database.
+     * @param g the g value.
+     */
     public void setForDatabaseG( int g ){
         this.g = g;
     }
 
+    /**
+     * gets the location to user.
+     * @return location the location.
+     */
     public LocationG getLocation() {
         return location;
     }
 
+    /**
+     * gets the notice type whether lending or borrowing.
+     * @return noticeType the notice type.
+     */
     public int getNoticeType() {
         return noticeType;
     }
@@ -274,7 +387,7 @@ public class Notice implements Serializable {
             noticeTaker.addActiveDealGAmount( -g );
         }
     }
-    /*
+    /**
     Used: https://stackoverflow.com/questions/20165564/calculating-days-between-two-dates-with-java
     This method is used in the doTransaction method inorder to compute how many days passed since the agreement started
     you may not need to use this method
@@ -287,12 +400,10 @@ public class Notice implements Serializable {
         return (day - TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
     }
 
-    public long computeTimeLeftHours(){//TESTED AND WORKS
-        Date current = new Date();
-        long diff = current.getTime() - startTime;
-        return (day*24 - TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS));
-    }
     /*
+
+    /**
+
     For checking if the notice time is over ( did not test yet these computeTimeLeft methods definietly need testing)
     @return diffInMillies time left in milli seconds
      */
@@ -301,7 +412,12 @@ public class Notice implements Serializable {
         long diffInMillies = finishTime - ( new Date() ).getTime();
         return diffInMillies;
     }
-    /*
+    public long computeTimeLeftHours(){//TESTED AND WORKS
+        Date current = new Date();
+        long diff = current.getTime() - startTime;
+        return (day*24 - TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS));
+    }
+    /**
     This method does the G transactions between users according to the how many days of the agreement is fullfilled and
     according to the g amount of the agreement
     REMEMBER WE DO TRANSACTIONS AFTER THE AGREEMENT IS OVER SINCE IT CAN BE TERMINATED WE DO THE TRANSACTIONS ACCORDING
@@ -326,7 +442,7 @@ public class Notice implements Serializable {
             noticeOwner.deposit( (int)gToTransact );
         }
     }
-    /*
+    /**
     This method changes users' average rates according to the given rates to the notice. This method can be called
     always since it does not compute the rates that doesnt get entered earlier BUT THIS METHOD SHOULD BE CALLED AFTER
     TRANSACTION IS OVER AND USERS ASKED TO RATE EACH OTHER AND IT DOES NOT MATTER WHETHER THEY RATED EACH OTHER !!!!MOST
@@ -352,9 +468,20 @@ public class Notice implements Serializable {
             }
         }
     }
+
+
+    /**
+     * gets the notice owner
+     * @return noticeOwner the notice owner.
+     */
     public User getNoticeOwner(){
         return noticeOwner;
     }
+
+    /**
+     * gets the notice taker.
+     * @return noticeTaker the notice taker.
+     */
     public User getNoticeTaker() {
         return noticeTaker;
     }
@@ -396,6 +523,12 @@ public class Notice implements Serializable {
         return output;
     }
 
+    /**
+     * the equals method to check whether notices are equal.
+     * @param o the notice object to compare.
+     * @return true equal
+     * @return false they are not equal.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -3,6 +3,7 @@ package com.example.gshare.Chat;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +29,23 @@ import com.example.gshare.ModelClasses.ChatModel.Message;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
+import com.example.gshare.Notice.ProductHomeListDisplayModel;
 import com.example.gshare.Popup.PopupDoYouAgreeFragment;
 import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class ChatNotAgreedFragment extends Fragment {
     HomePageActivity a;
@@ -56,6 +69,7 @@ public class ChatNotAgreedFragment extends Fragment {
     User recieverUser;
     User itemOwner;
 
+    OkHttpClient httpClient;
     String userName;
     int noticeId;
 
@@ -65,7 +79,7 @@ public class ChatNotAgreedFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         a.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View view = inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
-
+        httpClient = new OkHttpClient();
         chatFragmentTry = new ArrayList<ChatTry>();
         /*
         chatFragmentTry.add(new ChatTry("message 1", false));
@@ -208,4 +222,4 @@ public class ChatNotAgreedFragment extends Fragment {
             a = (HomePageActivity) con;
         }
     }
-}
+   }

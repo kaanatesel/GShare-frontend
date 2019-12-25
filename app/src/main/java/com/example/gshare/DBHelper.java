@@ -329,7 +329,7 @@ public static void createBorrowingNotice(Notice notice){
         String name=notice.getName();
         int price=notice.getG();
         int productCategory=notice.getCategory();
-
+""
         Gson gson=new Gson();
         gson.toJson(description);
         gson.toJson(memberId);

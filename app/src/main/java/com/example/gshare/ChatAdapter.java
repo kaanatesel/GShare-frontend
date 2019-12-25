@@ -39,14 +39,15 @@ public class ChatAdapter extends ArrayAdapter<Message> {
         LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     View row = null;
         if(position <= myMessages.size()){
-        if(myMessages.get(position).getSender().getEmail().equals(email)){
-            row = layoutInflater.inflate(R.layout.chatlayoutsended,parent,false);
-            TextView chatMessage = (TextView) row.findViewById(R.id.textViewSended);
-            chatMessage.setText(myMessages.get(position).getMessage());
+        if(!myMessages.get(position).getSender().getEmail().equals(email)){
+            row = layoutInflater.inflate(R.layout.chatlayout,parent,false);
+            TextView chatMessage = (TextView) row.findViewById(R.id.textViewChat);
+
+            chatMessage.setText(myMessages.get(position).getSender().getNameAndSurname()+ "-\t" + myMessages.get(position).getMessage());
         }else{
             row = layoutInflater.inflate(R.layout.chatlayout,parent,false);
             TextView chatMessageOther = (TextView) row.findViewById(R.id.textViewChat);
-            chatMessageOther.setText(myMessages.get(position).getMessage());
+            chatMessageOther.setText(myMessages.get(position).getReciever().getNameAndSurname()+ "-\t" + myMessages.get(position).getMessage());
         }}
         return row;
     }

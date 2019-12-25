@@ -9,8 +9,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 
 import android.view.View;
@@ -46,20 +44,20 @@ import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.Notice.ContactYellowNoticeFragment;
 import com.example.gshare.Notice.CreatePurpleNoticeFragment;
 import com.example.gshare.Notice.CreateYellowNoticeFragment;
-<<<<<<< HEAD
-import com.example.gshare.Notice.ProductHomeListDisplayModel;
-=======
 import com.example.gshare.Notice.ListViewAdapter;
->>>>>>> 6e344d5bd32bdcdbccc823c28c78d3cdb5dc47dc
+import com.example.gshare.Notice.ProductHomeListDisplayModel;
 import com.example.gshare.Popup.PopupSortByFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.JsonObject;
 
 import android.graphics.Color;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.gshare.Notice.ListViewAdapter;
+
+import static com.example.gshare.DBHelper.callUserByEmail;
+
+import static com.example.gshare.DBHelper.getLendingNotices;
+import static com.example.gshare.DBHelper.getUser;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -100,12 +98,17 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         httpClient = new OkHttpClient();
         sortMode = LENDING_MODE;
 
-        if( getArguments() != null ){
-            userName = getArguments().getString("userName");
-            password = getArguments().getString("password");
+        if (getArguments() != null) {
+            userName = getArguments().getString("USERNAME");
+            password = getArguments().getString("PASSWORD");
+            user = new User("Cagri Eren", "asdas", "asdfasdf", "sdfasdf", 100);//DBHelper.getUser(userName,password);
+            //notices = DBHelper.getAllNotices();
         }
 
         Bundle bundle = getArguments();
+
+        notices = new ArrayList<>();
+
 
         sortButton = view.findViewById(R.id.sortby_button);
         lendModeButton = view.findViewById(R.id.lendingSortiButton);
@@ -129,11 +132,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         gText.setText(user.getG() + "");
 
         listView = (ListView) view.findViewById(R.id.list);
-        notices = new ArrayList<Notice>();
-        notices.add(new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
-                100, new LocationG()));
-
-
+        
         adapter = new ListViewAdapter(c, notices);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -272,46 +271,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    public ArrayList<ProductHomeListDisplayModel> getNotices(){
-        String url = "http://35.242.192.20/product/getAllActive/";
-        notices = new ArrayList<ProductHomeListDisplayModel>();
-        Request request = new Request.Builder()
-                .url(url)
-                .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .build();
-
-        httpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                String mMessage = e.getMessage().toString();
-                Log.w("failure Response", mMessage);
-            }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String mMessage = response.body().string();
-                try {
-                    JSONArray jsonArray = new JSONArray(mMessage);
-
-                    for(int i = 0; i < jsonArray.length();i++)
-                    {
-                        JSONObject json = jsonArray.getJSONObject(i);
-                        ProductHomeListDisplayModel p1 = new ProductHomeListDisplayModel(
-                                json.getInt("id"),
-                                json.getInt("price"),
-                                json.getString("name"),
-                                json.getString("description"));
-                        notices.add(p1);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Log.e("adapeter", mMessage);
-            }
-        });
-        return notices;
-    }
-
     @Override
     public void onAttach(Context con) {
         super.onAttach(con);
@@ -357,7 +316,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
             case R.id.borrowingSortButton:
                 sortMode = BORROWING_MODE;
-             //   notices = Sort.getBorrowings( notices);
+                notices = Sort.getBorrowings(notices);
                 borrowModeButton.setBackgroundColor(Color.parseColor("#F000FF"));
                 lendModeButton.setBackgroundColor(Color.parseColor("#FF9800"));
                 addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#492A4B")));
@@ -367,8 +326,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.lendingSortiButton:
                 sortMode = LENDING_MODE;
-               // notices = Sort.getLendings( notices);
-                lendModeButton.setBackgroundColor(Color.parseColor("#FFFF00") );
+                notices = Sort.getLendings(notices);
+                lendModeButton.setBackgroundColor(Color.parseColor("#FFFF00"));
                 borrowModeButton.setBackgroundColor(Color.parseColor("#B201D8"));
                 addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF681F")));
                 lendModeButton.setTypeface(null, Typeface.BOLD_ITALIC);

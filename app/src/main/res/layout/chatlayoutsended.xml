@@ -4,9 +4,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textViewChat"
+        android:id="@+id/textViewSended"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_weight="5"
+        android:paddingLeft="100dp"
         android:text="TextView" />
 </LinearLayout>

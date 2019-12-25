@@ -6,13 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.Chat.ChatNotAgreedFragment;
 import com.example.gshare.ChatActivity;
+import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.ChatModel.Chat;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
@@ -30,6 +34,7 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
     TextView days;
     TextView note;
     Button contactButton;
+    ImageButton backButton;
 
     String userName;
     String password;
@@ -44,20 +49,21 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
         userName = bundle.getString("userName");
         password = bundle.getString("password");
 
-        notice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-        new LocationG());//DBHelper.getNotice(noticeId);
+        notice = new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
+                new LocationG());//DBHelper.getNotice(noticeId);
 
         title = view.findViewById(R.id.noticeTitle);
         days = view.findViewById(R.id.noticedays);
         note = view.findViewById(R.id.noticenote);
         contactButton = view.findViewById(R.id.contactButton);
+        backButton = view.findViewById(R.id.backButton);
 
         title.setText(notice.getName());
         days.setText(notice.getDay() + "");
         note.setText(notice.getNote());
 
         contactButton.setOnClickListener(this);
-
+        backButton.setOnClickListener(this);
 
 
         return view;
@@ -65,9 +71,11 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        User user = new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 );//DBHelper.getUser( userName , password);
-        Chat chat = new Chat( notice , notice.getNoticeOwner(), user );
-       // ChatCollection chatCollection = DBHelper.getChatCollection( DBHelper.getUserId( user ) );
+        switch (v.getId()) {
+            case R.id.contactButton:
+                User user = new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100);//DBHelper.getUser( userName , password);
+                Chat chat = new Chat(notice, notice.getNoticeOwner(), user);
+                // ChatCollection chatCollection = DBHelper.getChatCollection( DBHelper.getUserId( user ) );
 
         /*
         if( !chatCollection.getAllChat().contains(chat)) {
@@ -75,10 +83,31 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
             //DBHelper.addChat( chat );
             //DBHelper.updateChatCollection( chatCollection );
         }*/
+        /*
         Intent intent = new Intent(getActivity(), ChatActivity.class );
         intent.putExtra("USERNAME" , user.getUserName() );
         intent.putExtra("PASSWORD", user.getPassword());
-        startActivity(intent);
+        startActivity(intent);*/
+
+                Bundle bundle;
+                bundle = getArguments();
+
+                ChatNotAgreedFragment fragmentChatNotAgreed = new ChatNotAgreedFragment();
+                fragmentChatNotAgreed.setArguments(bundle);
+                FragmentTransaction fragmentManagerForNotAgreedChat = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentManagerForNotAgreedChat.replace(R.id.main_layout, fragmentChatNotAgreed);
+                fragmentManagerForNotAgreedChat.commit();
+                break;
+            case R.id.backButton:
+                Bundle bundle2;
+                bundle2 = getArguments();
+                HomePageFragment homePageFragment = new HomePageFragment();
+                homePageFragment.setArguments(bundle2);
+                FragmentTransaction fragmentManagerForHomePage = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentManagerForHomePage.replace(R.id.main_layout, homePageFragment);
+                fragmentManagerForHomePage.commit();
+                break;
+        }
     }
 
 }

@@ -1,7 +1,10 @@
 package com.example.gshare;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import android.widget.ListView;
 
 
 import androidx.annotation.NonNull;
@@ -11,11 +14,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gshare.Chat.ChatFragment;
 
-import com.example.gshare.Notice.ListViewAdapter;
 import com.example.gshare.Notice.MyNoticesFragment;
+import com.example.gshare.Notice.NoticeTry;
 
 import com.example.gshare.Profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+
+import java.util.ArrayList;
 
 /**
  * This class is not final and will be changed by ONUR
@@ -26,7 +32,7 @@ public class HomePageActivity extends AppCompatActivity  {
     String password;
 
 
-    ListViewAdapter adapter;
+    com.example.gshare.ListViewAdapter adapter;
 
 
     @Override
@@ -62,42 +68,42 @@ public class HomePageActivity extends AppCompatActivity  {
                     switch (item.getItemId()) {
 
                         case R.id.navigation_home:
-
-                                    HomePageFragment fragment1 = new HomePageFragment();
+                            openHomePage();
+                                    /*HomePageFragment fragment1 = new HomePageFragment();
                                     FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction1.replace(R.id.main_layout,fragment1);
-                                    fragmentTransaction1.commit();
+                                    fragmentTransaction1.commit();*/
                             return true;
 
                         case R.id.navigation_Map:
 
-                                    HomePageFragment fragment2 = new HomePageFragment();
+                                    /*HomePageFragment fragment2 = new HomePageFragment();
                                     FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction2.replace(R.id.main_layout,fragment2);
-                                    fragmentTransaction2.commit();
+                                    fragmentTransaction2.commit();*/
                             return true;
 
                         case R.id.navigation_Notices:
-
-                                    MyNoticesFragment fragment3 = new MyNoticesFragment();
+                            openMyNoticesPage();
+                                    /*MyNoticesFragment fragment3 = new MyNoticesFragment();
                                     FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction3.replace(R.id.main_layout,fragment3);
-                                    fragmentTransaction3.commit();
+                                    fragmentTransaction3.commit();*/
                             return true;
                         case R.id.navigation_Chat:
-
-                                    ChatFragment fragment4 = new ChatFragment();
+                            openChatPage();
+                                    /*ChatFragment fragment4 = new ChatFragment();
                                     FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction4.replace(R.id.main_layout,fragment4);
-                                    fragmentTransaction4.commit();
+                                    fragmentTransaction4.commit();*/
                             return true;
 
 
                         case R.id.navigation_Profilet:
-                                    ProfileFragment fragment5 = new ProfileFragment();
+                                    /*ProfileFragment fragment5 = new ProfileFragment();
                                     FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction5.replace(R.id.main_layout,fragment5);
-                                    fragmentTransaction5.commit();
+                                    fragmentTransaction5.commit();*/
                             return true;
                     }
                     return false;
@@ -112,7 +118,18 @@ public class HomePageActivity extends AppCompatActivity  {
         );
     }
 
-
+    public void openHomePage(){
+        Intent intentHome = new Intent(this,HomePageActivity.class);
+        startActivity(intentHome);
+    }
+    public void openMyNoticesPage(){
+        Intent intentMyNotices = new Intent(this,MyNoticesActivity.class);
+        startActivity(intentMyNotices);
+    }
+    public void openChatPage(){
+        Intent intentChat = new Intent(this,ChatActivity.class);
+        startActivity(intentChat);
+    }
 
 
 

@@ -29,7 +29,7 @@ private ArrayList<ChatTry> chats;
         chatList = (ListView)view.findViewById(R.id.chatList);
 
         chats = new ArrayList<ChatTry>();
-        chats.add(new ChatTry("message 1",false));
+        chats.add(new ChatTry("message 1"));
         onAttach(c);
         chatAdapter = new ChatAdapter(c,chats);
         chatList.setAdapter(chatAdapter);

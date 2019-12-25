@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +19,7 @@ import com.example.gshare.DBHelper;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.R;
+
 
 import java.util.ArrayList;
 
@@ -33,10 +36,11 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
     String userName;
     String password;
     MyNoticesAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my_notices, container,false);
+        View view = inflater.inflate(R.layout.fragment_my_notices, container, false);
 
         Bundle bundle = getArguments();
         userName = bundle.getString("userName");
@@ -47,12 +51,11 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         borrowingMode = view.findViewById(R.id.borrowingButton);
         gView = view.findViewById(R.id.moneyTextView);
 
-        gView.setText( DBHelper.getUser().getG() + "" );
+        gView.setText(DBHelper.getUser().getG() + "");
 
         notices = DBHelper.getLendingNotices();
-        adapter = new MyNoticesAdapter(c,notices);
+        adapter = new MyNoticesAdapter(c, notices);
         listView.setAdapter(adapter);
-
 
 
         return view;
@@ -60,37 +63,39 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.lendingButton:
-                notices = getUserNotices(DBHelper.getUser() , 'L');
+                notices = getUserNotices(DBHelper.getUser(), 'L');
                 break;
             case R.id.borrowingButton:
-                notices = getUserNotices(DBHelper.getUser(),'B');
+                notices = getUserNotices(DBHelper.getUser(), 'B');
                 break;
 
         }
 
     }
 
-    public static ArrayList<Notice> getUserNotices(User user , char type){
+    public static ArrayList<Notice> getUserNotices(User user, char type) {
         ArrayList<Notice> userList = new ArrayList<Notice>();
         ArrayList<Notice> allNotice = new ArrayList<>();
-        if(type == 'L') {
+        if (type == 'L') {
             allNotice = DBHelper.getLendingNotices();
         }
-        if( type == 'B'){
+        if (type == 'B') {
             allNotice = DBHelper.getBorrowingNotices();
         }
 
-        for( int i = 0; i< allNotice.size(); i++){
-            if(allNotice.get(i).getNoticeOwner().equals(user)){
+        for (int i = 0; i < allNotice.size(); i++) {
+            if (allNotice.get(i).getNoticeOwner().equals(user)) {
                 userList.add(allNotice.get(i));
             }
         }
         return userList;
+
+
     }
     @Override
-    public void onAttach(Context con){
+    public void onAttach (Context con){
         super.onAttach(con);
         c = con;
     }

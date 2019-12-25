@@ -12,31 +12,11 @@
         android:orientation="vertical">
 
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/gLogo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/backButton"
-                android:layout_width="0dp"
-                android:layout_height="53dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/android_arrow_back_1161833" />
-
-            <ImageView
-                android:id="@+id/gLogo"
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                app:srcCompat="@drawable/g_share_logo" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-        </LinearLayout>
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/g_share_logo" />
 
         <TextView
             android:id="@+id/notice"

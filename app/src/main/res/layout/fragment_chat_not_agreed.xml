@@ -128,6 +128,7 @@
         android:stackFromBottom="true"
         ></ListView>
    
+
     <LinearLayout
         android:id="@+id/horizontalLayoutEdit"
         android:layout_width="wrap_content"
@@ -144,7 +145,7 @@
             android:inputType="textPersonName" />
 
         <ImageButton
-            android:id="@+id/imageButtonSend"
+            android:id="@+id/imageButton"
             style="@android:style/Widget.Material.ImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

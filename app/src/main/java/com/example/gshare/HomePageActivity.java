@@ -46,7 +46,7 @@ public class HomePageActivity extends AppCompatActivity  {
         bundle.putString("password", password);
         fragmentForBeginning.setArguments(bundle);
         FragmentTransaction fragmentTransactionForBeginning = getSupportFragmentManager().beginTransaction();
-        fragmentTransactionForBeginning.replace(R.id.main_layout, fragmentForBeginning);
+        fragmentTransactionForBeginning.replace(R.id.homepage_placeholder, fragmentForBeginning);
         fragmentTransactionForBeginning.commit();
 
         //setContentView(R.layout.activity_homepage);

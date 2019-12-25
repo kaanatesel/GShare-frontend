@@ -150,7 +150,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
         }, 1000);
 
-       SearchView searchView = (SearchView) view.findViewById(R.id.homepageSearchView);
+        SearchView searchView = (SearchView) view.findViewById(R.id.homepageSearchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -171,8 +171,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 //notices = new ArrayList<Notice>();
                 //notices.add(new  Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                 //        100,new LocationG()));
-               // notices.add(new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                 //       100,new LocationG()));
+                // notices.add(new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
+                //       100,new LocationG()));
 
                 listView.setAdapter(adapter.update(notices));
 

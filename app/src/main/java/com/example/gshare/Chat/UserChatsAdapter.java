@@ -21,6 +21,7 @@ public class UserChatsAdapter extends ArrayAdapter<Chat> {
     Context context;
     ArrayList<Chat> chats;
     String userEmail;
+
     public UserChatsAdapter(Context c, ArrayList<Chat> chatsNew, String email){
         super(c, R.layout.chatlayout,chatsNew);
         context = c;

@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gshare.Chat.ChatFragment;
+import com.example.gshare.DBHelper;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -43,7 +44,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         Bundle bundle = getArguments();
 
        email = bundle.getString("email");
-       // user = DBHelper.getUser(userName,password);
+       user = DBHelper.getUser(email);
 
         editButton = view.findViewById(R.id.editProfileButton);
         nameAndSurname = view.findViewById(R.id.nameTextView);

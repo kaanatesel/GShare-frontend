@@ -25,8 +25,7 @@ public class ProfilePublicFragment extends Fragment {
     TextView username;
     User user;
 
-    String userName;
-    String password;
+    String email;
 
     @Nullable
     @Override
@@ -34,8 +33,7 @@ public class ProfilePublicFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile_public, container, false);
         Bundle bundle = getArguments();
 
-        userName = bundle.getString("publicUserName");
-        password = bundle.getString("publicPassword");
+        email = bundle.getString("publicEmail");
 
         user = new User("Cagri Eren", "asdas", "asdfasdf", "sdfasdf", 100);//DBHelper.getUser();
 
@@ -46,7 +44,9 @@ public class ProfilePublicFragment extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = getArguments();
                 ChatFragment chatFragment = new ChatFragment();
+                chatFragment.setArguments(bundle);
                 FragmentTransaction fragmentManagerForHomePage = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentManagerForHomePage.replace(R.id.main_layout, chatFragment);
                 fragmentManagerForHomePage.commit();
@@ -54,7 +54,7 @@ public class ProfilePublicFragment extends Fragment {
         });
 
         name.setText(user.getNameAndSurname());
-        username.setText(user.getUserName());
+        username.setText(user.getEmail());
 
         return view;
     }

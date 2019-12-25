@@ -32,7 +32,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textViewDeletable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed-medium"
@@ -53,7 +53,7 @@
                     app:srcCompat="@drawable/g_logo" />
 
                 <TextView
-                    android:id="@+id/price"
+                    android:id="@+id/priceDeletable"
                     android:layout_width="136dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -73,7 +73,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/daysTextView"
+                android:id="@+id/daysTextViewDeletable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed-medium"

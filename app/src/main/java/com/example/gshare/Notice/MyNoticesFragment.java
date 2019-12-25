@@ -1,10 +1,12 @@
 package com.example.gshare.Notice;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,15 +22,17 @@ import java.util.ArrayList;
 
 public class MyNoticesFragment extends Fragment implements View.OnClickListener {
 
+    Context c;
+
     Button lendingMode;
     Button borrowingMode;
     TextView gView;
 
     ArrayList<Notice> notices;
-
+    ListView listView;
     String userName;
     String password;
-
+    MyNoticesAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         userName = bundle.getString("userName");
         password = bundle.getString("password");
 
+        listView = (ListView) view.findViewById(R.id.listmynotices);
         lendingMode = view.findViewById(R.id.lendingButton);
         borrowingMode = view.findViewById(R.id.borrowingButton);
         gView = view.findViewById(R.id.moneyTextView);
@@ -45,6 +50,8 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         gView.setText( DBHelper.getUser().getG() + "" );
 
         notices = DBHelper.getLendingNotices();
+        adapter = new MyNoticesAdapter(c,notices);
+        listView.setAdapter(adapter);
 
 
 
@@ -81,5 +88,10 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
             }
         }
         return userList;
+    }
+    @Override
+    public void onAttach(Context con){
+        super.onAttach(con);
+        c = con;
     }
 }

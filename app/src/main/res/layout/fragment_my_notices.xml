@@ -59,29 +59,11 @@
         android:layout_width="match_parent"
         android:layout_height="5dp" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="619dp">
-
-        <LinearLayout
-            android:id="@+id/myNoticesInnerLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <fragment
-                android:id="@+id/fragment21"
-                android:name="com.example.gshare.Notice.NoticeSmallDeletableBorrowing"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <fragment
-                android:id="@+id/fragment22"
-                android:name="com.example.gshare.Notice.NoticeSmallDeletableLending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
+   <ListView
+       android:id="@+id/listmynotices"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       ></ListView>
     <include
 
         layout="@layout/bottom_navigation_view"

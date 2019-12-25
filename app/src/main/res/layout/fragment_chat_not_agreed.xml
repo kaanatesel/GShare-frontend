@@ -116,7 +116,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="number" />
+
     </LinearLayout>
+
 
     <ListView
         android:id="@+id/chatListView"
@@ -125,7 +127,7 @@
         android:layout_gravity="top"
         android:stackFromBottom="true"
         ></ListView>
-
+   
     <LinearLayout
         android:id="@+id/horizontalLayoutEdit"
         android:layout_width="wrap_content"
@@ -150,6 +152,8 @@
             android:tint="#00FF0000"
             app:srcCompat="@android:drawable/ic_menu_send" />
 
+
     </LinearLayout>
+
 
 </LinearLayout>

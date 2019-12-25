@@ -25,7 +25,7 @@ public class ChatActivity extends AppCompatActivity {
         bundle.putString("email",email);
         chatsFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.linearLayoutForChatsFragment,chatsFragment);
+        fragmentTransaction.replace(R.id.main_layout,chatsFragment);
         fragmentTransaction.commit();
     }
 }

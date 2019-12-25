@@ -43,6 +43,7 @@ public class ChatNotAgreedFragment extends Fragment {
     String notice;
     ArrayList<ChatTry> chatFragmentTry;
 
+    EditText editText;
     EditText editG;
     EditText editDay;
     TextView noticeName;
@@ -58,7 +59,9 @@ public class ChatNotAgreedFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
+
         chatFragmentTry = new ArrayList<ChatTry>();
+        /*
         chatFragmentTry.add(new ChatTry("message 1", false));
         chatFragmentTry.add(new ChatTry("message 2", true));
         chatFragmentTry.add(new ChatTry("message 1", false));
@@ -72,13 +75,14 @@ public class ChatNotAgreedFragment extends Fragment {
         chatFragmentTry.add(new ChatTry("message 1", false));
         chatFragmentTry.add(new ChatTry("message 2", true));
         chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
+        chatFragmentTry.add(new ChatTry("message 2", true));*/
 
         userName = getArguments().getString("userName");
         noticeId = getArguments().getInt("noticeId");
 
         editG = view.findViewById(R.id.gEditText);
         editDay = view.findViewById(R.id.daysEditText);
+        editText = view.findViewById(R.id.editText);
         noticeName = view.findViewById(R.id.itemName);
 
         chatNotice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
@@ -125,7 +129,7 @@ public class ChatNotAgreedFragment extends Fragment {
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textBeSend = editG.getText().toString();
+                textBeSend = editText.getText().toString();
                 if (textBeSend != "") {
                     //Message message = new Message();
                     //stringMessages.add(message.toString());

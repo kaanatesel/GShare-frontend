@@ -10,11 +10,13 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
+import com.example.gshare.ModelClasses.Sort.Sort;
 import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.R;
 
@@ -22,6 +24,7 @@ public class NoticeEditBorrowingFragment extends Fragment implements View.OnClic
 
     Notice notice;
     int noticeId;
+    int category;
 
     EditText name;
     EditText day;
@@ -78,6 +81,59 @@ public class NoticeEditBorrowingFragment extends Fragment implements View.OnClic
         category7 = (ImageButton) view.findViewById(R.id.booksButton);
         category8 = (ImageButton) view.findViewById(R.id.othersButton);
 
+        //Initialize the catgory as OTHER in case the user doesnt choose.
+        category = Sort.OTHER;
+
+        //Set click listeners for the category buttons
+        category1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.TRANSPORT;
+            }
+        });
+        category2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.EDUCATION;
+            }
+        });
+        category3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.ELECTRONIC;
+            }
+        });
+        category4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.LECTURE_NOTES;
+            }
+        });
+        category5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.STATIONARY;
+            }
+        });
+        category6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.PET;
+            }
+        });
+        category7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.BOOKS;
+            }
+        });
+        category8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = Sort.OTHER;
+            }
+        });
+
         return view;
     }
 
@@ -87,6 +143,7 @@ public class NoticeEditBorrowingFragment extends Fragment implements View.OnClic
         notice.setDay( Integer.parseInt( day.getText().toString() ) );
         notice.setName( name.getText().toString() );
         notice.setNote( note.getText().toString() );
+        notice.setCategory(category);
         //DBHelper.updateNotice(notice);
 
         Bundle bundle = getArguments();

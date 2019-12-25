@@ -419,7 +419,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return user.getUserName().equals( this.getUserName() );
+        return user.getEmail().equals( this.getEmail() );
     }
 
     public int getID(){
@@ -428,5 +428,9 @@ public class User {
 
     public void setID(int ID){
         this.ID = ID;
+    }
+
+    public void setNameAndSurname(String nameAndSurname) {
+        this.nameAndSurname = nameAndSurname;
     }
 }

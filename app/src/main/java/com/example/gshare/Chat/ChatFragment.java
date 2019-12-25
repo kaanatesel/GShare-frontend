@@ -11,11 +11,14 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gshare.ChatAdapter;
 import com.example.gshare.R;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ChatFragment extends Fragment {
 private Context c;
@@ -40,6 +43,21 @@ private ArrayList<ChatTry> chats;
     public void onAttach(Context con){
         super.onAttach(con);
         c = con;
+    }
+
+    public void updateFragment() {
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Bundle bundle = getArguments();
+                ChatFragment chatFragment = new ChatFragment();
+                chatFragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_biglayout,chatFragment);
+            }
+        }, 0, 10000);
     }
 
 

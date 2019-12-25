@@ -32,6 +32,8 @@ import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ChatAgreedFragment extends Fragment {
     HomePageActivity a;
@@ -39,10 +41,6 @@ public class ChatAgreedFragment extends Fragment {
     ChatAdapter chatAdapter;
     String textBeSend;
     ArrayList<String> stringMessages;
-    String user;
-    //String user;
-    String notice;
-    ArrayList<ChatTry> chatFragmentTry;
 
     EditText editText;
     EditText editG;
@@ -56,7 +54,8 @@ public class ChatAgreedFragment extends Fragment {
     User recieverUser;
     User itemOwner;
 
-    String userName;
+
+    String email;
     int noticeId;
 
 
@@ -65,24 +64,7 @@ public class ChatAgreedFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat_agreed, container, false);
 
-        chatFragmentTry = new ArrayList<ChatTry>();
-        /*
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));*/
-
-        userName = getArguments().getString("userName");
+        email = getArguments().getString("email");
         noticeId = getArguments().getInt("noticeId");
 
         editG = view.findViewById(R.id.gEditText);
@@ -93,8 +75,8 @@ public class ChatAgreedFragment extends Fragment {
         timeLeft = view.findViewById(R.id.timeLeftTextView);
 
         //chat = DBHelper.getChat();
-        chatNotice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                100,new LocationG());//DBHelper.getNotice(noticeId);
+        chatNotice = chat.getNotice();// new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
+                //100,new LocationG());DBHelper.getNotice(noticeId);
 
 
         noticeName.setText(chatNotice.getName());
@@ -104,7 +86,7 @@ public class ChatAgreedFragment extends Fragment {
 
         if( chatNotice.computeTimeLeftForMilliSeconds() <= 0  ){
             Bundle bundle = new Bundle();
-            bundle.putString("userName", userName);
+            bundle.putString("email", email);
             bundle.putInt("noticeId", noticeId);
             chat.setStatus(Chat.WAITING_FOR_RETURN);
             ChatDoneFragment chatDoneFragment = new ChatDoneFragment();
@@ -112,7 +94,6 @@ public class ChatAgreedFragment extends Fragment {
             chatDoneFragment.setArguments(bundle);
             fragmentTransaction.replace(R.id.main_biglayout,chatDoneFragment);
             fragmentTransaction.commit();
-
         }
 
         if( DBHelper.getUser().equals(chat.getCustomer()) ) {
@@ -142,7 +123,7 @@ public class ChatAgreedFragment extends Fragment {
             public void onClick(View v) {
                 if (DBHelper.getUser().equals(itemOwner)) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("userName", userName);
+                    bundle.putString("email", email);
                     bundle.putInt("noticeId", noticeId);
                     chat.setStatus(Chat.RETURNED);
                     chatNotice.finish();
@@ -177,17 +158,21 @@ public class ChatAgreedFragment extends Fragment {
 
 
         listView = (ListView) view.findViewById(R.id.chatListView);
-        listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
+        listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
         ImageButton buttonSend = (ImageButton) view.findViewById(R.id.imageButtonSend);
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
-                if (textBeSend != "") {
-                    Message message = new Message(textBeSend, recieverUser, DBHelper.getUser() );
-                    stringMessages.add(message.toString());
-                    chatFragmentTry.add(new ChatTry(textBeSend, true));
-                    listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
+                Message message = new Message(textBeSend, recieverUser, DBHelper.getUser());//email) );
+                textBeSend = message.getMessage() + "\t" + " ( " + message.getCurrentTime() + " ) ";
+                message.setMsg(textBeSend);
+
+                if (!textBeSend.matches("")) {
+                    //Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email) );
+                    //stringMessages.add(message.toString());
+                    chat.getAllMessage().add(message);
+                    listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
                 }
             }
         });
@@ -202,4 +187,21 @@ public class ChatAgreedFragment extends Fragment {
             a = (HomePageActivity) con;
         }
     }
+
+    public void updateFragment() {
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Bundle bundle = getArguments();
+                ChatAgreedFragment chatAgreedFragment = new ChatAgreedFragment();
+                chatAgreedFragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_biglayout,chatAgreedFragment);
+            }
+        }, 0, 10000);
+    }
+
+
 }

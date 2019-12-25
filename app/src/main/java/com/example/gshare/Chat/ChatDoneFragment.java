@@ -33,6 +33,8 @@ import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ChatDoneFragment extends Fragment {
     HomePageActivity a;
@@ -43,7 +45,6 @@ public class ChatDoneFragment extends Fragment {
     String user;
     //String user;
     String notice;
-    ArrayList<ChatTry> chatFragmentTry;
 
     EditText editText;
     EditText editG;
@@ -56,7 +57,7 @@ public class ChatDoneFragment extends Fragment {
     User recieverUser;
     User itemOwner;
 
-    String userName;
+    String email;
     int noticeId;
 
 
@@ -66,7 +67,6 @@ public class ChatDoneFragment extends Fragment {
         a.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View view = inflater.inflate(R.layout.fragment_chat_done, container, false);
 
-        chatFragmentTry = new ArrayList<ChatTry>();
         /*
         chatFragmentTry.add(new ChatTry("message 1", false));
         chatFragmentTry.add(new ChatTry("message 2", true));
@@ -84,7 +84,7 @@ public class ChatDoneFragment extends Fragment {
         chatFragmentTry.add(new ChatTry("message 2", true));*/
 
 
-        userName = getArguments().getString("userName");
+        email = getArguments().getString("email");
         noticeId = getArguments().getInt("noticeId");
 
         editG = view.findViewById(R.id.gEditText);
@@ -130,7 +130,7 @@ public class ChatDoneFragment extends Fragment {
             public void onClick(View v) {
                 if (DBHelper.getUser().equals(itemOwner)) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("userName", userName);
+                    bundle.putString("email", email);
                     bundle.putInt("noticeId", noticeId);
                     chat.setStatus(Chat.RETURNED);
                     chatNotice.finish();
@@ -165,19 +165,21 @@ public class ChatDoneFragment extends Fragment {
 
 
         listView = (ListView) view.findViewById(R.id.chatListView);
-        listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
+        listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(),email));
         ImageButton buttonSend = (ImageButton) view.findViewById(R.id.imageButtonSend);
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
-
+                Message message = new Message(textBeSend, recieverUser, DBHelper.getUser());//email) );
+                textBeSend = message.getMessage() + "\t" + " ( " + message.getCurrentTime() + " ) ";
+                message.setMsg(textBeSend);
 
                 if (!textBeSend.matches("")) {
-                    // Message message = new Message(textBeSend, recieverUser, DBHelper.getUser() );
+                    //Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email) );
                     //stringMessages.add(message.toString());
-                    chatFragmentTry.add(new ChatTry(textBeSend, true));
-                    listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
+                    chat.getAllMessage().add(message);
+                    listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
                 }
             }
         });
@@ -191,5 +193,19 @@ public class ChatDoneFragment extends Fragment {
         if (con instanceof Activity) {
             a = (HomePageActivity) con;
         }
+    }
+    public void updateFragment() {
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Bundle bundle = getArguments();
+                ChatDoneFragment chatDoneFragment = new ChatDoneFragment();
+                chatDoneFragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_biglayout,chatDoneFragment);
+            }
+        }, 0, 10000);
     }
 }

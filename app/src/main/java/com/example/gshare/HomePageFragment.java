@@ -77,8 +77,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     Button borrowModeButton;
     Button button;
     ImageButton sortButton;
-    String userName;
-    String password;
+    String email;
     OkHttpClient httpClient;
     ArrayList<ProductHomeListDisplayModel> notices;
     char sortMode;
@@ -97,8 +96,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         sortMode = LENDING_MODE;
 
         if( getArguments() != null ){
-            userName = getArguments().getString("userName");
-            password = getArguments().getString("password");
+            email = getArguments().getString("email");
         }
         Bundle bundle = getArguments();
 

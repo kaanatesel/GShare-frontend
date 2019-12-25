@@ -37,14 +37,14 @@ private String email;
         chatList = (ListView)view.findViewById(R.id.chatList);
         chatList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onItemClickListener(AdapterView<?> parent, View view, int position, long id){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 
             }
 
         });
         chats = new ArrayList<Chat>();
-        chatUsersAdapter = new UserChatsAdapter();
-        chatList.setAdapter(chatUsersAdapter);
+        //chatUsersAdapter = new UserChatsAdapter();
+        //chatList.setAdapter(chatUsersAdapter);
 
     return view;
     }

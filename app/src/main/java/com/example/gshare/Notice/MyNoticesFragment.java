@@ -66,13 +66,13 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         gView = view.findViewById(R.id.moneyTextView);
 
 
-        gView.setText(DBHelper.getUser().getG() + "");
+        gView.setText(DBHelper.getUser(userName).getG() + "");
 
         notices = DBHelper.getLendingNotices();
         adapter = new MyNoticesAdapter(c, notices);
         listView.setAdapter(adapter);
 
-        gView.setText( DBHelper.getUser().getG() + "" );
+        gView.setText( DBHelper.getUser(userName).getG() + "" );
 
         notices = DBHelper.getLendingNotices();
 
@@ -86,17 +86,17 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
 
         switch (v.getId()) {
             case R.id.lendingButton:
-                notices = getUserNotices(DBHelper.getUser(), 'L');
+                notices = getUserNotices(DBHelper.getUser(userName), 'L');
                 break;
             case R.id.borrowingButton:
-                notices = getUserNotices(DBHelper.getUser(), 'B');
+                notices = getUserNotices(DBHelper.getUser(userName), 'B');
 
         switch (v.getId()){
             case R.id.lendingButton:
-                notices = getUserNotices(DBHelper.getUser() , 'L');
+                notices = getUserNotices(DBHelper.getUser(userName) , 'L');
                 break;
             case R.id.borrowingButton:
-                notices = getUserNotices(DBHelper.getUser(),'B');
+                notices = getUserNotices(DBHelper.getUser(userName),'B');
 
                 break;
 
@@ -114,7 +114,7 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
             allNotice = DBHelper.getLendingNotices();
         }
         if( type == 'B'){
-            allNotice = DBHelper.getBorrowingNotices();
+            //allNotice = DBHelper.getBorrowingNotices();
         }
 
         for( int i = 0; i< allNotice.size(); i++){

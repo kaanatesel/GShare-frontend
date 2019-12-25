@@ -28,6 +28,7 @@ import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.Popup.PopupDoYouAgreeFragment;
+import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
 
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class ChatNotAgreedFragment extends Fragment {
     EditText editG;
     EditText editDay;
     TextView noticeName;
+    Button userNumaAndSurname;
 
     Notice chatNotice;
     Chat chat;
@@ -84,6 +86,7 @@ public class ChatNotAgreedFragment extends Fragment {
         editDay = view.findViewById(R.id.daysEditText);
         editText = view.findViewById(R.id.editText);
         noticeName = view.findViewById(R.id.itemName);
+        userNumaAndSurname = view.findViewById(R.id.nameButton);
 
         chatNotice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                 100,new LocationG());//DBHelper.getNotice(noticeId);
@@ -93,6 +96,13 @@ public class ChatNotAgreedFragment extends Fragment {
         noticeName.setText(chatNotice.getName());
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
+
+        if( DBHelper.getUser().equals(chat.getCustomer()) ) {
+            userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
+        }
+        if( DBHelper.getUser().equals(chat.getNoticeOwner() ) ) {
+            userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
+        }
 
         Button agreeButton = (Button) view.findViewById(R.id.terminateButton);
         agreeButton.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +129,27 @@ public class ChatNotAgreedFragment extends Fragment {
                 PopupDoYouAgreeFragment agreePopUp = new PopupDoYouAgreeFragment();
                 agreePopUp.setArguments(bundle);
                 agreePopUp.show(getFragmentManager(), "AgreePopUp");
+            }
+        });
+
+        userNumaAndSurname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+
+                if( DBHelper.getUser().equals(chat.getCustomer()) ) {
+                    bundle.putString("personUserName", chat.getNoticeOwner().getUserName());
+                    bundle.putString("personPassword", chat.getNoticeOwner().getPassword());
+                }
+                if( DBHelper.getUser().equals(chat.getNoticeOwner()) ) {
+                    bundle.putString("personUserName", chat.getCustomer().getUserName());
+                    bundle.putString("personPassword", chat.getCustomer().getPassword());
+                }
+                ProfilePublicFragment publicProfile = new ProfilePublicFragment();
+                publicProfile.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_layout, publicProfile);
+
             }
         });
 

@@ -3,11 +3,10 @@ package com.example.gshare;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-<<<<<<< Updated upstream
-=======
+
+
 import android.app.Activity;
-import android.content.Context;
->>>>>>> Stashed changes
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< Updated upstream
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-=======
+import okhttp3.OkHttpClient;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -43,18 +41,18 @@ import okhttp3.OkHttpClient;
 
 
 public class MainActivity extends AppCompatActivity {
->>>>>>> Stashed changes
+
 
     Button buttonLogin;
     Button buttonRegister;
     EditText userName;
     EditText password;
-<<<<<<< Updated upstream
-=======
+
+
     public static TextView err;
     OkHttpClient httpClient;
     String passDB;
->>>>>>> Stashed changes
+
 
     private RequestQueue mQueue;
 
@@ -62,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-<<<<<<< Updated upstream
 
-=======
+
+
         httpClient = new OkHttpClient();
       //  DBHelper.getInstance(this);
->>>>>>> Stashed changes
+
 
         buttonLogin = (Button) findViewById(R.id.regloginButton);
         buttonRegister = (Button) findViewById(R.id.regregisterButton);
@@ -83,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-<<<<<<< Updated upstream
+
 
 
     public boolean tryLogin(String userName, String password) {//FIX THIS AT FINAL PRODUCT
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 openRegister();
                 break;
         }
-=======
+
     public void loginOnClick() {
 
         DBHelper.getInstance(this);
@@ -143,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
->>>>>>> Stashed changes
     }
 //        String mEmail = DBHelper.getInstance(this).callUserByID(21).getEmail();
 //

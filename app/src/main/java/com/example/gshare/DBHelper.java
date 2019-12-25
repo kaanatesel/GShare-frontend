@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.mashape.unirest.http.*;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -208,31 +207,6 @@ public class DBHelper {
 
     }
 
-
-    public static void createUser(User user) throws Exception{
-
-        Unirest.setTimeouts(0, 0);
-        HttpResponse<String> response = Unirest.post("http://35.242.192.20//member/create")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .header("User-Agent", "PostmanRuntime/7.21.0")
-                .header("Accept", "*/*")
-                .header("Cache-Control", "no-cache")
-                .header("Postman-Token", "bf287e3b-2042-4517-a28f-f949539f92e7")
-                .header("Host", "35.242.192.20")
-                .header("Accept-Encoding", "gzip, deflate")
-                .header("Content-Length", "403")
-                .header("Connection", "keep-alive")
-                  .field("email", user.getEmail())
-                .field("password", user.getPassword())
-                .field("name", user.getUserName())
-                .asString();
-
-        System.out.println(response.getBody());
-
-    }
-
-
-
     //Helper Methods for Users
 
     private static void createUserOBJ(int id, String name, String password, String email, int g) {
@@ -242,7 +216,46 @@ public class DBHelper {
 
     }
 
+    public static void getMessages(int borrowingNoticeID){
+
+        String url = "";
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("employees");
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject employee = jsonArray.getJSONObject(i);
+
+                                String firstName = employee.getString("firstname");
+                                int age = employee.getInt("age");
+                                String mail = employee.getString("mail");
+
+                                mTextViewResult.append(firstName + ", " + String.valueOf(age) + ", " + mail + "\n\n");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        mQueue.add(request);
+
+    }
+
+
+
 }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////GET NOTICE DATA////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////

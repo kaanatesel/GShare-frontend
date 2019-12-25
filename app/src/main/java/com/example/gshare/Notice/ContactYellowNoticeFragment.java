@@ -100,6 +100,7 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
                 Bundle bundle;
                 bundle = getArguments();
 
+                getActivity().setContentView(R.layout.fullyblanklayout);
                 ChatNotAgreedFragment fragmentChatNotAgreed = new ChatNotAgreedFragment();
                 fragmentChatNotAgreed.setArguments(bundle);
                 FragmentTransaction fragmentManagerForNotAgreedChat = getActivity().getSupportFragmentManager().beginTransaction();

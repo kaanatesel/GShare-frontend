@@ -17,7 +17,7 @@ public class User {
     private LocationG location;
     private long creditCardNumber;
     private int g;
-    private String nameAndSurname;
+    private String name;
     private double lenderRating;
     private double borrowerRating;
     private int numberOfLendRates;
@@ -32,17 +32,21 @@ public class User {
     private int fiveStarLendingRates;
     private int fiveStarBorrowinRates;
     private boolean firstPost; //Only for lending
+<<<<<<< Updated upstream
+=======
+    private int id;
+>>>>>>> Stashed changes
 
     /**
      * This constructor constructs a user object.
-     * @param nameAndSurname name and surname of the user
+     * @param name name and surname of the user
      * @param userName username of the user
      * @param password password of the user
      * @param email email of the user
      * @param g money amount of the user
      */
-    public User( String nameAndSurname, String userName, String password, String email, int g ) {
-        this.nameAndSurname = nameAndSurname;
+    public User( String name, String userName, String password, String email, int g ) {
+        this.name = name;
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -241,8 +245,8 @@ public class User {
      * This method gets the name and surname of the user
      * @return name and surname of the user
      */
-    public String getNameAndSurname(){
-        return nameAndSurname;
+    public String getName(){
+        return name;
     }
 
     /**
@@ -421,4 +425,30 @@ public class User {
         return user.getUserName().equals( this.getUserName() );
     }
 
+<<<<<<< Updated upstream
+=======
+    /**
+     * gets the id to the user.
+     * @return ID the id.
+     */
+    public int getID(){
+        return id;
+    }
+
+    /**
+     * sets the id.
+     * @param ID the id to set.
+     */
+    public void setID(int ID){
+        this.id = ID;
+    }
+
+    /**Sets the userName
+     *
+     * @param str user name
+     */
+    public void setUserName(String str){
+        userName = str;
+    }
+>>>>>>> Stashed changes
 }

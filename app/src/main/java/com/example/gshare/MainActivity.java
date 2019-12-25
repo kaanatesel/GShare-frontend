@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import okhttp3.OkHttpClient;
 
+<<<<<<< Updated upstream
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,14 +31,22 @@ import com.android.volley.toolbox.Volley;
 import com.example.gshare.ModelClasses.User.User;
 
 import org.json.JSONArray;
+=======
+import com.example.gshare.ModelClasses.NoticeModel.Notice;
+import com.example.gshare.ModelClasses.User.User;
+
+>>>>>>> Stashed changes
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
+
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -81,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+<<<<<<< Updated upstream
 
 
 
@@ -100,6 +110,68 @@ public class MainActivity extends AppCompatActivity {
 ;
                 if (result) {
                     openHomePage();
+=======
+    public void loginOnClick() {
+
+
+
+
+        try {
+            User user = CallUserByEmail.call("bora@gmail.com");
+
+            System.out.println(user.getEmail());
+            System.out.println(user.getPassword());
+            System.out.println(user.getUserName());
+            System.out.println(user.getID());
+            System.out.println(user.getG());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+//        System.out.println( DBHelper.getUser(21) );
+//        System.out.println( DBHelper.getUser("bora@gmail.com") );
+
+//        ArrayList<Notice> noticeArrayList =  DBHelper.getLendingNotices();
+//
+//        for(int i = 0 ; i < noticeArrayList.size();i++ ){
+//            System.out.println("notice array list size: " +  noticeArrayList.size() );
+//            System.out.println( i + " " + noticeArrayList.get(i).getNote() );
+//            System.out.println( i + " " + noticeArrayList.get(i).getCategory() );
+//            System.out.println("*************************************");
+//        }
+
+
+        String url = "http://35.242.192.20/member/getByEmail/" + userName.getText().toString() ;
+        final String uPass = password.getText().toString();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .build();
+
+        httpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                String mMessage = e.getMessage().toString();
+                Log.w("failure Response", mMessage);
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String mMessage = response.body().string();
+                try {
+                    JSONObject reader = new JSONObject(mMessage);
+                    passDB = reader.getString("password");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if(passDB == null)
+                {
+                    err.setText("Login Err");
+>>>>>>> Stashed changes
                 }
                 else {
                     Toast.makeText(this, "Wrong password or username", Toast.LENGTH_SHORT).show();

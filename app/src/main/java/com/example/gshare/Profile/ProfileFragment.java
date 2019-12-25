@@ -40,7 +40,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         username = view.findViewById(R.id.usernameTextView);
 
         username.setText(user.getUserName());
-        nameAndSurname.setText(user.getNameAndSurname());
+        nameAndSurname.setText(user.getName());
 
         editButton.setOnClickListener(this);
 

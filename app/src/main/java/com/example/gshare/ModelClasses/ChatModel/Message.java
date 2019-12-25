@@ -77,6 +77,10 @@ public class Message {
         return time;
     }
 
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     /**
      *
      * @param msg

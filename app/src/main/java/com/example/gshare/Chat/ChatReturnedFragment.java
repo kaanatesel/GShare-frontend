@@ -33,6 +33,8 @@ import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ChatReturnedFragment extends Fragment {
     HomePageActivity a;
@@ -43,7 +45,6 @@ public class ChatReturnedFragment extends Fragment {
     String user;
     //String user;
     String notice;
-    ArrayList<ChatTry> chatFragmentTry;
 
     EditText editText;
     EditText editG;
@@ -56,7 +57,7 @@ public class ChatReturnedFragment extends Fragment {
     User recieverUser;
     User itemOwner;
 
-    String userName;
+    String email;
     int noticeId;
 
 
@@ -66,7 +67,6 @@ public class ChatReturnedFragment extends Fragment {
         a.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View view = inflater.inflate(R.layout.fragment_chat_returned, container, false);
 
-        chatFragmentTry = new ArrayList<ChatTry>();
         /*
         chatFragmentTry.add(new ChatTry("message 1", false));
         chatFragmentTry.add(new ChatTry("message 2", true));
@@ -84,7 +84,7 @@ public class ChatReturnedFragment extends Fragment {
         chatFragmentTry.add(new ChatTry("message 2", true));*/
 
 
-        userName = getArguments().getString("userName");
+        email = getArguments().getString("email");
         noticeId = getArguments().getInt("noticeId");
 
         editG = view.findViewById(R.id.gEditText);
@@ -95,15 +95,16 @@ public class ChatReturnedFragment extends Fragment {
 
 
         //chat = DBHelper.getChat();
-        chatNotice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                100,new LocationG());//DBHelper.getNotice(noticeId);
+        chatNotice = chat.getNotice();//new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
+                //100,new LocationG());//DBHelper.getNotice(noticeId);
+
         chat.setStatus(Chat.RETURNED);
 
         noticeName.setText(chatNotice.getName());
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
 
-        if( DBHelper.getUser().equals(chat.getCustomer()) ) {
+        if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
             userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
             recieverUser = chat.getNoticeOwner();
             if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
@@ -113,7 +114,7 @@ public class ChatReturnedFragment extends Fragment {
                 itemOwner = chat.getNoticeOwner();
             }
         }
-        if( DBHelper.getUser().equals(chat.getNoticeOwner() ) ) {
+        if( DBHelper.getUser(email).equals(chat.getNoticeOwner() ) ) {
             userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
             recieverUser = chat.getCustomer();
             if(chat.getNotice().getNoticeType()== Notice.LEND_NOTICE){
@@ -130,12 +131,12 @@ public class ChatReturnedFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
 
-                if( DBHelper.getUser().equals(chat.getCustomer()) ) {
-                    bundle.putString("personUserName", chat.getNoticeOwner().getUserName());
+                if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
+                    bundle.putString("personEmail", chat.getNoticeOwner().getEmail());
                     bundle.putString("personPassword", chat.getNoticeOwner().getPassword());
                 }
-                if( DBHelper.getUser().equals(chat.getNoticeOwner()) ) {
-                    bundle.putString("personUserName", chat.getCustomer().getUserName());
+                if( DBHelper.getUser(email).equals(chat.getNoticeOwner()) ) {
+                    bundle.putString("personEmail", chat.getCustomer().getUserName());
                     bundle.putString("personPassword", chat.getCustomer().getPassword());
                 }
                 ProfilePublicFragment publicProfile = new ProfilePublicFragment();
@@ -148,19 +149,21 @@ public class ChatReturnedFragment extends Fragment {
 
 
         listView = (ListView) view.findViewById(R.id.chatListView);
-        listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
+        listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
         ImageButton buttonSend = (ImageButton) view.findViewById(R.id.imageButtonSend);
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
-
+                Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email) );
+                textBeSend = message.getMessage() + "\t" + " ( " + message.getCurrentTime() + " ) ";
+                message.setMsg(textBeSend);
 
                 if (!textBeSend.matches("")) {
-                    // Message message = new Message(textBeSend, recieverUser, DBHelper.getUser() );
+                    //Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email) );
                     //stringMessages.add(message.toString());
-                    chatFragmentTry.add(new ChatTry(textBeSend, true));
-                    listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
+                    chat.getAllMessage().add(message);
+                    listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
                 }
             }
         });
@@ -174,5 +177,19 @@ public class ChatReturnedFragment extends Fragment {
         if (con instanceof Activity) {
             a = (HomePageActivity) con;
         }
+    }
+    public void updateFragment() {
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Bundle bundle = getArguments();
+                ChatReturnedFragment chatReturnedFragment = new ChatReturnedFragment();
+                chatReturnedFragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_biglayout,chatReturnedFragment);
+            }
+        }, 0, 10000);
     }
 }

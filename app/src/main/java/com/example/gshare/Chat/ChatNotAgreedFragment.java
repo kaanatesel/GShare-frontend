@@ -29,7 +29,7 @@ import com.example.gshare.ModelClasses.ChatModel.Message;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
-import com.example.gshare.Notice.ProductHomeListDisplayModel;
+//import com.example.gshare.Notice.ProductHomeListDisplayModel;
 import com.example.gshare.Popup.PopupDoYouAgreeFragment;
 import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
@@ -40,6 +40,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -56,7 +58,6 @@ public class ChatNotAgreedFragment extends Fragment {
     String user;
     //String user;
     String notice;
-    ArrayList<ChatTry> chatFragmentTry;
 
     EditText editText;
     EditText editG;
@@ -69,8 +70,7 @@ public class ChatNotAgreedFragment extends Fragment {
     User recieverUser;
     User itemOwner;
 
-    OkHttpClient httpClient;
-    String userName;
+    String email;
     int noticeId;
 
 
@@ -79,8 +79,10 @@ public class ChatNotAgreedFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         a.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View view = inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
-        httpClient = new OkHttpClient();
-        chatFragmentTry = new ArrayList<ChatTry>();
+
+
+
+        email = getArguments().getString("email");
         /*
         chatFragmentTry.add(new ChatTry("message 1", false));
         chatFragmentTry.add(new ChatTry("message 2", true));
@@ -98,7 +100,6 @@ public class ChatNotAgreedFragment extends Fragment {
         chatFragmentTry.add(new ChatTry("message 2", true));*/
 
 
-        userName = getArguments().getString("userName");
         noticeId = getArguments().getInt("noticeId");
 
         editG = view.findViewById(R.id.gEditText);
@@ -117,7 +118,7 @@ public class ChatNotAgreedFragment extends Fragment {
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
 
-        if( DBHelper.getUser().equals(chat.getCustomer()) ) {
+        if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
             userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
             recieverUser = chat.getNoticeOwner();
             if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
@@ -127,7 +128,7 @@ public class ChatNotAgreedFragment extends Fragment {
                 itemOwner = chat.getNoticeOwner();
             }
         }
-        if( DBHelper.getUser().equals(chat.getNoticeOwner() ) ) {
+        if( DBHelper.getUser(email).equals(chat.getNoticeOwner() ) ) {
             userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
             recieverUser = chat.getCustomer();
             if(chat.getNotice().getNoticeType()== Notice.LEND_NOTICE){
@@ -142,9 +143,9 @@ public class ChatNotAgreedFragment extends Fragment {
         agreeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (DBHelper.getUser().equals(itemOwner)) {
+                if (DBHelper.getUser(email).equals(itemOwner)) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("userName", userName);
+                    bundle.putString("email", email);
                     bundle.putInt("noticeId", noticeId);
                     chat.setStatus(Chat.AGREED);
 
@@ -173,11 +174,11 @@ public class ChatNotAgreedFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
 
-                if( DBHelper.getUser().equals(chat.getCustomer()) ) {
+                if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
                     bundle.putString("personUserName", chat.getNoticeOwner().getUserName());
                     bundle.putString("personPassword", chat.getNoticeOwner().getPassword());
                 }
-                if( DBHelper.getUser().equals(chat.getNoticeOwner()) ) {
+                if( DBHelper.getUser(email).equals(chat.getNoticeOwner()) ) {
                     bundle.putString("personUserName", chat.getCustomer().getUserName());
                     bundle.putString("personPassword", chat.getCustomer().getPassword());
                 }
@@ -191,23 +192,20 @@ public class ChatNotAgreedFragment extends Fragment {
 
 
         listView = (ListView) view.findViewById(R.id.chatListView);
-        listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
+        listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
         ImageButton buttonSend = (ImageButton) view.findViewById(R.id.imageButtonSend);
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
-
+                Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email));
+                textBeSend = message.getMessage() + "\t" + " ( " + message.getCurrentTime() + " ) ";
+                message.setMsg(textBeSend);
 
                 if (!textBeSend.matches("")) {
-
-                    // Message message = new Message(textBeSend, recieverUser, DBHelper.getUser() );
-
-                   // Message message = new Message(textBeSend, recieverUser, DBHelper.getUser() );
-
                     //stringMessages.add(message.toString());
-                    chatFragmentTry.add(new ChatTry(textBeSend, true));
-                    listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
+                    chat.getAllMessage().add(message);
+                    listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
                 }
             }
         });
@@ -222,4 +220,19 @@ public class ChatNotAgreedFragment extends Fragment {
             a = (HomePageActivity) con;
         }
     }
-   }
+    public void updateFragment() {
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Bundle bundle = getArguments();
+                ChatNotAgreedFragment chatNotAgreedFragment = new ChatNotAgreedFragment();
+                chatNotAgreedFragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_biglayout,chatNotAgreedFragment);
+            }
+        }, 0, 10000);
+    }
+}
+

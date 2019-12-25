@@ -10,6 +10,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 
@@ -36,6 +37,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.gshare.ModelClasses.Location.LocationG;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -46,12 +48,22 @@ import com.example.gshare.Notice.ContactPurpleNoticeFragment;
 import com.example.gshare.Notice.ContactYellowNoticeFragment;
 import com.example.gshare.Notice.CreatePurpleNoticeFragment;
 import com.example.gshare.Notice.CreateYellowNoticeFragment;
+import com.example.gshare.Notice.ProductHomeListDisplayModel;
 import com.example.gshare.Popup.PopupSortByFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.JsonObject;
 
 import android.graphics.Color;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class HomePageFragment extends Fragment implements View.OnClickListener {
 
@@ -67,10 +79,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     ImageButton sortButton;
     String userName;
     String password;
-    ArrayList<Notice> notices;
+    OkHttpClient httpClient;
+    ArrayList<ProductHomeListDisplayModel> notices;
     char sortMode;
-
-
 
     ListView listView = null;
     Context c = null;
@@ -78,24 +89,18 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     com.example.gshare.ListViewAdapter adapter;
     @Nullable
     @Override
-
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home_page,container,false);
 
+        httpClient = new OkHttpClient();
         sortMode = LENDING_MODE;
 
         if( getArguments() != null ){
             userName = getArguments().getString("userName");
             password = getArguments().getString("password");
-            user = new User( "Cagri Eren", "asdas","asdfasdf","sdfasdf",100);//DBHelper.getUser(userName,password);
-            //notices = DBHelper.getAllNotices();
         }
         Bundle bundle = getArguments();
-
-        notices = new ArrayList<Notice>();
-        notices = sort( notices , bundle.getBoolean("ACCEPTED" ), bundle.getBoolean("G"),bundle.getInt("MIN"),
-                bundle.getInt("MAX"),bundle.getBoolean("NEWEST"),bundle.getBoolean("ALPHABETICAL"));
 
         sortButton = view.findViewById(R.id.sortby_button);
         lendModeButton = view.findViewById(R.id.lendingSortiButton);
@@ -116,51 +121,36 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         borrowModeButton.setTypeface(null , Typeface.NORMAL);
         // end
 
-        gText.setText( user.getG() + "" );
+        // gText.setText( user.getG() + "" );
 
         listView = (ListView) view.findViewById(R.id.list);
-        notices = new ArrayList<Notice>();
-        notices.add(new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                100,new LocationG()));
+        notices = getNotices();
 
-        onAttach(c);
-        adapter = new com.example.gshare.ListViewAdapter(c, notices);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-                Bundle args = new Bundle();
-                args.putString("notice_name",notices.get(position).getName());
-                args.putString("day",String.valueOf(notices.get(position).getDay()));
-                args.putString("userName",userName);
-                args.putString("password",password);
-                args.putString("G",String.valueOf(notices.get(position).getG()));
+            public void run() {
+                adapter = new com.example.gshare.ListViewAdapter(c,  notices);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Bundle args = new Bundle();
+                        args.putInt("noticeId",notices.get(position).getId());
 
-
-                //if(notices.get(position).getNoticeType() =='L'){
-
-
-
-                ContactYellowNoticeFragment fragmentForLending = new ContactYellowNoticeFragment();
-                fragmentForLending.setArguments(args);
-                FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransactionForLending.replace(R.id.main_layout,fragmentForLending);
-                fragmentTransactionForLending.commit();
-
-                //}else if(notşces.get(position).getNoticeType() =='R'){
-                //ContactPurpleNoticeFragment fragmentForBorrowing= new ContactPurpleNoticeFragment();
-                //    fragmentForBorrowing.setArguments(args);
-                //                    FragmentTransaction fragmentTransactionForBorrowing = getActivity().getSupportFragmentManager().beginTransaction();
-                //                    fragmentTransactionForBorrowing.replace(R.id.main_layout,fragmentForBorrowing);
-                //                    fragmentTransactionForBorrowing.commit();
-                //
-                //
-                //
-                // }
+                        ContactYellowNoticeFragment fragmentForLending = new ContactYellowNoticeFragment();
+                        fragmentForLending.setArguments(args);
+                        FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransactionForLending.replace(R.id.main_layout,fragmentForLending);
+                        fragmentTransactionForLending.commit();
+                    }
+                });
             }
-        });
-        SearchView searchView = (SearchView) view.findViewById(R.id.homepageSearchView);
+
+        }, 1000);
+
+      /*  SearchView searchView = (SearchView) view.findViewById(R.id.homepageSearchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -183,15 +173,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                         100,new LocationG()));
                 notices.add(new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                         100,new LocationG()));
-    /*
-    notices = DbHelper.getAllNotices().sort
-     */
 
-                ;
                 listView.setAdapter(adapter.update(notices));
 
             }
         });
+        */
 
         ImageButton buttonTransport = (ImageButton) view.findViewById(R.id.transportButton);
         buttonTransport.setOnClickListener(new View.OnClickListener() {
@@ -258,13 +245,51 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         return view;
 
     }
+
+    public ArrayList<ProductHomeListDisplayModel> getNotices(){
+        String url = "http://35.242.192.20/product/getAllActive/";
+        notices = new ArrayList<ProductHomeListDisplayModel>();
+        Request request = new Request.Builder()
+                .url(url)
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .build();
+
+        httpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                String mMessage = e.getMessage().toString();
+                Log.w("failure Response", mMessage);
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String mMessage = response.body().string();
+                try {
+                    JSONArray jsonArray = new JSONArray(mMessage);
+
+                    for(int i = 0; i < jsonArray.length();i++)
+                    {
+                        JSONObject json = jsonArray.getJSONObject(i);
+                        ProductHomeListDisplayModel p1 = new ProductHomeListDisplayModel(
+                                json.getInt("id"),
+                                json.getInt("price"),
+                                json.getString("name"),
+                                json.getString("description"));
+                        notices.add(p1);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.e("adapeter", mMessage);
+            }
+        });
+        return notices;
+    }
+
     @Override
     public void onAttach(Context con){
         super.onAttach(con);
         c = con;}
-
-
-
 
     @Override
     public void onClick(View v ){
@@ -304,7 +329,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
             case R.id.borrowingSortButton:
                 sortMode = BORROWING_MODE;
-                notices = Sort.getBorrowings( notices);
+             //   notices = Sort.getBorrowings( notices);
                 borrowModeButton.setBackgroundColor(Color.parseColor("#F000FF"));
                 lendModeButton.setBackgroundColor(Color.parseColor("#FF9800") );
                 addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#492A4B")));
@@ -314,7 +339,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.lendingSortiButton:
                 sortMode = LENDING_MODE;
-                notices = Sort.getLendings( notices);
+               // notices = Sort.getLendings( notices);
                 lendModeButton.setBackgroundColor(Color.parseColor("#FFFF00") );
                 borrowModeButton.setBackgroundColor(Color.parseColor("#B201D8"));
                 addNoticeButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF681F")));

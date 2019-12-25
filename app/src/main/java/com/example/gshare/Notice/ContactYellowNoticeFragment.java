@@ -47,6 +47,7 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_noticecontactyellow, container, false);
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -102,7 +103,7 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
                 ChatNotAgreedFragment fragmentChatNotAgreed = new ChatNotAgreedFragment();
                 fragmentChatNotAgreed.setArguments(bundle);
                 FragmentTransaction fragmentManagerForNotAgreedChat = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentManagerForNotAgreedChat.replace(R.id.main_layout, fragmentChatNotAgreed);
+                fragmentManagerForNotAgreedChat.replace(R.id.main_biglayout, fragmentChatNotAgreed);
                 fragmentManagerForNotAgreedChat.commit();
                 break;
             case R.id.backButton:

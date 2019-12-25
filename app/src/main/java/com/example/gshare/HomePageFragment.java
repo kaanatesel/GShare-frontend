@@ -1,5 +1,6 @@
 package com.example.gshare;
 
+import android.app.Activity;
 import android.content.Context;
 
 
@@ -34,7 +35,7 @@ import com.example.gshare.ModelClasses.Location.LocationG;
 
 
 import java.util.ArrayList;
-
+import com.example.gshare.DBHelper;
 
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.Sort.Sort;
@@ -50,11 +51,17 @@ import android.graphics.Color;
 
 import com.example.gshare.Notice.ListViewAdapter;
 
+import static com.example.gshare.DBHelper.callUserByEmail;
+
+import static com.example.gshare.DBHelper.getLendingNotices;
+import static com.example.gshare.DBHelper.getUser;
+
 
 public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     public final static char LENDING_MODE = 'L';
     public final static char BORROWING_MODE = 'B';
+
 
     User user;
     TextView gText;
@@ -89,6 +96,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             user = new User("Cagri Eren", "asdas", "asdfasdf", "sdfasdf", 100);//DBHelper.getUser(userName,password);
             //notices = DBHelper.getAllNotices();
         }
+
         Bundle bundle = getArguments();
 
         notices = new ArrayList<Notice>();
@@ -122,7 +130,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         notices.add(new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
                 100, new LocationG()));
 
-        onAttach(c);
+
         adapter = new ListViewAdapter(c, notices);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -139,12 +147,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
 
                 //if(notices.get(position).getNoticeType() =='L'){
-
-
+                ((Activity)c).setContentView(R.layout.fullyblanklayout);
                 ContactYellowNoticeFragment fragmentForLending = new ContactYellowNoticeFragment();
                 fragmentForLending.setArguments(args);
                 FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransactionForLending.replace(R.id.main_layout, fragmentForLending);
+                fragmentTransactionForLending.replace(R.id.main_biglayout, fragmentForLending);
                 fragmentTransactionForLending.commit();
                 //Intent i = new Intent(getContext(), ActivityContqactTry.class);
                 //startActivity(i);

@@ -1,5 +1,7 @@
 package com.example.gshare.Popup;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +36,7 @@ public class PopupDoYouAgreeFragment extends DialogFragment implements View.OnCl
     TextView gValue;
     TextView returnDateValue;
     Chat chat;
+    Context con;
 
     @Nullable
     @Override
@@ -75,10 +78,11 @@ public class PopupDoYouAgreeFragment extends DialogFragment implements View.OnCl
                 if(notice.getNoticeType() == Notice.LEND_NOTICE){
                 //    notice.agreeOnLendNotice( chat.getCustomer() );
                 }
+                getActivity().setContentView(R.layout.fullyblanklayout);
                 ChatAgreedFragment fragment = new ChatAgreedFragment();
                 fragment.setArguments(getArguments());
                 FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction1.replace(R.id.main_layout, fragment);
+                fragmentTransaction1.replace(R.id.main_biglayout, fragment);
                 fragmentTransaction1.commit();
                 getDialog().dismiss();
                 break;
@@ -100,6 +104,7 @@ public class PopupDoYouAgreeFragment extends DialogFragment implements View.OnCl
         DateFormat df = new SimpleDateFormat("dd:MM:yy:HH:mm:ss");
         return df.format(currentDate);
     }
+
 
 
 }

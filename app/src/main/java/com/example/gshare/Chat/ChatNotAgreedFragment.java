@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -58,6 +59,7 @@ public class ChatNotAgreedFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        a.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View view = inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
         chatFragmentTry = new ArrayList<ChatTry>();
         chatFragmentTry.add(new ChatTry("message 1", false));
@@ -74,6 +76,7 @@ public class ChatNotAgreedFragment extends Fragment {
         chatFragmentTry.add(new ChatTry("message 2", true));
         chatFragmentTry.add(new ChatTry("message 1", false));
         chatFragmentTry.add(new ChatTry("message 2", true));
+
 
         userName = getArguments().getString("userName");
         noticeId = getArguments().getInt("noticeId");
@@ -127,7 +130,7 @@ public class ChatNotAgreedFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
-                if (textBeSend != "") {
+                if (!textBeSend.matches("")) {
                     //Message message = new Message();
                     //stringMessages.add(message.toString());
                     chatFragmentTry.add(new ChatTry(textBeSend, true));

@@ -165,7 +165,7 @@ public class ChatNotAgreedFragment extends Fragment {
                     //Message message = new Message();
                     //stringMessages.add(message.toString());
                     chatFragmentTry.add(new ChatTry(textBeSend, true));
-                    listView.setAdapter(new ChatAdapter(getContext(), chatFragmentTry));
+                    listView.setAdapter(new ChatAdapter(a, chatFragmentTry));
                 }
             }
         });

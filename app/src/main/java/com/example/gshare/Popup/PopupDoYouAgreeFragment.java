@@ -73,7 +73,7 @@ public class PopupDoYouAgreeFragment extends DialogFragment implements View.OnCl
                     notice.agreeOnBorrowNotice( chat.getCustomer() ,getArguments().getInt("g"));
                 }
                 if(notice.getNoticeType() == Notice.LEND_NOTICE){
-                    notice.agreeOnLendNotice( chat.getCustomer() );
+                //    notice.agreeOnLendNotice( chat.getCustomer() );
                 }
                 ChatAgreedFragment fragment = new ChatAgreedFragment();
                 fragment.setArguments(getArguments());

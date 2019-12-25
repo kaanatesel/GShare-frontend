@@ -21,6 +21,7 @@ import com.example.gshare.ModelClasses.ChatModel.Chat;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
+import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
 
 /**
@@ -34,10 +35,10 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
     TextView days;
     TextView note;
     Button contactButton;
+    Button goToUser;
     ImageButton backButton;
 
-    String userName;
-    String password;
+    String email;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,8 +47,7 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
         Bundle bundle = getArguments();
 
         noticeId = bundle.getInt("notice_id");
-        userName = bundle.getString("userName");
-        password = bundle.getString("password");
+        email = bundle.getString("email");
 
         notice = new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
                 new LocationG());//DBHelper.getNotice(noticeId);
@@ -57,13 +57,16 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
         note = view.findViewById(R.id.noticenote);
         contactButton = view.findViewById(R.id.contactButton);
         backButton = view.findViewById(R.id.backButton);
+        goToUser = view.findViewById(R.id.UserButton);
 
         title.setText(notice.getName());
         days.setText(notice.getDay() + "");
         note.setText(notice.getNote());
+        goToUser.setText( "Go to " + notice.getNoticeOwner().getNameAndSurname() + " 's profile");
 
         contactButton.setOnClickListener(this);
         backButton.setOnClickListener(this);
+        goToUser.setOnClickListener(this);
 
 
         return view;
@@ -95,7 +98,7 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
                 ChatNotAgreedFragment fragmentChatNotAgreed = new ChatNotAgreedFragment();
                 fragmentChatNotAgreed.setArguments(bundle);
                 FragmentTransaction fragmentManagerForNotAgreedChat = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentManagerForNotAgreedChat.replace(R.id.main_layout, fragmentChatNotAgreed);
+                fragmentManagerForNotAgreedChat.replace(R.id.main_biglayout, fragmentChatNotAgreed);
                 fragmentManagerForNotAgreedChat.commit();
                 break;
             case R.id.backButton:
@@ -104,8 +107,17 @@ public class ContactPurpleNoticeFragment extends Fragment implements View.OnClic
                 HomePageFragment homePageFragment = new HomePageFragment();
                 homePageFragment.setArguments(bundle2);
                 FragmentTransaction fragmentManagerForHomePage = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentManagerForHomePage.replace(R.id.main_layout, homePageFragment);
+                fragmentManagerForHomePage.replace(R.id.main_biglayout, homePageFragment);
                 fragmentManagerForHomePage.commit();
+                break;
+            case R.id.userButton:
+                Bundle bundle3;
+                bundle3 = getArguments();
+                bundle3.putString("userEmail",notice.getNoticeOwner().getEmail());
+                ProfilePublicFragment profilePublicFragment = new ProfilePublicFragment();
+                profilePublicFragment.setArguments(bundle3);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_biglayout, profilePublicFragment);
                 break;
         }
     }

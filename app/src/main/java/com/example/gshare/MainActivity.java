@@ -3,6 +3,11 @@ package com.example.gshare;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+<<<<<<< Updated upstream
+=======
+import android.app.Activity;
+import android.content.Context;
+>>>>>>> Stashed changes
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,18 +17,57 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< Updated upstream
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+=======
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.gshare.ModelClasses.User.User;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+
+
+public class MainActivity extends AppCompatActivity {
+>>>>>>> Stashed changes
 
     Button buttonLogin;
     Button buttonRegister;
     EditText userName;
     EditText password;
+<<<<<<< Updated upstream
+=======
+    public static TextView err;
+    OkHttpClient httpClient;
+    String passDB;
+>>>>>>> Stashed changes
+
+    private RequestQueue mQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+<<<<<<< Updated upstream
 
+=======
+        httpClient = new OkHttpClient();
+      //  DBHelper.getInstance(this);
+>>>>>>> Stashed changes
 
         buttonLogin = (Button) findViewById(R.id.regloginButton);
         buttonRegister = (Button) findViewById(R.id.regregisterButton);
@@ -34,8 +78,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonLogin.setOnClickListener(this);
         buttonRegister.setOnClickListener(this);
 
+        mQueue = Volley.newRequestQueue(this);
+
+
     }
 
+<<<<<<< Updated upstream
 
 
     public boolean tryLogin(String userName, String password) {//FIX THIS AT FINAL PRODUCT
@@ -64,7 +112,76 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 openRegister();
                 break;
         }
+=======
+    public void loginOnClick() {
+
+        DBHelper.getInstance(this);
+//        User temp = DBHelper.getUser(21);
+//        if (temp == null) {
+//                System.out.println("null");
+//        } else {
+//                System.out.println(temp.getEmail());
+//                System.out.println(temp.getID());
+//                System.out.println(temp.getPassword());
+//                System.out.println(temp.getUserName());
+//        }
+//
+//        temp = DBHelper.getUser("bora@gmail.com");
+//
+//        if (temp == null) {
+//            System.out.println("null");
+//        } else {
+//            System.out.println(temp.getEmail());
+//            System.out.println(temp.getID());
+//            System.out.println(temp.getPassword());
+//            System.out.println(temp.getUserName());
+//        }
+//    }
+        try {
+            DBHelper.createUser(new User("asd qwe", "username", "n-word", "asdfg@bilkent.edu.tr", 200));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+>>>>>>> Stashed changes
     }
+//        String mEmail = DBHelper.getInstance(this).callUserByID(21).getEmail();
+//
+//        String url = "http://35.242.192.20/member/getByEmail/" +userName.getText().toString() ;
+//        final String uPass = password.getText().toString();
+//
+//        Request request = new Request.Builder()
+//                .url(url)
+//                .header("Accept", "application/json")
+//                .header("Content-Type", "application/json")
+//                .build();
+//
+//        httpClient.newCall(request).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                String mMessage = e.getMessage().toString();
+//                Log.w("failure Response", mMessage);
+//            }
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                String mMessage = response.body().string();
+//                try {
+//                    JSONObject reader = new JSONObject(mMessage);
+//                    passDB = reader.getString("password");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                if(passDB == null)
+//                {
+//                    err.setText("Login Err");
+//                }
+//                else{
+//                    openHomePage(passDB.equals(uPass));
+//                }
+//
+//            }
+//        });
+ //   }
 
     public void openRegister(){
         Intent intent = new Intent( this, RegisterActivity.class);

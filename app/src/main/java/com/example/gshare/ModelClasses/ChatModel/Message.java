@@ -69,7 +69,10 @@ public class Message {
     }
 
 
-
+    /**
+     * gets the current time to user.
+     * @return time the current time.
+     */
     public String getCurrentTime() {
         return time;
     }
@@ -90,16 +93,35 @@ public class Message {
         return 0;
     }
 
-   private long createMillisecond() {
+    /**
+     * creates the millisecond as long data type.
+     * @return calendar.getTimeInMillis() the time in milliseconds.
+     */
+     private long createMillisecond() {
        return calendar.getTimeInMillis();
    }
-   public long getMillisecond() {
+
+    /**
+     * gets the millisecond time.
+     * @return millisecond the millisecond time.
+     */
+     public long getMillisecond() {
         return millisecond;
     }
-    public User getReciever(){
+
+    /**
+     * gets the reciever.
+     * @return reciever the reciever.
+     */
+     public User getReciever(){
         return reciever;
     }
-    public User getSender(){
+
+    /**
+     * gets the sender.
+     * @return sender the sender.
+     */
+     public User getSender(){
         return sender;
     }
 

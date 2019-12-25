@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,7 +26,7 @@ import com.example.gshare.R;
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     User user;
-    Button editButton;
+    ImageButton editButton;
     TextView nameAndSurname;
     TextView username;
 
@@ -33,25 +34,27 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     String email;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if(bundle != null) {
+            email = bundle.getString("email");
+        }
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container,false);
 
+       //user = DBHelper.getUser(email);
 
+        editButton = (ImageButton) view.findViewById(R.id.editProfileButton);
+        nameAndSurname =(TextView) view.findViewById(R.id.nameTextView);
+        username = (TextView) view.findViewById(R.id.usernameTextView);
 
-
-        Bundle bundle = getArguments();
-
-       email = bundle.getString("email");
-       user = DBHelper.getUser(email);
-
-        editButton = view.findViewById(R.id.editProfileButton);
-        nameAndSurname = view.findViewById(R.id.nameTextView);
-        username = view.findViewById(R.id.usernameTextView);
-
-        username.setText(user.getUserName());
-        nameAndSurname.setText(user.getNameAndSurname());
+        //username.setText(user.getUserName());
+        //nameAndSurname.setText(user.getNameAndSurname());
 
         editButton.setOnClickListener(this);
 

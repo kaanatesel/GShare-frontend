@@ -33,7 +33,7 @@ import com.example.gshare.R;
 
 import java.util.ArrayList;
 
-public class ChatNotAgreedFragment extends Fragment {
+public class ChatAgreedFragment extends Fragment {
     HomePageActivity a;
     ListView listView;
     ChatAdapter chatAdapter;
@@ -92,9 +92,9 @@ public class ChatNotAgreedFragment extends Fragment {
         userNumaAndSurname = view.findViewById(R.id.nameButton);
         timeLeft = view.findViewById(R.id.timeLeftTextView);
 
+        //chat = DBHelper.getChat();
         chatNotice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                 100,new LocationG());//DBHelper.getNotice(noticeId);
-        //chat = DBHelper.getChat();
 
 
         noticeName.setText(chatNotice.getName());
@@ -102,11 +102,24 @@ public class ChatNotAgreedFragment extends Fragment {
         editDay.setText( chatNotice.getDay() + "");
         timeLeft.setText( chatNotice.computeTimeLeftHours() + "" );
 
+        if( chatNotice.computeTimeLeftForMilliSeconds() <= 0  ){
+            Bundle bundle = new Bundle();
+            bundle.putString("userName", userName);
+            bundle.putInt("noticeId", noticeId);
+            chat.setStatus(Chat.WAITING_FOR_RETURN);
+            ChatDoneFragment chatDoneFragment = new ChatDoneFragment();
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            chatDoneFragment.setArguments(bundle);
+            fragmentTransaction.replace(R.id.main_biglayout,chatDoneFragment);
+            fragmentTransaction.commit();
+
+        }
+
         if( DBHelper.getUser().equals(chat.getCustomer()) ) {
             userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
             recieverUser = chat.getNoticeOwner();
             if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
-                itemOwner = chat.getCustomer());
+                itemOwner = chat.getCustomer();
             }
             if(chat.getNotice().getNoticeType()==Notice.LEND_NOTICE){
                 itemOwner = chat.getNoticeOwner();
@@ -132,10 +145,11 @@ public class ChatNotAgreedFragment extends Fragment {
                     bundle.putString("userName", userName);
                     bundle.putInt("noticeId", noticeId);
                     chat.setStatus(Chat.RETURNED);
+                    chatNotice.finish();
                     ChatDoneFragment chatDoneFragment = new ChatDoneFragment();
                     chatDoneFragment.setArguments(bundle);
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    //fragmentTransaction.replace( R.id.)
+                    fragmentTransaction.replace( R.id.main_biglayout, chatDoneFragment);
                 }
             }
         });

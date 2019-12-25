@@ -313,6 +313,10 @@ public class Notice implements Serializable {
     public void doTransaction( User noticeOwner, User noticeTaker){//TESTED AND WORKS
         double gToTransact = ( g / ( day * 1.0 ) ) * ( day - ( computeTimeLeft() * 1.0 ) );//DO NOT FORGET
 
+        if(computeTimeLeft() <= 0 ){
+            gToTransact = g;
+        }
+
         if( noticeType == BORROW_NOTICE ) {
            noticeOwner.withdraw( (int)gToTransact );
            noticeTaker.deposit( (int)gToTransact );

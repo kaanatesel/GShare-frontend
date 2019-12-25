@@ -117,6 +117,7 @@ public class ChatNotAgreedFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("userName",userName);
                 bundle.putInt("noticeId",noticeId);
+                chat.setStatus(Chat.AGREED);
 
                 if(chatNotice.getNoticeType() == Notice.BORROW_NOTICE){
                     bundle.putInt("g",chatNotice.getG());

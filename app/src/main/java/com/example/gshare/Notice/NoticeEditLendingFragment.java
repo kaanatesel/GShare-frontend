@@ -62,6 +62,7 @@ public class NoticeEditLendingFragment extends Fragment implements View.OnClickL
         applyButton.setOnClickListener(this);
         backButton.setOnClickListener(this);
 
+
         return view;
     }
 

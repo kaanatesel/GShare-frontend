@@ -42,7 +42,7 @@ public class HomePageActivity extends AppCompatActivity {
         fragmentTransactionForBeginning.replace(R.id.main_layout, fragmentForBeginning);
         fragmentTransactionForBeginning.commit();
 
-
+/*
         BottomNavigationView bottomNav = findViewById(R.id.nav_view);
 
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -65,7 +65,7 @@ public class HomePageActivity extends AppCompatActivity {
                                                                           fragment1.setArguments(bundle);
                                                                           FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
                                                                           fragmentTransaction1.replace(R.id.main_layout, fragment1);
-                                                                          fragmentTransaction1.commit();*/
+                                                                          fragmentTransaction1.commit();
                                                                           return true;
 
                                                                       case R.id.navigation_Map:
@@ -77,7 +77,7 @@ public class HomePageActivity extends AppCompatActivity {
                                                                           fragment2.setArguments(bundle);
                                                                           FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
                                                                           fragmentTransaction2.replace(R.id.main_layout, fragment2);
-                                                                          fragmentTransaction2.commit();*/
+                                                                          fragmentTransaction2.commit();
                                                                           return true;
 
                                                                       case R.id.navigation_Notices:
@@ -90,7 +90,7 @@ public class HomePageActivity extends AppCompatActivity {
                                                                           fragment3.setArguments(bundle);
                                                                           FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
                                                                           fragmentTransaction3.replace(R.id.main_layout, fragment3);
-                                                                          fragmentTransaction3.commit();*/
+                                                                          fragmentTransaction3.commit();
                                                                           return true;
                                                                       case R.id.navigation_Chat:
                                                                           Intent intent = new Intent(getApplicationContext(),ChatActivity.class);
@@ -101,7 +101,7 @@ public class HomePageActivity extends AppCompatActivity {
                                                                           fragment4.setArguments(bundle);
                                                                           FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
                                                                           fragmentTransaction4.replace(R.id.main_layout, fragment4);
-                                                                          fragmentTransaction4.commit();*/
+                                                                          fragmentTransaction4.commit();
                                                                           return true;
 
 
@@ -114,7 +114,7 @@ public class HomePageActivity extends AppCompatActivity {
                                                                           fragment5.setArguments(bundle);
                                                                           FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
                                                                           fragmentTransaction5.replace(R.id.main_layout, fragment5);
-                                                                          fragmentTransaction5.commit();*/
+                                                                          fragmentTransaction5.commit();
                                                                           return true;
                                                                   }
                                                                   return false;
@@ -126,7 +126,7 @@ public class HomePageActivity extends AppCompatActivity {
                                                           }
 
                                                       }
-        );
+        );*/
     }
 
 

@@ -35,12 +35,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     TextView nameAndSurname;
     TextView username;
 
-    Button home;
-    Button map;
-    Button noticeNav;
-    Button chat;
-    Button profile;
-    Notice notices;
+    ImageButton home;
+    ImageButton map;
+    ImageButton noticeNav;
+    ImageButton chat;
+    ImageButton profile;
+
     ListView listView;
         ArrayList<Notice> notices;
     String email;

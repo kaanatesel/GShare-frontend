@@ -88,11 +88,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     ArrayList<ProductHomeListDisplayModel> notices;
     char sortMode;
 
-    Button home;
-    Button map;
-    Button noticeNav;
-    Button chat;
-    Button profile;
+    ImageButton home;
+    ImageButton map;
+    ImageButton noticeNav;
+    ImageButton chat;
+    ImageButton profile;
 
     ListView listView = null;
     Context c = null;
@@ -104,8 +104,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home_page,container,false);
-        BottomNavigationView view1 = getActivity().findViewById(R.id.nav_view);
-        view1.clearAnimation();
+
         httpClient = new OkHttpClient();
         sortMode = LENDING_MODE;
 

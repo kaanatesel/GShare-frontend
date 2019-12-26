@@ -35,12 +35,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     TextView nameAndSurname;
     TextView username;
 
-    Button home;
-    Button map;
-    Button noticeNav;
-    Button chat;
-    Button profile;
-    Notice notices;
+    ImageButton home;
+    ImageButton map;
+    ImageButton noticeNav;
+    ImageButton chat;
+    ImageButton profile;
+
+    Notice notice;
     ListView listView;
         ArrayList<Notice> notices;
     String email;
@@ -66,11 +67,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         nameAndSurname = (TextView) view.findViewById(R.id.nameTextView);
         username = (TextView) view.findViewById(R.id.usernameTextView);
 
-        home = view.findViewById(R.id.navigation_home);
-        map = view.findViewById(R.id.navigation_Map);
-        noticeNav = view.findViewById(R.id.navigation_Notices);
-        chat = view.findViewById(R.id.navigation_Chat);
-        profile = view.findViewById(R.id.navigation_Profilet);
+        home = view.findViewById(R.id.navigationHome);
+        map = view.findViewById(R.id.navigationMap);
+        noticeNav = view.findViewById(R.id.navigationMyNotices);
+        chat = view.findViewById(R.id.navigationChat);
+        profile = view.findViewById(R.id.navigationProfile);
 
         //username.setText(user.getUserName());
         //nameAndSurname.setText(user.getNameAndSurname());

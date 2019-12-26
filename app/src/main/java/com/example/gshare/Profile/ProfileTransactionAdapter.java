@@ -33,7 +33,7 @@ public class ProfileTransactionAdapter extends ArrayAdapter<Notice> {
         TextView text = (TextView) view.findViewById(R.id.textViewItemName);
         TextView days = (TextView) view.findViewById(R.id.daysTextViewTransacted);
                 text.setText(transactedNotices.get(position).getName());
-                days.setText(transactedNotices.get(position).getDay());
+                days.setText(transactedNotices.get(position).getDay() + "");
         return view;
     }
 

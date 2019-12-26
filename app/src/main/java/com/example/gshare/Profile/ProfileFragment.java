@@ -16,9 +16,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.CallUserByEmail;
 import com.example.gshare.Chat.ChatFragment;
 import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageFragment;
+import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.Notice.MyNoticesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -60,7 +62,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        //user = DBHelper.getUser(email);
+        try {
+            user = CallUserByEmail.call(email);
+        }
+        catch (Exception e ){
+            e.printStackTrace();
+        }
 
         editButton = (ImageButton) view.findViewById(R.id.editProfileButton);
         nameAndSurname = (TextView) view.findViewById(R.id.nameTextView);
@@ -72,13 +79,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         chat = view.findViewById(R.id.navigationChat);
         profile = view.findViewById(R.id.navigationProfile);
 
-        //username.setText(user.getUserName());
-        //nameAndSurname.setText(user.getNameAndSurname());
+        username.setText(user.getEmail());
+        nameAndSurname.setText(user.getNameAndSurname());
 
+        notices = new ArrayList<Notice>();
+        notices.add(new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
+                100, new LocationG()));
+        notices.add(new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
+                100, new LocationG()));
         //notices = getTransactions(user);
-        //listView = (ListView) view.findViewById(R.id.listViewProfile);
-        //adapter = new ProfileTransactionAdapter(getContext(),notices);
-        //listView.setAdapter(adapter);
+        listView = (ListView) view.findViewById(R.id.listViewProfile);
+        adapter = new ProfileTransactionAdapter(getContext(),notices);
+        listView.setAdapter(adapter);
 
 
         editButton.setOnClickListener(this);

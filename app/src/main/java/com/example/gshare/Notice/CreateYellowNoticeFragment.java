@@ -140,6 +140,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
                 NoticePusher.push( notice );
             } catch (Exception e) {
                 e.printStackTrace();
+                //Toast.makeText(getActivity(),notice.getNoticeType()+"",Toast.LENGTH_LONG);
             }
         }
 

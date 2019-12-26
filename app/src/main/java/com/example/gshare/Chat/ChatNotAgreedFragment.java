@@ -69,6 +69,7 @@ public class ChatNotAgreedFragment extends Fragment {
     Chat chat;
     User recieverUser;
     User itemOwner;
+    User userTry;
 
     String email;
     int noticeId;
@@ -81,11 +82,17 @@ public class ChatNotAgreedFragment extends Fragment {
         a.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View view = inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
 
-
         httpClient = new OkHttpClient();
         email = getArguments().getString("email");
 
-        final User  userTry = new User("OnurKorkmaz", "qwerty", "123456", "qwerty", 6);
+        try {
+            userTry = CallUserByEmail.call(email);
+        }
+        catch(Exception e ){
+            e.printStackTrace();
+            Toast.makeText(getActivity(),"fasdfasdf",Toast.LENGTH_LONG).show();
+        }
+        final User userTry = new User("OnurKorkmaz", "qwerty", "123456", "qwerty", 6);
         final User  userTry2 = new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 );
         noticeId = getArguments().getInt("noticeId");
 
@@ -107,7 +114,7 @@ public class ChatNotAgreedFragment extends Fragment {
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
         try {
-            gText.setText(CallUserByEmail.call(email).getG() + "");
+            gText.setText(userTry.getG() + "");
         }
         catch (Exception e ){
             e.printStackTrace();

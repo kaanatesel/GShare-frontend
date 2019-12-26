@@ -82,7 +82,7 @@ public class NoticeViewLending extends Fragment implements View.OnClickListener 
         name.setText(notice.getName());
         days.setText(notice.getDay()+"");
         note.setText(notice.getNote());
-        g.setText( notice.getG() );
+        g.setText( notice.getG() + "");
 
         return view;
 
@@ -92,6 +92,7 @@ public class NoticeViewLending extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch ( v.getId() ){
             case R.id.EditNoticeLending:
+                getActivity().setContentView(R.layout.fullyblanklayout);
                 NoticeEditLendingFragment noticeEditLendingFragment = new NoticeEditLendingFragment();
                 noticeEditLendingFragment.setArguments( getArguments() );
                 FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();

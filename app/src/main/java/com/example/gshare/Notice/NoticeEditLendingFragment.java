@@ -72,7 +72,7 @@ public class NoticeEditLendingFragment extends Fragment implements View.OnClickL
         backButton = view.findViewById(R.id.backButton);
 
         name.setText(notice.getName());
-        day.setText(notice.getDay());
+        day.setText(notice.getDay() + "");
         g.setText(notice.getG()+"");
         note.setText(notice.getNote());
         applyButton.setOnClickListener(this);
@@ -148,6 +148,7 @@ public class NoticeEditLendingFragment extends Fragment implements View.OnClickL
     public void onClick(View v) {
 
         if(v.getId()== R.id.ApplyEditNoticeLending) {
+
             notice.setForDatabaseG(Integer.parseInt(g.getText().toString()));//Only here usage is allowed
             notice.setDay(Integer.parseInt(day.getText().toString()));
             notice.setName(name.getText().toString());
@@ -157,6 +158,8 @@ public class NoticeEditLendingFragment extends Fragment implements View.OnClickL
         }
 
         Bundle bundle = getArguments();
+        getActivity().setContentView(R.layout.fullyblanklayout);
+
         NoticeViewLending noticeViewLending = new NoticeViewLending();
         noticeViewLending.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

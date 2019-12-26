@@ -164,6 +164,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Bundle args = new Bundle();
                         args.putInt("noticeId",notices.get(position).getId());
+                        args.putString("email",email);
                         getActivity().setContentView(R.layout.blank_layout);
                         ContactYellowNoticeFragment fragmentForLending = new ContactYellowNoticeFragment();
                         fragmentForLending.setArguments(args);

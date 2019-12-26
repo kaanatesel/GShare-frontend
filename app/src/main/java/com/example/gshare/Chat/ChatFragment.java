@@ -32,7 +32,6 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     private UserChatsAdapter chatUsersAdapter;
     private ArrayList<Chat> chats;
 
-    private Bundle bundle;
     private String email;
     @Nullable
 //We will change ChatTry to Chat
@@ -89,9 +88,10 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("email",email);
         switch(view.getId()){
             case R.id.navigationHome:
-                bundle = getArguments();
                 HomePageFragment fragment1 = new HomePageFragment();
                 fragment1.setArguments(bundle);
                 FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
@@ -100,7 +100,6 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.navigationMap:
-                bundle = getArguments();
                 HomePageFragment fragment2 = new HomePageFragment();
                 fragment2.setArguments(bundle);
                 FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
@@ -109,7 +108,6 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.navigationMyNotices:
-                bundle = getArguments();
                 MyNoticesFragment fragment3 = new MyNoticesFragment();
                 fragment3.setArguments(bundle);
                 FragmentTransaction fragmentTransaction3 = getActivity().getSupportFragmentManager().beginTransaction();

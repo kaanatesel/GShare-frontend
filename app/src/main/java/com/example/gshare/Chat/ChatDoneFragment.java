@@ -173,6 +173,7 @@ public class ChatDoneFragment extends Fragment {
                 publicProfile.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_layout, publicProfile);
+                fragmentTransaction.commit();
 
             }
         });

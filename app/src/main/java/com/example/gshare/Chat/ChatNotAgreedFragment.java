@@ -93,7 +93,7 @@ public class ChatNotAgreedFragment extends Fragment {
         editDay = view.findViewById(R.id.daysEditText);
         editText = view.findViewById(R.id.editText);
         noticeName = view.findViewById(R.id.itemName);
-        userNumaAndSurname = view.findViewById(R.id.nameButton);
+        userNumaAndSurname = (Button)view.findViewById(R.id.nameButton);
         gText = view.findViewById(R.id.moneyTextView);
 
         //chat = DBHelper.getChat();
@@ -222,8 +222,10 @@ public class ChatNotAgreedFragment extends Fragment {
                 }
                 ProfilePublicFragment publicProfile = new ProfilePublicFragment();
                 publicProfile.setArguments(bundle);
+                getActivity().setContentView(R.layout.blank_layout);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_layout, publicProfile);
+                fragmentTransaction.commit();
 
             }
         });

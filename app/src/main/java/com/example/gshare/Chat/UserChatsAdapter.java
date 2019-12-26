@@ -35,7 +35,7 @@ public class UserChatsAdapter extends ArrayAdapter<Chat> {
         View view = layoutInflater.inflate(R.layout.chatlayout, parent,false);
         ImageView image = (ImageView) view.findViewById(R.id.imageChat);
         TextView text = (TextView) view.findViewById(R.id.textViewChat);
-        image.setImageResource(R.drawable.gshare_icon);
+        //image.setImageResource(R.drawable.gshare_icon);
         if(chats.get(position).getNoticeOwner().getEmail().equals(userEmail)) {
             text.setText(chats.get(position).getCustomer().getNameAndSurname());
         }else{

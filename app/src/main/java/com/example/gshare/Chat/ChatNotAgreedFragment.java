@@ -95,14 +95,12 @@ public class ChatNotAgreedFragment extends Fragment {
         final User userTry = new User("OnurKorkmaz", "qwerty", "123456", "qwerty", 6);
         final User  userTry2 = new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 );
         noticeId = getArguments().getInt("noticeId");
-
         editG = view.findViewById(R.id.gEditText);
         editDay = view.findViewById(R.id.daysEditText);
         editText = view.findViewById(R.id.editText);
         noticeName = view.findViewById(R.id.itemName);
         userNumaAndSurname = (Button)view.findViewById(R.id.nameButton);
         gText = view.findViewById(R.id.moneyTextView);
-
         //chat = DBHelper.getChat();
         chatNotice = new Notice("bad",5,"dasdfa",0,userTry,
                 100,new LocationG());//DBHelper.getNotice(noticeId);

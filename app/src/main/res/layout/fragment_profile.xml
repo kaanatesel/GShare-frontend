@@ -15,11 +15,12 @@
         android:contentDescription="@string/background"
         app:srcCompat="@drawable/homepage_background_no_notifications" />
 
-    <ScrollView
+    <LinearLayout
         android:id="@+id/scrollViewProfile"
         android:layout_width="match_parent"
         android:layout_height="588dp"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -194,13 +195,13 @@
 
 
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
 
     <ListView
         android:id="@+id/listViewProfile"
         android:layout_width="match_parent"
-        android:layout_height="249dp"
+        android:layout_height="175dp"
         android:layout_gravity="bottom"
         android:layout_marginTop="0dp"></ListView>
 

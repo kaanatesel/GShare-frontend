@@ -59,18 +59,16 @@
         android:layout_width="match_parent"
         android:layout_height="5dp" />
 
-   <ListView
-       android:id="@+id/listmynotices"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       ></ListView>
-    <include
+    <ListView
+        android:id="@+id/listmynotices"
+        android:layout_width="wrap_content"
+        android:layout_height="630dp"></ListView>
 
-        layout="@layout/bottom_navigation_view"
-        android:layout_height="53dp"
+    <fragment
+        android:id="@+id/navigatorTabFragment"
+        android:name="com.example.gshare.NavigatorFragment"
         android:layout_width="match_parent"
-        android:layout_gravity="bottom"
-        ></include>
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

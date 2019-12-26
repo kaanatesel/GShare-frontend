@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gshare.Chat.ChatFragment;
@@ -25,14 +27,12 @@ public class HomePageActivity extends AppCompatActivity {
 
     String email;
 
-    ListViewAdapter adapter;
-    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        email = getIntent().getStringExtra("USERNAME");
+        email = getIntent().getStringExtra("email");
         setContentView(R.layout.blank_layout);
         HomePageFragment fragmentForBeginning = new HomePageFragment();
         Bundle bundle = new Bundle();
@@ -42,7 +42,7 @@ public class HomePageActivity extends AppCompatActivity {
         fragmentTransactionForBeginning.replace(R.id.main_layout, fragmentForBeginning);
         fragmentTransactionForBeginning.commit();
 
-
+/*
         BottomNavigationView bottomNav = findViewById(R.id.nav_view);
 
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -104,7 +104,7 @@ public class HomePageActivity extends AppCompatActivity {
                                                           }
 
                                                       }
-        );
+        );*/
     }
 
 

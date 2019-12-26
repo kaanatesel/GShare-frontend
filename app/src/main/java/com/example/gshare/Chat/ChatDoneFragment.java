@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.CallUserByEmail;
 import com.example.gshare.ChatAdapter;
 import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageActivity;
@@ -67,21 +68,6 @@ public class ChatDoneFragment extends Fragment {
         a.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View view = inflater.inflate(R.layout.fragment_chat_done, container, false);
 
-        /*
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));*/
 
 
         email = getArguments().getString("email");
@@ -103,41 +89,57 @@ public class ChatDoneFragment extends Fragment {
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
 
-        if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
-            userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
-            recieverUser = chat.getNoticeOwner();
-            if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
-                itemOwner = chat.getCustomer();
-            }
-            if(chat.getNotice().getNoticeType()==Notice.LEND_NOTICE){
-                itemOwner = chat.getNoticeOwner();
+        try {
+            if (CallUserByEmail.call(email).equals(chat.getCustomer())) {
+                userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
+                recieverUser = chat.getNoticeOwner();
+                if (chat.getNotice().getNoticeType() == Notice.BORROW_NOTICE) {
+                    itemOwner = chat.getCustomer();
+                }
+                if (chat.getNotice().getNoticeType() == Notice.LEND_NOTICE) {
+                    itemOwner = chat.getNoticeOwner();
+                }
             }
         }
-        if( DBHelper.getUser(email).equals(chat.getNoticeOwner() ) ) {
-            userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
-            recieverUser = chat.getCustomer();
-            if(chat.getNotice().getNoticeType()== Notice.LEND_NOTICE){
-                itemOwner = chat.getNoticeOwner();
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+        try {
+            if (CallUserByEmail.call(email).equals(chat.getNoticeOwner())) {
+                userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
+                recieverUser = chat.getCustomer();
+                if (chat.getNotice().getNoticeType() == Notice.LEND_NOTICE) {
+                    itemOwner = chat.getNoticeOwner();
+                }
+                if (chat.getNotice().getNoticeType() == Notice.BORROW_NOTICE) {
+                    itemOwner = chat.getCustomer();
+                }
             }
-            if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
-                itemOwner = chat.getCustomer();
-            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
 
         Button returned = (Button) view.findViewById(R.id.returnedButton);
         returned.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (DBHelper.getUser(email).equals(itemOwner)) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("email", email);
-                    bundle.putInt("noticeId", noticeId);
-                    chat.setStatus(Chat.RETURNED);
-                    chatNotice.finish();
-                    ChatReturnedFragment chatRetunedFragment = new ChatReturnedFragment();
-                    chatRetunedFragment.setArguments(bundle);
-                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.main_biglayout, chatRetunedFragment);
+                try {
+                    if (CallUserByEmail.call(email).equals(itemOwner)) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("email", email);
+                        bundle.putInt("noticeId", noticeId);
+                        chat.setStatus(Chat.RETURNED);
+                        chatNotice.finish();
+                        ChatReturnedFragment chatRetunedFragment = new ChatReturnedFragment();
+                        chatRetunedFragment.setArguments(bundle);
+                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.main_biglayout, chatRetunedFragment);
+                    }
+                }
+                catch(Exception e ){
+                    e.printStackTrace();
                 }
             }
         });
@@ -147,13 +149,21 @@ public class ChatDoneFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
 
-                if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
-                    bundle.putString("personUserName", chat.getNoticeOwner().getUserName());
-                    bundle.putString("personPassword", chat.getNoticeOwner().getPassword());
+                try {
+                    if (CallUserByEmail.call(email).equals(chat.getCustomer())) {
+                        bundle.putString("personEmail", chat.getNoticeOwner().getEmail());
+                    }
                 }
-                if( DBHelper.getUser(email).equals(chat.getNoticeOwner()) ) {
-                    bundle.putString("personUserName", chat.getCustomer().getUserName());
-                    bundle.putString("personPassword", chat.getCustomer().getPassword());
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+                try {
+                    if (CallUserByEmail.call(email).equals(chat.getNoticeOwner())) {
+                        bundle.putString("personEmail", chat.getCustomer().getEmail());
+                    }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
                 }
                 ProfilePublicFragment publicProfile = new ProfilePublicFragment();
                 publicProfile.setArguments(bundle);
@@ -171,13 +181,17 @@ public class ChatDoneFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
-                Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email));
+                Message message = null;
+                try {
+                    message = new Message(textBeSend, recieverUser, CallUserByEmail.call(email));//CallByUserEmail.call(email)
+                }
+                catch (Exception e ){
+                    e.printStackTrace();
+                }
                 textBeSend = message.getMessage() + "\t" + " ( " + message.getCurrentTime() + " ) ";
                 message.setMsg(textBeSend);
 
                 if (!textBeSend.matches("")) {
-                    //Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email) );
-                    //stringMessages.add(message.toString());
                     chat.getAllMessage().add(message);
                     listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
                     editText.setText("");

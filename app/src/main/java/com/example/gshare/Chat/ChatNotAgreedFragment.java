@@ -87,21 +87,6 @@ public class ChatNotAgreedFragment extends Fragment {
 
         httpClient = new OkHttpClient();
         email = getArguments().getString("email");
-        /*
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));*/
 
         final User  userTry = new User("OnurKorkmaz", "qwerty", "123456", "qwerty", 6);
         final User  userTry2 = new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 );
@@ -217,7 +202,7 @@ public class ChatNotAgreedFragment extends Fragment {
 
                 try {
                     if (userTry.equals(chat.getCustomer())) {//if( CallUserByEmail.call(email).equals(chat.getCustomer()) ) {
-                        bundle.putString("personEmail", chat.getNoticeOwner().getEmail());
+                        bundle.putString("userEmail", chat.getNoticeOwner().getEmail());
                     }
                 }
                 catch (Exception e){
@@ -225,7 +210,7 @@ public class ChatNotAgreedFragment extends Fragment {
                 }
                 try {
                     if (userTry.equals(chat.getNoticeOwner())) {// if( CallUserByEmail.call(email).equals(chat.getNoticeOwner()) ) {
-                        bundle.putString("personEmail", chat.getCustomer().getEmail());
+                        bundle.putString("userEmail", chat.getCustomer().getEmail());
                     }
                 }
                 catch (Exception e ){

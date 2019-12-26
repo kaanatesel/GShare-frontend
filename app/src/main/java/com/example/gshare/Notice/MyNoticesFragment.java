@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.CallUserByEmail;
 import com.example.gshare.Chat.ChatFragment;
 import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageFragment;
@@ -28,7 +29,9 @@ import com.example.gshare.Profile.ProfileFragment;
 import com.example.gshare.R;
 
 
+import org.json.JSONException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MyNoticesFragment extends Fragment implements View.OnClickListener {
@@ -44,25 +47,21 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
     ArrayList<Notice> notices;
 
     ListView listView;
-    String userName;
-    String password;
     MyNoticesAdapter adapter;
     Bundle bundle;
+
+    String email;
 
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_my_notices, container, false);
-
-
 
 
         bundle = getArguments();
         if(bundle != null) {
-            userName = bundle.getString("userName");
-            password = bundle.getString("password");
+            email = bundle.getString("email");
         }
 
         listView = (ListView) view.findViewById(R.id.listmynotices);
@@ -81,13 +80,22 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         chatButton.setOnClickListener(this);
         profileButton.setOnClickListener(this);
 
-        gView.setText(DBHelper.getUser(userName).getG() + "");
-
+        try {
+            gView.setText(CallUserByEmail.call(email).getG() + "");
+        }
+        catch( Exception e ){
+            e.printStackTrace();
+        }
         notices = DBHelper.getLendingNotices();
         adapter = new MyNoticesAdapter(c, notices);
         listView.setAdapter(adapter);
 
-        gView.setText( DBHelper.getUser(userName).getG() + "" );
+        try {
+            gView.setText(CallUserByEmail.call(email).getG() + "");
+        }
+        catch( Exception e ){
+            e.printStackTrace();
+        }
 
         notices = DBHelper.getLendingNotices();
 
@@ -98,20 +106,42 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
+        Bundle bundle = new Bundle();
+        bundle.putString("email", email);
 
         switch (v.getId()) {
             case R.id.lendingButton:
-                notices = getUserNotices(DBHelper.getUser(userName), 'L');
+                try {
+                    notices = getUserNotices(CallUserByEmail.call(email), 'L');
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
                 break;
             case R.id.borrowingButton:
-                notices = getUserNotices(DBHelper.getUser(userName), 'B');
+                try {
+                    notices = getUserNotices(CallUserByEmail.call(email), 'B');
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
 
         switch (v.getId()){
             case R.id.lendingButton:
-                notices = getUserNotices(DBHelper.getUser(userName) , 'L');
+                try {
+                    notices = getUserNotices(CallUserByEmail.call(email), 'L');
+                }
+                catch( Exception e ){
+                    e.printStackTrace();
+                }
                 break;
             case R.id.borrowingButton:
-                notices = getUserNotices(DBHelper.getUser(userName),'B');
+                try {
+                    notices = getUserNotices(CallUserByEmail.call(email), 'B');
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
 
                 break;
             case R.id.navigationHome:

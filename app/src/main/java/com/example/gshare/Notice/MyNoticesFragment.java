@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import com.example.gshare.CallUserByEmail;
 import com.example.gshare.Chat.ChatFragment;
 import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageFragment;
+import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.Profile.ProfileFragment;
@@ -89,8 +91,44 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         }
         //gView.setText(DBHelper.getUser(userName).getG() + "");
         gView.setText("100");
+        //notices = DBHelper.getLendingNotices();
+        notices = new ArrayList<Notice>();
+        notices.add( new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
+                100, new LocationG()));//DBHelper.getNotice(noticeId);)
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                Bundle bundleNotice = new Bundle();
+                if(notices.get(position).getNoticeType() == 'L'){
+                   NoticeViewLending fragment = new NoticeViewLending();
+                   bundle = getArguments();
+                   bundleNotice.putString("NoticeName",notices.get(position).getName());
+                   bundleNotice.putString("NoticeDay",notices.get(position).getDay() + "");
+                   bundleNotice.putString("NoticeG",notices.get(position).getG() + "");
+                   bundleNotice.putString("NoticeNote", notices.get(position).getNote());
+                   FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                   fragment.setArguments(bundle);
+                   fragment.setArguments(bundleNotice);
+                   transaction.replace(R.id.main_layout,fragment);
+                   transaction.commit();
+               }else{
+                    NoticeViewLending fragment = new NoticeViewLending();
+                    bundle = getArguments();
+                    bundleNotice.putString("NoticeName",notices.get(position).getName());
+                    bundleNotice.putString("NoticeDay",notices.get(position).getDay() + "");
+                    bundleNotice.putString("NoticeG",notices.get(position).getG() + "");
+                    bundleNotice.putString("NoticeNote", notices.get(position).getNote());
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragment.setArguments(bundle);
+                    fragment.setArguments(bundleNotice);
+                    transaction.replace(R.id.main_layout,fragment);
+                    transaction.commit();
 
-        notices = DBHelper.getLendingNotices();
+
+                }
+            }
+        });
         adapter = new MyNoticesAdapter(c, notices);
         listView.setAdapter(adapter);
 

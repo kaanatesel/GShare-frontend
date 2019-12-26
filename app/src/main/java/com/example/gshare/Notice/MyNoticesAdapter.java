@@ -44,7 +44,7 @@ public class MyNoticesAdapter extends ArrayAdapter<Notice> {
             TextView itemName = (TextView) row.findViewById(R.id.textViewItemName);
             TextView itemDay = (TextView) row.findViewById(R.id.daysTextViewTransacted);
             itemName.setText(noticesTransacted.get(position).getName());
-            itemDay.setText(noticesTransacted.get(position).getDay());
+            itemDay.setText(noticesTransacted.get(position).getDay() + "");
 
         }else{
             if(noticesTransacted.get(position).getNoticeType() == Notice.LEND_NOTICE) {

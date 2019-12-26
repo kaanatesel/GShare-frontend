@@ -19,6 +19,7 @@ import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.Sort.Sort;
+import com.example.gshare.NoticePusher;
 import com.example.gshare.R;
 
 public class CreateYellowNoticeFragment extends Fragment implements View.OnClickListener {
@@ -136,7 +137,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
                 Toast.makeText(getActivity(), "Wrong values please try again", Toast.LENGTH_LONG).show();
             }
             try {
-                //NoticePusher.push( notice );
+                NoticePusher.push( notice );
             } catch (Exception e) {
                 e.printStackTrace();
             }

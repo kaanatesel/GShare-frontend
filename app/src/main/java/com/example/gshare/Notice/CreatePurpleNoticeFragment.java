@@ -23,6 +23,7 @@ import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.Sort.Sort;
+import com.example.gshare.NoticePusher;
 import com.example.gshare.R;
 
 public class CreatePurpleNoticeFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -128,17 +129,17 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
     @Override
     public void onClick(View v) {//FIX AT FINAL
         Bundle bundle = getArguments();
-
+        Notice notice = null;
         if ( v.getId() == R.id.PublishButtonPurple ) {
            try {
-               Notice notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), category,
+               notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), category,
                        DBHelper.getUser( getArguments().getString("email")), new LocationG());
             }
            catch(Exception e){
                 Toast.makeText(getActivity(),"Wrong values please try again", Toast.LENGTH_LONG).show();
            }
            try{
-               //NoticePusher.push(notice);
+               NoticePusher.push(notice);
            }
            catch (Exception e ){
               e.printStackTrace();

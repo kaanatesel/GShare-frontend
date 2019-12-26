@@ -104,7 +104,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home_page,container,false);
-        BottomNavigationView view1 = getActivity().findViewById(R.id.nav_view);
+
 
         httpClient = new OkHttpClient();
         sortMode = LENDING_MODE;

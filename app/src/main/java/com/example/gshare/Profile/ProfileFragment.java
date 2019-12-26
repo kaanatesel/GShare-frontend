@@ -41,7 +41,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     ImageButton chat;
     ImageButton profile;
 
-    Notice notice;
     ListView listView;
         ArrayList<Notice> notices;
     String email;

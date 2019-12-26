@@ -3,6 +3,7 @@ package com.example.gshare.Notice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,8 +17,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.Chat.ChatFragment;
 import com.example.gshare.Chat.ChatNotAgreedFragment;
-import com.example.gshare.ChatActivity;
+
+import com.example.gshare.HomePageActivity;
 import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.ChatModel.Chat;
 import com.example.gshare.ModelClasses.ChatModel.ChatCollection;
@@ -25,8 +28,11 @@ import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.Sort.Sort;
 import com.example.gshare.ModelClasses.User.User;
+
+import com.example.gshare.Profile.ProfileFragment;
 import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * Fix these when DBHElper added
@@ -139,24 +145,26 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
             case R.id.backButton:
                 Bundle bundle2;
                 bundle2 = getArguments();
+
                 getActivity().setContentView(R.layout.blank_layout);
                 HomePageFragment homePageFragment = new HomePageFragment();
                 homePageFragment.setArguments(bundle2);
                 FragmentTransaction fragmentManagerForHomePage = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentManagerForHomePage.replace(R.id.main_layout, homePageFragment);
                 fragmentManagerForHomePage.commit();
+
                 break;
             case R.id.userButton:
-                Bundle bundle3;
-                bundle3 = getArguments();
+                Bundle bundle3 = new Bundle();
+                getActivity().setContentView(R.layout.blank_layout);
                 bundle3.putString("userEmail",notice.getNoticeOwner().getEmail());
                 getActivity().setContentView(R.layout.blank_layout);
                 ProfilePublicFragment profilePublicFragment = new ProfilePublicFragment();
                 profilePublicFragment.setArguments(bundle3);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-
                 fragmentTransaction.replace(R.id.main_layout, profilePublicFragment);
                 fragmentTransaction.commit();
+
                 break;
 
         }

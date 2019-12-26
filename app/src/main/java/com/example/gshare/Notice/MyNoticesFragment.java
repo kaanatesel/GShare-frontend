@@ -81,7 +81,8 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         chatButton.setOnClickListener(this);
         profileButton.setOnClickListener(this);
 
-        gView.setText(DBHelper.getUser(userName).getG() + "");
+        //gView.setText(DBHelper.getUser(userName).getG() + "");
+        gView.setText("100");
 
         notices = DBHelper.getLendingNotices();
         adapter = new MyNoticesAdapter(c, notices);

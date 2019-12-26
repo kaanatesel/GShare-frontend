@@ -38,7 +38,9 @@ private String email;
 //We will change ChatTry to Chat
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_chat, container,false);
-        email = getArguments().getString("email");
+        if(getArguments() != null) {
+            email = getArguments().getString("email");
+        }
         chatList = (ListView)view.findViewById(R.id.chatList);
         chatList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -88,7 +90,8 @@ private String email;
     public void onClick(View view) {
         switch(view.getId()){
         case R.id.navigationHome:
-        HomePageFragment fragment1 = new HomePageFragment();
+        bundle = getArguments();
+            HomePageFragment fragment1 = new HomePageFragment();
         fragment1.setArguments(bundle);
         FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction1.replace(R.id.main_layout, fragment1);
@@ -96,6 +99,7 @@ private String email;
         break;
 
         case R.id.navigationMap:
+            bundle = getArguments();
         HomePageFragment fragment2 = new HomePageFragment();
         fragment2.setArguments(bundle);
         FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
@@ -104,6 +108,7 @@ private String email;
         break;
 
         case R.id.navigationMyNotices:
+            bundle = getArguments();
         MyNoticesFragment fragment3 = new MyNoticesFragment();
         fragment3.setArguments(bundle);
         FragmentTransaction fragmentTransaction3 = getActivity().getSupportFragmentManager().beginTransaction();

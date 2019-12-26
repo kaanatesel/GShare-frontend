@@ -103,7 +103,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 profileEditFragment.show(getFragmentManager(), "EditPopUp");
                 break;
 
-            case R.id.navigation_home:
+            case R.id.navigationHome:
 
                 HomePageFragment fragment1 = new HomePageFragment();
                 fragment1.setArguments(bundle);
@@ -112,7 +112,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction1.commit();
                 break;
 
-            case R.id.navigation_Map:
+            case R.id.navigationMap:
 
                 HomePageFragment fragment2 = new HomePageFragment();
                 fragment2.setArguments(bundle);
@@ -121,7 +121,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction2.commit();
                 break;
 
-            case R.id.navigation_Notices:
+            case R.id.navigationMyNotices:
 
 
                 MyNoticesFragment fragment3 = new MyNoticesFragment();
@@ -131,7 +131,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction3.commit();
                 break;
 
-            case R.id.navigation_Chat:
+            case R.id.navigationChat:
 
                 ChatFragment fragment4 = new ChatFragment();
                 fragment4.setArguments(bundle);
@@ -140,7 +140,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction4.commit();
                 break;
 
-            case R.id.navigation_Profilet:
+            case R.id.navigationProfile:
 
                 ProfileFragment fragment5 = new ProfileFragment();
                 fragment5.setArguments(bundle);

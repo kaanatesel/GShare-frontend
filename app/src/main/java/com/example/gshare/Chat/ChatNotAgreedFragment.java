@@ -23,6 +23,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.gshare.ChatAdapter;
 import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageActivity;
+import com.example.gshare.HomePageFragment;
 import com.example.gshare.MainActivity;
 import com.example.gshare.ModelClasses.ChatModel.Chat;
 import com.example.gshare.ModelClasses.ChatModel.Message;
@@ -30,6 +31,7 @@ import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
 //import com.example.gshare.Notice.ProductHomeListDisplayModel;
+import com.example.gshare.Notice.ProductHomeListDisplayModel;
 import com.example.gshare.Popup.PopupDoYouAgreeFragment;
 import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
@@ -73,6 +75,7 @@ public class ChatNotAgreedFragment extends Fragment {
     String email;
     int noticeId;
 
+    OkHttpClient httpClient;
 
     @Nullable
     @Override
@@ -81,7 +84,7 @@ public class ChatNotAgreedFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
 
 
-
+        httpClient = new OkHttpClient();
         email = getArguments().getString("email");
         /*
         chatFragmentTry.add(new ChatTry("message 1", false));
@@ -256,6 +259,7 @@ public class ChatNotAgreedFragment extends Fragment {
                 fragmentTransaction.replace(R.id.main_biglayout,chatNotAgreedFragment);
             }
         }, 0, 10000);
-    }
-}
+    }}
+
+
 

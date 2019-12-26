@@ -12,7 +12,7 @@
     <ImageView
         android:id="@+id/backgroundChatsFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="730dp"
         android:contentDescription="@string/background_chats_fragment"
         app:srcCompat="@drawable/homepage_background_no_notifications" />
 
@@ -34,12 +34,17 @@
         <ListView
             android:id="@+id/chatList"
             android:layout_width="wrap_content"
-            android:layout_height="655dp"
+            android:layout_height="600dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true">
 
-
         </ListView>
+
+        <fragment
+            android:id="@+id/navigationBarFragment"
+            android:name="com.example.gshare.NavigatorFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>

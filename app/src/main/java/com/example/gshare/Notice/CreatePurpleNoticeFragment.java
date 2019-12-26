@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.CallUserByEmail;
 import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageActivity;
 import com.example.gshare.HomePageFragment;
@@ -45,6 +46,8 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
     ImageButton category7;
     ImageButton category8;
 
+    String email;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,6 +60,8 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
         back = view.findViewById(R.id.backButton);
         addNotice.setOnClickListener(this);
         back.setOnClickListener(this);
+
+        email = getArguments().getString("email");
 
         //Category buttons initialized
         category1 = (ImageButton) view.findViewById(R.id.transportButton);
@@ -133,7 +138,7 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
         if ( v.getId() == R.id.PublishButtonPurple ) {
            try {
                notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), category,
-                       DBHelper.getUser( getArguments().getString("email")), new LocationG());
+                       CallUserByEmail.call( email), new LocationG());
             }
            catch(Exception e){
                 Toast.makeText(getActivity(),"Wrong values please try again", Toast.LENGTH_LONG).show();

@@ -74,6 +74,7 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         ImageButton myNoticesButton = (ImageButton)view.findViewById(R.id.navigationMyNotices);
         ImageButton chatButton = (ImageButton)view.findViewById(R.id.navigationChat);
         ImageButton profileButton = (ImageButton)view.findViewById(R.id.navigationProfile);
+
         homeButton.setOnClickListener(this);
         mapButton.setOnClickListener(this);
         myNoticesButton.setOnClickListener(this);
@@ -86,6 +87,9 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         catch( Exception e ){
             e.printStackTrace();
         }
+        //gView.setText(DBHelper.getUser(userName).getG() + "");
+        gView.setText("100");
+
         notices = DBHelper.getLendingNotices();
         adapter = new MyNoticesAdapter(c, notices);
         listView.setAdapter(adapter);
@@ -97,7 +101,7 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
             e.printStackTrace();
         }
 
-        notices = DBHelper.getLendingNotices();
+        //notices = DBHelper.getLendingNotices();
 
 
 

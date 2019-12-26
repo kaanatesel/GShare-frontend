@@ -34,16 +34,17 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
     private Bundle bundle;
     private String email;
-
     @Nullable
 //We will change ChatTry to Chat
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_chat, container, false);
-        email = getArguments().getString("email");
-        chatList = (ListView) view.findViewById(R.id.chatList);
-        chatList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        View view = inflater.inflate(R.layout.activity_chat, container,false);
+        if(getArguments() != null) {
+            email = getArguments().getString("email");
+        }
+        chatList = (ListView)view.findViewById(R.id.chatList);
+        chatList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 
             }
 
@@ -51,11 +52,11 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         chats = new ArrayList<Chat>();
         //chatUsersAdapter = new UserChatsAdapter();
         //chatList.setAdapter(chatUsersAdapter);
-        ImageButton homeButton = (ImageButton) view.findViewById(R.id.navigationHome);
-        ImageButton mapButton = (ImageButton) view.findViewById(R.id.navigationMap);
-        ImageButton myNoticesButton = (ImageButton) view.findViewById(R.id.navigationMyNotices);
-        ImageButton chatButton = (ImageButton) view.findViewById(R.id.navigationChat);
-        ImageButton profileButton = (ImageButton) view.findViewById(R.id.navigationProfile);
+        ImageButton homeButton = (ImageButton)view.findViewById(R.id.navigationHome);
+        ImageButton mapButton = (ImageButton)view.findViewById(R.id.navigationMap);
+        ImageButton myNoticesButton = (ImageButton)view.findViewById(R.id.navigationMyNotices);
+        ImageButton chatButton = (ImageButton)view.findViewById(R.id.navigationChat);
+        ImageButton profileButton = (ImageButton)view.findViewById(R.id.navigationProfile);
         homeButton.setOnClickListener(this);
         mapButton.setOnClickListener(this);
         myNoticesButton.setOnClickListener(this);
@@ -63,9 +64,8 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         profileButton.setOnClickListener(this);
         return view;
     }
-
     @Override
-    public void onAttach(Context con) {
+    public void onAttach(Context con){
         super.onAttach(con);
         c = con;
     }
@@ -80,7 +80,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 ChatFragment chatFragment = new ChatFragment();
                 chatFragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_biglayout, chatFragment);
+                fragmentTransaction.replace(R.id.main_biglayout,chatFragment);
             }
         }, 0, 10000);
     }
@@ -88,11 +88,9 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Bundle bundle = new Bundle();
-        bundle.putString("email", email);
-
-        switch (view.getId()) {
+        switch(view.getId()){
             case R.id.navigationHome:
+                bundle = getArguments();
                 HomePageFragment fragment1 = new HomePageFragment();
                 fragment1.setArguments(bundle);
                 FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
@@ -101,6 +99,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.navigationMap:
+                bundle = getArguments();
                 HomePageFragment fragment2 = new HomePageFragment();
                 fragment2.setArguments(bundle);
                 FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
@@ -109,6 +108,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.navigationMyNotices:
+                bundle = getArguments();
                 MyNoticesFragment fragment3 = new MyNoticesFragment();
                 fragment3.setArguments(bundle);
                 FragmentTransaction fragmentTransaction3 = getActivity().getSupportFragmentManager().beginTransaction();
@@ -130,7 +130,6 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction5.replace(R.id.main_layout, fragment5);
                 fragmentTransaction5.commit();
                 break;
-        }
-    }
+        }}
 
 }

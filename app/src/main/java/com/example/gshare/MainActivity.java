@@ -49,7 +49,11 @@ public class MainActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginOnClick();
+                try {
+                    loginOnClick();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void loginOnClick() {
+    public void loginOnClick() throws IOException {
+
+
         String url = "http://35.242.192.20/member/getByEmail/" + userName.getText().toString() ;
         final String uPass = password.getText().toString();
 

@@ -140,17 +140,19 @@ public class NoticeEditBorrowingFragment extends Fragment implements View.OnClic
     @Override
     public void onClick(View v) {
 
-        notice.setDay( Integer.parseInt( day.getText().toString() ) );
-        notice.setName( name.getText().toString() );
-        notice.setNote( note.getText().toString() );
-        notice.setCategory(category);
-        //DBHelper.updateNotice(notice);
+        if(v.getId()==R.id.ApplyEditNoticeBorrowing) {
+            notice.setDay(Integer.parseInt(day.getText().toString()));
+            notice.setName(name.getText().toString());
+            notice.setNote(note.getText().toString());
+            notice.setCategory(category);
+            //DBHelper.updateNotice(notice);
+        }
 
         Bundle bundle = getArguments();
         NoticeViewBorrowing noticeViewBorrowing = new NoticeViewBorrowing();
         noticeViewBorrowing.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.mynotices_placeholder, noticeViewBorrowing);
+        fragmentTransaction.replace(R.id.main_biglayout, noticeViewBorrowing);
         fragmentTransaction.commit();
     }
 }

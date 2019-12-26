@@ -40,7 +40,7 @@ public class ProfileEditFragment extends DialogFragment implements View.OnClickL
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.changeNameButton:
-                user.setNameAndSurname(editName.getText().toString());
+                user.setUserName(editName.getText().toString());
                 getDialog().dismiss();
                 break;
         }

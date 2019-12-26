@@ -32,8 +32,7 @@ public class NoticeViewBorrowing extends Fragment implements View.OnClickListene
     ImageButton backButton;
     ImageView categoryImageView;
 
-    String userName;
-    String password;
+    String email;
 
     @Nullable
     @Override
@@ -41,10 +40,7 @@ public class NoticeViewBorrowing extends Fragment implements View.OnClickListene
        View view = inflater.inflate(R.layout.fragment_notice_view_borrowing, container, false);
 
        Bundle bundle = getArguments();
-       userName = bundle.getString("userName");
-       password = bundle.getString("password");
-       noticeId = bundle.getInt("notice_id");
-
+       email = bundle.getString("email");
        notice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                new LocationG());//DBHelper.getNotice(noticeId);
 
@@ -94,14 +90,14 @@ public class NoticeViewBorrowing extends Fragment implements View.OnClickListene
                 NoticeEditBorrowingFragment noticeEditBorrowingFragment = new NoticeEditBorrowingFragment();
                 noticeEditBorrowingFragment.setArguments( getArguments() );
                 FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction1.replace(R.id.mynotices_placeholder, noticeEditBorrowingFragment);
+                fragmentTransaction1.replace(R.id.main_biglayout, noticeEditBorrowingFragment);
                 fragmentTransaction1.commit();
                 break;
             case R.id.backButton:
                 MyNoticesFragment myNoticesFragment = new MyNoticesFragment();
                 myNoticesFragment.setArguments( getArguments() );
                 FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction2.replace(R.id.mynotices_placeholder,myNoticesFragment);
+                fragmentTransaction2.replace(R.id.main_biglayout,myNoticesFragment);
                 fragmentTransaction2.commit();
                 break;
 

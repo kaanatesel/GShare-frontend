@@ -17,11 +17,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageActivity;
 import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.Sort.Sort;
+import com.example.gshare.NoticePusher;
 import com.example.gshare.R;
 
 public class CreatePurpleNoticeFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -127,23 +129,23 @@ public class CreatePurpleNoticeFragment extends Fragment implements View.OnClick
     @Override
     public void onClick(View v) {//FIX AT FINAL
         Bundle bundle = getArguments();
-        /*
-        if ( v.getId() == R.id.PublishButton ) {
+        Notice notice = null;
+        if ( v.getId() == R.id.PublishButtonPurple ) {
            try {
-               Notice notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), category,
-                       DBHelper.getUser( getArguments().getString("userName"), getArguments().getString("password")), new LocationG());
+               notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), category,
+                       DBHelper.getUser( getArguments().getString("email")), new LocationG());
             }
            catch(Exception e){
                 Toast.makeText(getActivity(),"Wrong values please try again", Toast.LENGTH_LONG).show();
            }
            try{
-               DBHelper.addNotice(notice);
+               NoticePusher.push(notice);
            }
            catch (Exception e ){
               e.printStackTrace();
            }
         }
-        */
+
         HomePageFragment homePageFragment = new HomePageFragment();
         homePageFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

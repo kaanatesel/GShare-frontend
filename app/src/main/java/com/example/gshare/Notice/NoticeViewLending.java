@@ -33,8 +33,7 @@ public class NoticeViewLending extends Fragment implements View.OnClickListener 
     ImageButton backButton;
     ImageView categoryImageView; //Category image
 
-    String userName;
-    String password;
+    String email;
 
     @Nullable
     @Override
@@ -42,8 +41,7 @@ public class NoticeViewLending extends Fragment implements View.OnClickListener 
         View view = inflater.inflate(R.layout.fragment_notice_view_lending, container, false);
 
         Bundle bundle = getArguments();
-        userName = bundle.getString("userName");
-        password = bundle.getString("password");
+        email = bundle.getString("email");
         noticeId = bundle.getInt("notice_id");
 
         notice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
@@ -97,14 +95,14 @@ public class NoticeViewLending extends Fragment implements View.OnClickListener 
                 NoticeEditLendingFragment noticeEditLendingFragment = new NoticeEditLendingFragment();
                 noticeEditLendingFragment.setArguments( getArguments() );
                 FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction1.replace(R.id.mynotices_placeholder, noticeEditLendingFragment);
+                fragmentTransaction1.replace(R.id.main_biglayout, noticeEditLendingFragment);
                 fragmentTransaction1.commit();
                 break;
             case R.id.backButton:
                 MyNoticesFragment myNoticesFragment = new MyNoticesFragment();
                 myNoticesFragment.setArguments( getArguments() );
                 FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction2.replace(R.id.mynotices_placeholder,myNoticesFragment);
+                fragmentTransaction2.replace(R.id.main_biglayout,myNoticesFragment);
                 fragmentTransaction2.commit();
                 break;
 

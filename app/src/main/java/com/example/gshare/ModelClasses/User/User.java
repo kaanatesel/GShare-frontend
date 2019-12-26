@@ -17,7 +17,7 @@ public class User {
     private LocationG location;
     private long creditCardNumber;
     private int g;
-    private String nameAndSurname;
+    private String name;
     private double lenderRating;
     private double borrowerRating;
     private int numberOfLendRates;
@@ -32,18 +32,18 @@ public class User {
     private int fiveStarLendingRates;
     private int fiveStarBorrowinRates;
     private boolean firstPost; //Only for lending
-    private int ID;
+    private int id;
 
     /**
      * This constructor constructs a user object.
-     * @param nameAndSurname name and surname of the user
+     * @param name name and surname of the user
      * @param userName username of the user
      * @param password password of the user
      * @param email email of the user
      * @param g money amount of the user
      */
-    public User( String nameAndSurname, String userName, String password, String email, int g ) {
-        this.nameAndSurname = nameAndSurname;
+    public User( String name, String userName, String password, String email, int g ) {
+        this.name = name;
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -242,8 +242,8 @@ public class User {
      * This method gets the name and surname of the user
      * @return name and surname of the user
      */
-    public String getNameAndSurname(){
-        return nameAndSurname;
+    public String getName(){
+        return name;
     }
 
     /**
@@ -368,7 +368,7 @@ public class User {
      * @param q4 quest to display
      * @param q5 quest to display
      */
-    public void setQuestsToDisplay( Quest q1, Quest q2, Quest q3, Quest q4, Quest q5 ){
+    public void setQuestsToDisplay(Quest q1, Quest q2, Quest q3, Quest q4, Quest q5 ){
         ArrayList<Quest> list = new ArrayList<Quest>();
         list.add(q1);
         list.add(q2);
@@ -419,7 +419,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return user.getEmail().equals( this.getEmail() );
+        return user.getUserName().equals( this.getUserName() );
     }
 
     /**
@@ -427,7 +427,7 @@ public class User {
      * @return ID the id.
      */
     public int getID(){
-        return ID;
+        return id;
     }
 
     /**
@@ -435,11 +435,18 @@ public class User {
      * @param ID the id to set.
      */
     public void setID(int ID){
-        this.ID = ID;
+        this.id = ID;
     }
 
-    public void setNameAndSurname(String nameAndSurname) {
-        this.nameAndSurname = nameAndSurname;
+    /**Sets the userName
+     *
+     * @param str user name
+     */
+    public void setUserName(String str){
+        userName = str;
     }
 
+    public String getNameAndSurname(){
+        return name;
+    }
 }

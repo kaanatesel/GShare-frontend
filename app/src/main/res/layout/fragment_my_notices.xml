@@ -62,7 +62,7 @@
     <ListView
         android:id="@+id/listmynotices"
         android:layout_width="wrap_content"
-        android:layout_height="630dp"></ListView>
+        android:layout_height="525dp"></ListView>
 
     <fragment
         android:id="@+id/navigatorTabFragment"

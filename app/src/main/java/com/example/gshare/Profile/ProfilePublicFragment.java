@@ -30,6 +30,7 @@ public class ProfilePublicFragment extends Fragment {
     User user;
     String email;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,7 +48,8 @@ public class ProfilePublicFragment extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = getArguments();
+                Bundle bundle = new Bundle();
+                bundle.putString("email",email);
                 getActivity().setContentView(R.layout.blank_layout);
                 ChatFragment chatFragment = new ChatFragment();
                 chatFragment.setArguments(bundle);

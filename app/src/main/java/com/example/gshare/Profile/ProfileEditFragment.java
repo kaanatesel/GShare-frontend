@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.example.gshare.CallUserByEmail;
 import com.example.gshare.DBHelper;
 import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.R;
@@ -31,7 +32,12 @@ public class ProfileEditFragment extends DialogFragment implements View.OnClickL
         applyButton = view.findViewById(R.id.changeNameButton);
         editName = view.findViewById(R.id.changeNameEditText);
         email = getArguments().getString("email");
-        user = DBHelper.getUser(email);
+        try {
+            user = CallUserByEmail.call(email);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         applyButton.setOnClickListener(this);
         return view;
     }

@@ -94,6 +94,7 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         adapter = new MyNoticesAdapter(c, notices);
         listView.setAdapter(adapter);
 
+
         try {
             gView.setText(CallUserByEmail.call(email).getG() + "");
         }
@@ -101,7 +102,7 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
             e.printStackTrace();
         }
 
-        //notices = DBHelper.getLendingNotices();
+
 
 
 

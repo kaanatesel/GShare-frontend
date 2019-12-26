@@ -69,7 +69,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 if(chats.get(position).getStatus()==Chat.AGREED){
                     getActivity().setContentView(R.layout.fullyblanklayout);
                     ChatAgreedFragment chatAgreedFragment = new ChatAgreedFragment();
-                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     chatAgreedFragment.setArguments(bundle);
                     fragmentTransaction.replace(R.id.main_biglayout,chatAgreedFragment);
                     fragmentTransaction.commit();
@@ -77,7 +77,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 if(chats.get(position).getStatus()==Chat.RETURNED){
                     getActivity().setContentView(R.layout.fullyblanklayout);
                     ChatReturnedFragment chatReturnedFragment = new ChatReturnedFragment();
-                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     chatReturnedFragment.setArguments(bundle);
                     fragmentTransaction.replace(R.id.main_biglayout,chatReturnedFragment);
                     fragmentTransaction.commit();
@@ -85,7 +85,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 if(chats.get(position).getStatus()==Chat.WAITING_FOR_RETURN){
                     getActivity().setContentView(R.layout.fullyblanklayout);
                     ChatDoneFragment chatDoneFragment = new ChatDoneFragment();
-                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     chatDoneFragment.setArguments(bundle);
                     fragmentTransaction.replace(R.id.main_biglayout,chatDoneFragment);
                     fragmentTransaction.commit();

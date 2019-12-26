@@ -66,11 +66,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         nameAndSurname = (TextView) view.findViewById(R.id.nameTextView);
         username = (TextView) view.findViewById(R.id.usernameTextView);
 
-        home = view.findViewById(R.id.navigation_home);
-        map = view.findViewById(R.id.navigation_Map);
-        noticeNav = view.findViewById(R.id.navigation_Notices);
-        chat = view.findViewById(R.id.navigation_Chat);
-        profile = view.findViewById(R.id.navigation_Profilet);
+        home = view.findViewById(R.id.navigationHome);
+        map = view.findViewById(R.id.navigationMap);
+        noticeNav = view.findViewById(R.id.navigationMyNotices);
+        chat = view.findViewById(R.id.navigationChat);
+        profile = view.findViewById(R.id.navigationProfile);
 
         //username.setText(user.getUserName());
         //nameAndSurname.setText(user.getNameAndSurname());

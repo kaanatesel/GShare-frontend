@@ -3,6 +3,7 @@ package com.example.gshare.Notice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,16 +16,21 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.Chat.ChatFragment;
 import com.example.gshare.Chat.ChatNotAgreedFragment;
-import com.example.gshare.ChatActivity;
+
+import com.example.gshare.HomePageActivity;
 import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.ChatModel.Chat;
 import com.example.gshare.ModelClasses.ChatModel.ChatCollection;
 import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
+
+import com.example.gshare.Profile.ProfileFragment;
 import com.example.gshare.Profile.ProfilePublicFragment;
 import com.example.gshare.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * Fix these when DBHElper added
@@ -114,20 +120,87 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
             case R.id.backButton:
                 Bundle bundle2;
                 bundle2 = getArguments();
-                HomePageFragment homePageFragment = new HomePageFragment();
-                homePageFragment.setArguments(bundle2);
-                FragmentTransaction fragmentManagerForHomePage = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentManagerForHomePage.replace(R.id.main_layout, homePageFragment);
-                fragmentManagerForHomePage.commit();
+                Intent intentHome = new Intent(getContext(), HomePageActivity.class);
+                intentHome.putExtras(bundle2);
+                startActivity(intentHome);
                 break;
             case R.id.userButton:
-                Bundle bundle3;
-                bundle3 = getArguments();
+                Bundle bundle3 = new Bundle();
+                getActivity().setContentView(R.layout.blank_layout);
                 bundle3.putString("userEmail",notice.getNoticeOwner().getEmail());
                 ProfilePublicFragment profilePublicFragment = new ProfilePublicFragment();
                 profilePublicFragment.setArguments(bundle3);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_biglayout, profilePublicFragment);
+                fragmentTransaction.replace(R.id.main_layout, profilePublicFragment);
+                fragmentTransaction.commit();
+
+                BottomNavigationView bottomNav = getView().findViewById(R.id.nav_view);
+                bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+                                                                  @Override
+                                                                  public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                                                                      Bundle bundle = new Bundle();
+                                                                      bundle.putString("email", email);
+                                                                      try {
+
+                                                                          switch (item.getItemId()) {
+
+                                                                              case R.id.navigation_home:
+
+
+                                                                         HomePageFragment fragment1 = new HomePageFragment();
+                                                                          fragment1.setArguments(bundle);
+                                                                          FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
+                                                                          fragmentTransaction1.replace(R.id.main_layout, fragment1);
+                                                                          fragmentTransaction1.commit();
+                                                                                  return true;
+
+                                                                              case R.id.navigation_Map:
+
+                                                                          HomePageFragment fragment2 = new HomePageFragment();
+                                                                          fragment2.setArguments(bundle);
+                                                                          FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
+                                                                          fragmentTransaction2.replace(R.id.main_layout, fragment2);
+                                                                          fragmentTransaction2.commit();
+                                                                                  return true;
+
+                                                                              case R.id.navigation_Notices:
+
+                                                                          MyNoticesFragment fragment3 = new MyNoticesFragment();
+                                                                          fragment3.setArguments(bundle);
+                                                                          FragmentTransaction fragmentTransaction3 = getActivity().getSupportFragmentManager().beginTransaction();
+                                                                          fragmentTransaction3.replace(R.id.main_layout, fragment3);
+                                                                          fragmentTransaction3.commit();
+                                                                                  return true;
+                                                                              case R.id.navigation_Chat:
+
+                                                                         ChatFragment fragment4 = new ChatFragment();
+                                                                          fragment4.setArguments(bundle);
+                                                                          FragmentTransaction fragmentTransaction4 = getActivity().getSupportFragmentManager().beginTransaction();
+                                                                          fragmentTransaction4.replace(R.id.main_layout, fragment4);
+                                                                          fragmentTransaction4.commit();
+                                                                                  return true;
+
+
+                                                                              case R.id.navigation_Profilet:
+
+                                                                          ProfileFragment fragment5 = new ProfileFragment();
+                                                                          fragment5.setArguments(bundle);
+                                                                          FragmentTransaction fragmentTransaction5 = getActivity().getSupportFragmentManager().beginTransaction();
+                                                                          fragmentTransaction5.replace(R.id.main_layout, fragment5);
+                                                                          fragmentTransaction5.commit();
+                                                                                  return true;
+                                                                          }
+                                                                          return false;
+
+                                                                      } catch (NullPointerException e) {
+                                                                          return false;
+                                                                      }
+
+                                                                  }
+
+                                                              }
+                );
                 break;
 
         }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import android.widget.Button;
@@ -16,10 +17,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.Chat.ChatFragment;
 import com.example.gshare.DBHelper;
+import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
+import com.example.gshare.Profile.ProfileFragment;
 import com.example.gshare.R;
 
 
@@ -42,7 +47,7 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
     String userName;
     String password;
     MyNoticesAdapter adapter;
-
+    Bundle bundle;
 
 
     @Nullable
@@ -54,17 +59,27 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
 
 
 
-        Bundle bundle = getArguments();
-        userName = bundle.getString("userName");
-        password = bundle.getString("password");
-
+        bundle = getArguments();
+        if(bundle != null) {
+            userName = bundle.getString("userName");
+            password = bundle.getString("password");
+        }
 
         listView = (ListView) view.findViewById(R.id.listmynotices);
 
         lendingMode = view.findViewById(R.id.lendingButton);
         borrowingMode = view.findViewById(R.id.borrowingButton);
         gView = view.findViewById(R.id.moneyTextView);
-
+        ImageButton homeButton = (ImageButton)getView().findViewById(R.id.navigation_home);
+        ImageButton mapButton = (ImageButton)getView().findViewById(R.id.navigation_Map);
+        ImageButton myNoticesButton = (ImageButton)getView().findViewById(R.id.navigation_Notices);
+        ImageButton chatButton = (ImageButton)getView().findViewById(R.id.navigation_Chat);
+        ImageButton profileButton = (ImageButton)getView().findViewById(R.id.navigation_Profilet);
+        homeButton.setOnClickListener(this);
+        mapButton.setOnClickListener(this);
+        myNoticesButton.setOnClickListener(this);
+        chatButton.setOnClickListener(this);
+        profileButton.setOnClickListener(this);
 
         gView.setText(DBHelper.getUser(userName).getG() + "");
 
@@ -99,6 +114,47 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
                 notices = getUserNotices(DBHelper.getUser(userName),'B');
 
                 break;
+            case R.id.navigation_home:
+                HomePageFragment fragment1 = new HomePageFragment();
+                fragment1.setArguments(bundle);
+                FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction1.replace(R.id.main_layout, fragment1);
+                fragmentTransaction1.commit();
+                break;
+
+            case R.id.navigation_Map:
+                HomePageFragment fragment2 = new HomePageFragment();
+                fragment2.setArguments(bundle);
+                FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction2.replace(R.id.main_layout, fragment2);
+                fragmentTransaction2.commit();
+                break;
+
+            case R.id.navigation_Notices:
+                MyNoticesFragment fragment3 = new MyNoticesFragment();
+                fragment3.setArguments(bundle);
+                FragmentTransaction fragmentTransaction3 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction3.replace(R.id.main_layout, fragment3);
+                fragmentTransaction3.commit();
+                break;
+            case R.id.navigation_Chat:
+                ChatFragment fragment4 = new ChatFragment();
+                fragment4.setArguments(bundle);
+                FragmentTransaction fragmentTransaction4 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction4.replace(R.id.main_layout, fragment4);
+                fragmentTransaction4.commit();
+                break;
+
+
+            case R.id.navigation_Profilet:
+                ProfileFragment fragment5 = new ProfileFragment();
+                fragment5.setArguments(bundle);
+                FragmentTransaction fragmentTransaction5 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction5.replace(R.id.main_layout, fragment5);
+                fragmentTransaction5.commit();
+                break;
+
+
 
         }
 

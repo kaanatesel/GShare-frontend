@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.CallUserByEmail;
 import com.example.gshare.ChatAdapter;
 import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageActivity;
@@ -122,26 +123,36 @@ public class ChatNotAgreedFragment extends Fragment {
         noticeName.setText(chatNotice.getName());
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
-
-       /* if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
-            userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
-            recieverUser = chat.getNoticeOwner();
-            if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
-                itemOwner = chat.getCustomer();
-            }
-            if(chat.getNotice().getNoticeType()==Notice.LEND_NOTICE){
-                itemOwner = chat.getNoticeOwner();
+/*
+        try {
+            if (CallUserByEmail.call(email).equals(chat.getCustomer())) {
+                userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
+                recieverUser = chat.getNoticeOwner();
+                if (chat.getNotice().getNoticeType() == Notice.BORROW_NOTICE) {
+                    itemOwner = chat.getCustomer();
+                }
+                if (chat.getNotice().getNoticeType() == Notice.LEND_NOTICE) {
+                    itemOwner = chat.getNoticeOwner();
+                }
             }
         }
-        if( DBHelper.getUser(email).equals(chat.getNoticeOwner() ) ) {
-            userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
-            recieverUser = chat.getCustomer();
-            if(chat.getNotice().getNoticeType()== Notice.LEND_NOTICE){
-                itemOwner = chat.getNoticeOwner();
+        catch (Exception e ) {
+            e.printStackTrace();
+        }
+        try{
+            if (CallUserByEmail.call(email).equals(chat.getNoticeOwner())) {
+                userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
+                recieverUser = chat.getCustomer();
+                if (chat.getNotice().getNoticeType() == Notice.LEND_NOTICE) {
+                    itemOwner = chat.getNoticeOwner();
+                }
+                if (chat.getNotice().getNoticeType() == Notice.BORROW_NOTICE) {
+                    itemOwner = chat.getCustomer();
+                }
             }
-            if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
-                itemOwner = chat.getCustomer();
-            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }*/
         if( userTry.equals(chat.getCustomer()) ) {
             userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());

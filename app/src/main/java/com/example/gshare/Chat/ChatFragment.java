@@ -27,13 +27,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ChatFragment extends Fragment implements View.OnClickListener {
-private Context c;
-private ListView chatList;
-private UserChatsAdapter chatUsersAdapter;
-private ArrayList<Chat> chats;
+    private Context c;
+    private ListView chatList;
+    private UserChatsAdapter chatUsersAdapter;
+    private ArrayList<Chat> chats;
 
-private Bundle bundle;
-private String email;
+    private Bundle bundle;
+    private String email;
     @Nullable
 //We will change ChatTry to Chat
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ private String email;
         myNoticesButton.setOnClickListener(this);
         chatButton.setOnClickListener(this);
         profileButton.setOnClickListener(this);
-    return view;
+        return view;
     }
     @Override
     public void onAttach(Context con){
@@ -89,47 +89,47 @@ private String email;
     @Override
     public void onClick(View view) {
         switch(view.getId()){
-        case R.id.navigationHome:
-        bundle = getArguments();
-            HomePageFragment fragment1 = new HomePageFragment();
-        fragment1.setArguments(bundle);
-        FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction1.replace(R.id.main_layout, fragment1);
-        fragmentTransaction1.commit();
-        break;
+            case R.id.navigationHome:
+                bundle = getArguments();
+                HomePageFragment fragment1 = new HomePageFragment();
+                fragment1.setArguments(bundle);
+                FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction1.replace(R.id.main_layout, fragment1);
+                fragmentTransaction1.commit();
+                break;
 
-        case R.id.navigationMap:
-            bundle = getArguments();
-        HomePageFragment fragment2 = new HomePageFragment();
-        fragment2.setArguments(bundle);
-        FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction2.replace(R.id.main_layout, fragment2);
-        fragmentTransaction2.commit();
-        break;
+            case R.id.navigationMap:
+                bundle = getArguments();
+                HomePageFragment fragment2 = new HomePageFragment();
+                fragment2.setArguments(bundle);
+                FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction2.replace(R.id.main_layout, fragment2);
+                fragmentTransaction2.commit();
+                break;
 
-        case R.id.navigationMyNotices:
-            bundle = getArguments();
-        MyNoticesFragment fragment3 = new MyNoticesFragment();
-        fragment3.setArguments(bundle);
-        FragmentTransaction fragmentTransaction3 = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction3.replace(R.id.main_layout, fragment3);
-        fragmentTransaction3.commit();
-        break;
-        case R.id.navigationChat:
-        ChatFragment fragment4 = new ChatFragment();
-        fragment4.setArguments(bundle);
-        FragmentTransaction fragmentTransaction4 = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction4.replace(R.id.main_layout, fragment4);
-        fragmentTransaction4.commit();
-        break;
+            case R.id.navigationMyNotices:
+                bundle = getArguments();
+                MyNoticesFragment fragment3 = new MyNoticesFragment();
+                fragment3.setArguments(bundle);
+                FragmentTransaction fragmentTransaction3 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction3.replace(R.id.main_layout, fragment3);
+                fragmentTransaction3.commit();
+                break;
+            case R.id.navigationChat:
+                ChatFragment fragment4 = new ChatFragment();
+                fragment4.setArguments(bundle);
+                FragmentTransaction fragmentTransaction4 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction4.replace(R.id.main_layout, fragment4);
+                fragmentTransaction4.commit();
+                break;
 
-        case R.id.navigationProfile:
-        ProfileFragment fragment5 = new ProfileFragment();
-        fragment5.setArguments(bundle);
-        FragmentTransaction fragmentTransaction5 = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction5.replace(R.id.main_layout, fragment5);
-        fragmentTransaction5.commit();
-        break;
-    }}
+            case R.id.navigationProfile:
+                ProfileFragment fragment5 = new ProfileFragment();
+                fragment5.setArguments(bundle);
+                FragmentTransaction fragmentTransaction5 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction5.replace(R.id.main_layout, fragment5);
+                fragmentTransaction5.commit();
+                break;
+        }}
 
 }

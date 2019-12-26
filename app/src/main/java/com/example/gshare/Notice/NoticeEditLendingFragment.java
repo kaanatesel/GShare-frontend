@@ -39,8 +39,7 @@ public class NoticeEditLendingFragment extends Fragment implements View.OnClickL
     ImageButton backButton;
     Spinner spinner;
 
-    String userName;
-    String password;
+    String email;
 
     //Category Buttons
     ImageButton category1;
@@ -60,8 +59,7 @@ public class NoticeEditLendingFragment extends Fragment implements View.OnClickL
         Bundle bundle = getArguments();
 
         noticeId = bundle.getInt("notice_id");
-        userName = bundle.getString("userName");
-        password = bundle.getString("password");
+        email = bundle.getString("email");
 
         notice =  new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                 100,new LocationG());//DBHelper.getNotice(noticeId);
@@ -149,18 +147,20 @@ public class NoticeEditLendingFragment extends Fragment implements View.OnClickL
     @Override
     public void onClick(View v) {
 
-        notice.setForDatabaseG( Integer.parseInt( g.getText().toString() ) );//Only here usage is allowed
-        notice.setDay( Integer.parseInt( day.getText().toString() ) );
-        notice.setName( name.getText().toString() );
-        notice.setNote( note.getText().toString() );
-        notice.setCategory(category);
-       // DBHelper.updateNotice(notice);
+        if(v.getId()== R.id.ApplyEditNoticeLending) {
+            notice.setForDatabaseG(Integer.parseInt(g.getText().toString()));//Only here usage is allowed
+            notice.setDay(Integer.parseInt(day.getText().toString()));
+            notice.setName(name.getText().toString());
+            notice.setNote(note.getText().toString());
+            notice.setCategory(category);
+            // DBHelper.updateNotice(notice);
+        }
 
         Bundle bundle = getArguments();
         NoticeViewLending noticeViewLending = new NoticeViewLending();
         noticeViewLending.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.mynotices_placeholder, noticeViewLending);
+        fragmentTransaction.replace(R.id.main_biglayout, noticeViewLending);
         fragmentTransaction.commit();
     }
 }

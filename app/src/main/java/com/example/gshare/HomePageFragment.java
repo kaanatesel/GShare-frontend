@@ -361,16 +361,18 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 if( sortMode == LENDING_MODE ){
 
                     CreateYellowNoticeFragment fragmentLend = new CreateYellowNoticeFragment();
+                    getActivity().setContentView(R.layout.fullyblanklayout);
                     fragmentLend.setArguments(bundle);
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace( R.id.main_layout,fragmentLend);
+                    fragmentTransaction.replace( R.id.main_biglayout,fragmentLend);
                     fragmentTransaction.commit();
                 }
                 if( sortMode == BORROWING_MODE ){
                     CreatePurpleNoticeFragment fragmentBorrow = new CreatePurpleNoticeFragment();
+                    getActivity().setContentView(R.layout.fullyblanklayout);
                     fragmentBorrow.setArguments(bundle);
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.main_layout,fragmentBorrow);
+                    fragmentTransaction.replace(R.id.main_biglayout,fragmentBorrow);
                     fragmentTransaction.commit();
                 }
                 break;

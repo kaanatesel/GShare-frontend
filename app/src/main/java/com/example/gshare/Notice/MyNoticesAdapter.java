@@ -44,7 +44,7 @@ public class MyNoticesAdapter extends ArrayAdapter<Notice> {
             TextView itemName = (TextView) row.findViewById(R.id.textViewItemName);
             TextView itemDay = (TextView) row.findViewById(R.id.daysTextViewTransacted);
             itemName.setText(noticesTransacted.get(position).getName());
-            itemDay.setText(noticesTransacted.get(position).getDay());
+            itemDay.setText(noticesTransacted.get(position).getDay() + "");
 
         }else{
             if(noticesTransacted.get(position).getNoticeType() == Notice.LEND_NOTICE) {
@@ -57,7 +57,7 @@ public class MyNoticesAdapter extends ArrayAdapter<Notice> {
             TextView itemNameDeletable = (TextView) row.findViewById(R.id.textViewDeletable);
             TextView itemDayDeletable = (TextView) row.findViewById(R.id.daysTextViewDeletable);
             itemNameDeletable.setText(noticesTransacted.get(position).getName());
-            itemDayDeletable.setText(noticesTransacted.get(position).getDay());
+            itemDayDeletable.setText(noticesTransacted.get(position).getDay() + "");
             ImageButton deleteButton = (ImageButton) row.findViewById(R.id.deleteNoticeButton);
             deleteButton.setOnClickListener(new View.OnClickListener(){
                 @Override

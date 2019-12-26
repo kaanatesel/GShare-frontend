@@ -23,6 +23,7 @@ import com.example.gshare.CallUserByEmail;
 import com.example.gshare.Chat.ChatFragment;
 import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageFragment;
+import com.example.gshare.ModelClasses.Location.LocationG;
 import com.example.gshare.ModelClasses.NoticeModel.Notice;
 import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.Profile.ProfileFragment;
@@ -90,7 +91,13 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         //gView.setText(DBHelper.getUser(userName).getG() + "");
         gView.setText("100");
 
-        notices = DBHelper.getLendingNotices();
+        //notices = DBHelper.getLendingNotices();
+        notices = new ArrayList<Notice>();
+        notices.add( new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
+                100, new LocationG()));
+        notices.add( new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
+                100, new LocationG()));
+
         adapter = new MyNoticesAdapter(c, notices);
         listView.setAdapter(adapter);
 

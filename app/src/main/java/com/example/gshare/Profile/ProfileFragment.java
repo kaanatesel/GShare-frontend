@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.R;
 
+import java.util.ArrayList;
+
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     User user;
@@ -32,14 +35,16 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     TextView nameAndSurname;
     TextView username;
 
-    Button home;
-    Button map;
-    Button noticeNav;
-    Button chat;
-    Button profile;
-    Notice notices;
+    ImageButton home;
+    ImageButton map;
+    ImageButton noticeNav;
+    ImageButton chat;
+    ImageButton profile;
 
+    ListView listView;
+        ArrayList<Notice> notices;
     String email;
+    ProfileTransactionAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,14 +66,20 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         nameAndSurname = (TextView) view.findViewById(R.id.nameTextView);
         username = (TextView) view.findViewById(R.id.usernameTextView);
 
-        home = view.findViewById(R.id.navigation_home);
-        map = view.findViewById(R.id.navigation_Map);
-        noticeNav = view.findViewById(R.id.navigation_Notices);
-        chat = view.findViewById(R.id.navigation_Chat);
-        profile = view.findViewById(R.id.navigation_Profilet);
+        home = view.findViewById(R.id.navigationHome);
+        map = view.findViewById(R.id.navigationMap);
+        noticeNav = view.findViewById(R.id.navigationMyNotices);
+        chat = view.findViewById(R.id.navigationChat);
+        profile = view.findViewById(R.id.navigationProfile);
 
         //username.setText(user.getUserName());
         //nameAndSurname.setText(user.getNameAndSurname());
+
+        //notices = getTransactions(user);
+        //listView = (ListView) view.findViewById(R.id.listViewProfile);
+        //adapter = new ProfileTransactionAdapter(getContext(),notices);
+        //listView.setAdapter(adapter);
+
 
         editButton.setOnClickListener(this);
 
@@ -91,7 +102,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 profileEditFragment.show(getFragmentManager(), "EditPopUp");
                 break;
 
-            case R.id.navigation_home:
+            case R.id.navigationHome:
 
                 HomePageFragment fragment1 = new HomePageFragment();
                 fragment1.setArguments(bundle);
@@ -100,7 +111,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction1.commit();
                 break;
 
-            case R.id.navigation_Map:
+            case R.id.navigationMap:
 
                 HomePageFragment fragment2 = new HomePageFragment();
                 fragment2.setArguments(bundle);
@@ -109,7 +120,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction2.commit();
                 break;
 
-            case R.id.navigation_Notices:
+            case R.id.navigationMyNotices:
 
 
                 MyNoticesFragment fragment3 = new MyNoticesFragment();
@@ -119,7 +130,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction3.commit();
                 break;
 
-            case R.id.navigation_Chat:
+            case R.id.navigationChat:
 
                 ChatFragment fragment4 = new ChatFragment();
                 fragment4.setArguments(bundle);
@@ -128,7 +139,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction4.commit();
                 break;
 
-            case R.id.navigation_Profilet:
+            case R.id.navigationProfile:
 
                 ProfileFragment fragment5 = new ProfileFragment();
                 fragment5.setArguments(bundle);

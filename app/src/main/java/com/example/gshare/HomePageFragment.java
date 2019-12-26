@@ -88,11 +88,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     ArrayList<ProductHomeListDisplayModel> notices;
     char sortMode;
 
-    Button home;
-    Button map;
-    Button noticeNav;
-    Button chat;
-    Button profile;
+    ImageButton home;
+    ImageButton map;
+    ImageButton noticeNav;
+    ImageButton chat;
+    ImageButton profile;
 
     ListView listView = null;
     Context c = null;
@@ -104,8 +104,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home_page,container,false);
-        BottomNavigationView view1 = getActivity().findViewById(R.id.nav_view);
-        view1.clearAnimation();
+
+
         httpClient = new OkHttpClient();
         sortMode = LENDING_MODE;
 
@@ -120,11 +120,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         addNoticeButton = view.findViewById(R.id.addNoticeButton);
         gText = view.findViewById(R.id.moneyTextView);
 
-        home = view.findViewById(R.id.navigation_home);
-        map = view.findViewById(R.id.navigation_Map);
-        noticeNav = view.findViewById(R.id.navigation_Notices);
-        chat = view.findViewById(R.id.navigation_Chat);
-        profile = view.findViewById(R.id.navigation_Profilet);
+        home = view.findViewById(R.id.navigationHome);
+        map = view.findViewById(R.id.navigationMap);
+        noticeNav = view.findViewById(R.id.navigationMyNotices);
+        chat = view.findViewById(R.id.navigationChat);
+        profile = view.findViewById(R.id.navigationProfile);
 
 
         addNoticeButton.setOnClickListener(this);
@@ -265,9 +265,14 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-
-
-        bundle.putBoolean("ACCEPTED",false);
+        //
+        //
+        //
+        //
+        //
+        if(bundle != null) {
+            bundle.putBoolean("ACCEPTED", false);
+        }
         return view;
 
     }
@@ -434,7 +439,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
 
 
-            case R.id.navigation_home:
+            case R.id.navigationHome:
 
                 HomePageFragment fragment1 = new HomePageFragment();
                 fragment1.setArguments(bundle);
@@ -443,7 +448,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction1.commit();
                 break;
 
-            case R.id.navigation_Map:
+            case R.id.navigationMap:
 
                 HomePageFragment fragment2 = new HomePageFragment();
                 fragment2.setArguments(bundle);
@@ -452,7 +457,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction2.commit();
                 break;
 
-            case R.id.navigation_Notices:
+            case R.id.navigationMyNotices:
 
 
                 MyNoticesFragment fragment3 = new MyNoticesFragment();
@@ -462,7 +467,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction3.commit();
                 break;
 
-            case R.id.navigation_Chat:
+            case R.id.navigationChat:
 
                 ChatFragment fragment4 = new ChatFragment();
                 fragment4.setArguments(bundle);
@@ -471,7 +476,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 fragmentTransaction4.commit();
                 break;
 
-            case R.id.navigation_Profilet:
+            case R.id.navigationProfile:
 
                 ProfileFragment fragment5 = new ProfileFragment();
                 fragment5.setArguments(bundle);

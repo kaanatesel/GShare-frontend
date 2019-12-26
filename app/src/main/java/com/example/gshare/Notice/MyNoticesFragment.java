@@ -137,25 +137,8 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
                 catch (Exception e){
                     e.printStackTrace();
                 }
-
-        switch (v.getId()){
-            case R.id.lendingButton:
-                try {
-                    notices = getUserNotices(CallUserByEmail.call(email), 'L');
-                }
-                catch( Exception e ){
-                    e.printStackTrace();
-                }
                 break;
-            case R.id.borrowingButton:
-                try {
-                    notices = getUserNotices(CallUserByEmail.call(email), 'B');
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
 
-                break;
             case R.id.navigationHome:
                 HomePageFragment fragment1 = new HomePageFragment();
                 fragment1.setArguments(bundle);
@@ -200,7 +183,7 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
 
         }
 
-    }}
+    }
 
 
 

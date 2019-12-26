@@ -145,6 +145,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
         }
 
         HomePageFragment homePageFragment = new HomePageFragment();
+        getActivity().setContentView(R.layout.blank_layout);
         homePageFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_layout, homePageFragment);

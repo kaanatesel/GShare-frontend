@@ -83,7 +83,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         editButton.setOnClickListener(this);
 
-        home.setOnClickListener(this);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         map.setOnClickListener(this);
         noticeNav.setOnClickListener(this);
         chat.setOnClickListener(this);
@@ -94,7 +99,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Bundle bundle = getArguments();
+        Bundle bundle = new Bundle();
+        bundle.putString("email",email);
         switch (v.getId()) {
             case R.id.editProfileButton:
                 ProfileEditFragment profileEditFragment = new ProfileEditFragment();

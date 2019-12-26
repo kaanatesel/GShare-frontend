@@ -11,10 +11,15 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
+/**A utility class for db connection
+ * 
+ * 
+ */
 public class NoticePusher {
 
-
+	/**Takes notice object and pushes to database
+	 * @param notice
+	 */ 
     public static void push(Notice notice) throws IOException {
 
         if(notice.getNoticeType() == Notice.BORROW_NOTICE){

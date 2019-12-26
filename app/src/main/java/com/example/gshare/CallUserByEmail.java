@@ -13,8 +13,16 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
 
+/**A utility class for DataBase user object call
+ * 
+ */ 
 public class CallUserByEmail {
 
+		/**Calls user object from DB
+		 * @param email user email
+		 * @return user User Object
+		 */ 
+	
         public static User call(String email) throws IOException, JSONException {
 
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

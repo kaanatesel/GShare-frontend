@@ -11,12 +11,16 @@ import org.json.JSONObject;
 import java.io.*;
 import okhttp3.*;
 
-/**Nihayet çalışan bir class
- *
- *
+/** A utility class for DataBase Connection
+ * @author Tuna Dalbeler
+ * @date 26.12.19
  */
 public class CallUserByID {
 
+    /**Calls user data from DataBase
+     * @param id userid
+     * @return user User objects
+     */ 
     public static User call(int id) throws IOException, JSONException {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

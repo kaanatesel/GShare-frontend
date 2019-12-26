@@ -88,9 +88,7 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
         adapter = new MyNoticesAdapter(c, notices);
         listView.setAdapter(adapter);
 
-        gView.setText( DBHelper.getUser(userName).getG() + "" );
 
-        notices = DBHelper.getLendingNotices();
 
 
 

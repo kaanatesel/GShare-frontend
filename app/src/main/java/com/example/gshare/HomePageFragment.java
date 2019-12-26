@@ -33,6 +33,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import com.example.gshare.Chat.ChatFragment;
 import com.example.gshare.ModelClasses.Location.LocationG;
 
 
@@ -48,8 +49,10 @@ import com.example.gshare.Notice.ContactYellowNoticeFragment;
 import com.example.gshare.Notice.CreatePurpleNoticeFragment;
 import com.example.gshare.Notice.CreateYellowNoticeFragment;
 import com.example.gshare.Notice.ListViewAdapter;
+import com.example.gshare.Notice.MyNoticesFragment;
 import com.example.gshare.Notice.ProductHomeListDisplayModel;
 import com.example.gshare.Popup.PopupSortByFragment;
+import com.example.gshare.Profile.ProfileFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.JsonObject;
 
@@ -82,10 +85,17 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     ArrayList<ProductHomeListDisplayModel> notices;
     char sortMode;
 
+    Button home;
+    Button map;
+    Button noticeNav;
+    Button chat;
+    Button profile;
+
     ListView listView = null;
     Context c = null;
 
     ListViewAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -106,10 +116,24 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         addNoticeButton = view.findViewById(R.id.addNoticeButton);
         gText = view.findViewById(R.id.moneyTextView);
 
+        home = view.findViewById(R.id.navigation_home);
+        map = view.findViewById(R.id.navigation_Map);
+        noticeNav = view.findViewById(R.id.navigation_Notices);
+        chat = view.findViewById(R.id.navigation_Chat);
+        profile = view.findViewById(R.id.navigation_Profilet);
+
+
         addNoticeButton.setOnClickListener(this);
         borrowModeButton.setOnClickListener(this);
         lendModeButton.setOnClickListener(this);
         sortButton.setOnClickListener(this);
+
+        home.setOnClickListener(this);
+        map.setOnClickListener(this);
+        noticeNav.setOnClickListener(this);
+        chat.setOnClickListener(this);
+        profile.setOnClickListener(this);
+
 
         // just setting colors and fonts
         lendModeButton.setBackgroundColor(Color.parseColor("#FFFF00") );
@@ -330,13 +354,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v ){
+        Bundle bundle = new Bundle();
+        bundle.putString("email",email);
         switch ( v.getId() ){
             case R.id.addNoticeButton:
                 if( sortMode == LENDING_MODE ){
 
-                    Bundle bundle = new Bundle();
-                    bundle.putString("userName",user.getUserName());
-                    bundle.putString("password",user.getPassword());
                     CreateYellowNoticeFragment fragmentLend = new CreateYellowNoticeFragment();
                     fragmentLend.setArguments(bundle);
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -344,9 +367,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     fragmentTransaction.commit();
                 }
                 if( sortMode == BORROWING_MODE ){
-                    Bundle bundle = new Bundle();
-                    bundle.putString("userName",user.getUserName());
-                    bundle.putString("password",user.getPassword());
                     CreatePurpleNoticeFragment fragmentBorrow = new CreatePurpleNoticeFragment();
                     fragmentBorrow.setArguments(bundle);
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -356,9 +376,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.sortby_button:
-                Bundle bundle = new Bundle();
-                bundle.putString("userName",user.getUserName());
-                bundle.putString("password",user.getPassword());
                 PopupSortByFragment popupSortByFragment = new PopupSortByFragment();
                 popupSortByFragment.setArguments(bundle);
                 popupSortByFragment.show( getFragmentManager(), "SortPopUp");
@@ -407,6 +424,56 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 borrowModeButton.setTypeface(null , Typeface.NORMAL);
                 //CONNECT TO THE ADAPTER
                 break;
+
+
+
+
+            case R.id.navigation_home:
+
+                HomePageFragment fragment1 = new HomePageFragment();
+                fragment1.setArguments(bundle);
+                FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction1.replace(R.id.main_layout, fragment1);
+                fragmentTransaction1.commit();
+                break;
+
+            case R.id.navigation_Map:
+
+                HomePageFragment fragment2 = new HomePageFragment();
+                fragment2.setArguments(bundle);
+                FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction2.replace(R.id.main_layout, fragment2);
+                fragmentTransaction2.commit();
+                break;
+
+            case R.id.navigation_Notices:
+
+
+                MyNoticesFragment fragment3 = new MyNoticesFragment();
+                fragment3.setArguments(bundle);
+                FragmentTransaction fragmentTransaction3 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction3.replace(R.id.main_layout, fragment3);
+                fragmentTransaction3.commit();
+                break;
+
+            case R.id.navigation_Chat:
+
+                ChatFragment fragment4 = new ChatFragment();
+                fragment4.setArguments(bundle);
+                FragmentTransaction fragmentTransaction4 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction4.replace(R.id.main_layout, fragment4);
+                fragmentTransaction4.commit();
+                break;
+
+            case R.id.navigation_Profilet:
+
+                ProfileFragment fragment5 = new ProfileFragment();
+                fragment5.setArguments(bundle);
+                FragmentTransaction fragmentTransaction5 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction5.replace(R.id.main_layout, fragment5);
+                fragmentTransaction5.commit();
+                break;
+
         }
 
     }
@@ -427,6 +494,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         }
         return list;
     }
+
 
 
 

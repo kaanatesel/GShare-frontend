@@ -48,7 +48,7 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_noticecontactyellow, container, false);
         Bundle bundle = getArguments();
@@ -56,7 +56,6 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
             noticeId = bundle.getInt("notice_id");
             email = bundle.getString("email");
         }
-
         notice = new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
                 100, new LocationG());//DBHelper.getNotice(noticeId);
 
@@ -114,6 +113,7 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
             case R.id.backButton:
                 Bundle bundle2;
                 bundle2 = getArguments();
+                getActivity().setContentView(R.layout.blank_layout);
                 HomePageFragment homePageFragment = new HomePageFragment();
                 homePageFragment.setArguments(bundle2);
                 FragmentTransaction fragmentManagerForHomePage = getActivity().getSupportFragmentManager().beginTransaction();
@@ -124,10 +124,13 @@ public class ContactYellowNoticeFragment extends Fragment implements View.OnClic
                 Bundle bundle3;
                 bundle3 = getArguments();
                 bundle3.putString("userEmail",notice.getNoticeOwner().getEmail());
+                getActivity().setContentView(R.layout.blank_layout);
                 ProfilePublicFragment profilePublicFragment = new ProfilePublicFragment();
                 profilePublicFragment.setArguments(bundle3);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_biglayout, profilePublicFragment);
+
+                fragmentTransaction.replace(R.id.main_layout, profilePublicFragment);
+                fragmentTransaction.commit();
                 break;
 
         }

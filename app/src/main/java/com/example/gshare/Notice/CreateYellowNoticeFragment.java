@@ -125,22 +125,22 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
     public void onClick(View v) {//FIX AT FINAL
         Bundle bundle = getArguments();
 
-        /*
+
         if (v.getId() == R.id.PublishButtonYellow) {
             Notice notice = null;
             try {
                 notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), category,
-                        DBHelper.getUser(getArguments().getString("userName"), getArguments().getString("password")), Integer.parseInt(gValue.getText().toString()),
+                        DBHelper.getUser(getArguments().getString("email") ) , Integer.parseInt(gValue.getText().toString()),
                         new LocationG());
             } catch (Exception e) {
                 Toast.makeText(getActivity(), "Wrong values please try again", Toast.LENGTH_LONG).show();
             }
             try {
-                DBHelper.createBorrowingNotice(notice);
+                //NoticePusher.push( notice );
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }*/
+        }
 
         HomePageFragment homePageFragment = new HomePageFragment();
         homePageFragment.setArguments(bundle);

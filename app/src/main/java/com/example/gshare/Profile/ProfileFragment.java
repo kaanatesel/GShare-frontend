@@ -83,12 +83,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         editButton.setOnClickListener(this);
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        home.setOnClickListener(this);
         map.setOnClickListener(this);
         noticeNav.setOnClickListener(this);
         chat.setOnClickListener(this);

@@ -58,12 +58,13 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 Bundle bundle = new Bundle();
                 bundle.putString("email",email);
                 if(chats.get(position).getStatus()==Chat.NOT_AGREED){
-    getActivity().setContentView(R.layout.fullyblanklayout);
-                    ChatNotAgreedFragment chatNotAgreedFragment = new ChatNotAgreedFragment();
-                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-                    chatNotAgreedFragment.setArguments(bundle);
-                    fragmentTransaction.replace(R.id.main_biglayout,chatNotAgreedFragment);
-                    fragmentTransaction.commit();
+                    getActivity().setContentView(R.layout.fullyblanklayout);
+                    ChatNotAgreedFragment fragmentChatNotAgreed = new ChatNotAgreedFragment();
+                    fragmentChatNotAgreed.setArguments(bundle);
+                    FragmentTransaction fragmentManagerForNotAgreedChat = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentManagerForNotAgreedChat.replace(R.id.main_biglayout, fragmentChatNotAgreed);
+                    fragmentManagerForNotAgreedChat.commit();
+
                 }
                 if(chats.get(position).getStatus()==Chat.AGREED){
                     getActivity().setContentView(R.layout.fullyblanklayout);

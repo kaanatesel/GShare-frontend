@@ -32,8 +32,7 @@ public class NoticeEditBorrowingFragment extends Fragment implements View.OnClic
     Button applyButton;
     ImageButton backButton;
 
-    String userName;
-    String password;
+    String email;
 
     //Category Buttons
     ImageButton category1;
@@ -53,8 +52,7 @@ public class NoticeEditBorrowingFragment extends Fragment implements View.OnClic
         Bundle bundle = getArguments();
 
         noticeId = bundle.getInt("notice_id");
-        userName = bundle.getString("userName");
-        password = bundle.getString("password");
+        email = bundle.getString("email");
 
         notice =  new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 )
                 ,new LocationG());//DBHelper.getNotice(noticeId);

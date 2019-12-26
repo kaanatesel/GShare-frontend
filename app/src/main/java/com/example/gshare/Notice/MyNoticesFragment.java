@@ -126,9 +126,19 @@ public class MyNoticesFragment extends Fragment implements View.OnClickListener 
                     transaction.commit();
 
 
+
                 }
             }
         });
+
+        //notices = DBHelper.getLendingNotices();
+        notices = new ArrayList<Notice>();
+        notices.add( new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
+                100, new LocationG()));
+        notices.add( new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
+                100, new LocationG()));
+
+
         adapter = new MyNoticesAdapter(c, notices);
         listView.setAdapter(adapter);
 

@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.CallUserByEmail;
 import com.example.gshare.ChatAdapter;
 import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageActivity;
@@ -40,7 +41,6 @@ public class ChatAgreedFragment extends Fragment {
     ListView listView;
     ChatAdapter chatAdapter;
     String textBeSend;
-    ArrayList<String> stringMessages;
 
     EditText editText;
     EditText editG;
@@ -48,6 +48,7 @@ public class ChatAgreedFragment extends Fragment {
     TextView noticeName;
     Button userNumaAndSurname;
     TextView timeLeft;
+    TextView gText;
 
     Notice chatNotice;
     Chat chat;
@@ -65,24 +66,35 @@ public class ChatAgreedFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_chat_agreed, container, false);
 
         email = getArguments().getString("email");
+        final User  userTry = new User("OnurKorkmaz", "qwerty", "123456", "qwerty", 6);
+        final User  userTry2 = new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 );
         noticeId = getArguments().getInt("noticeId");
 
         editG = view.findViewById(R.id.gEditText);
         editDay = view.findViewById(R.id.daysEditText);
         editText = view.findViewById(R.id.editText);
         noticeName = view.findViewById(R.id.itemName);
-        userNumaAndSurname = view.findViewById(R.id.nameButton);
+        userNumaAndSurname = view.findViewById(R.id.nameButton2);
         timeLeft = view.findViewById(R.id.timeLeftTextView);
+        gText = view.findViewById(R.id.moneyTextView);
 
         //chat = DBHelper.getChat();
-        chatNotice = chat.getNotice();// new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                //100,new LocationG());DBHelper.getNotice(noticeId);
+        chatNotice = new Notice("bad",5,"dasdfa",0,userTry,
+                100,new LocationG());//DBHelper.getNotice(noticeId);
+        chat = new Chat(chatNotice,chatNotice.getNoticeOwner(),userTry2);
+        chat.setStatus(Chat.AGREED);
 
 
         noticeName.setText(chatNotice.getName());
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
         timeLeft.setText( chatNotice.computeTimeLeftHours() + "" );
+        try {
+            gText.setText(CallUserByEmail.call(email).getG() + "");
+        }
+        catch (Exception e ){
+            e.printStackTrace();
+        }
 
         if( chatNotice.computeTimeLeftForMilliSeconds() <= 0  ){
             Bundle bundle = new Bundle();
@@ -96,41 +108,57 @@ public class ChatAgreedFragment extends Fragment {
             fragmentTransaction.commit();
         }
 
-        if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
-            userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
-            recieverUser = chat.getNoticeOwner();
-            if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
-                itemOwner = chat.getCustomer();
-            }
-            if(chat.getNotice().getNoticeType()==Notice.LEND_NOTICE){
-                itemOwner = chat.getNoticeOwner();
+        try {
+            if(userTry.equals(chat.getCustomer())){//if (CallUserByEmail.call(email).equals(chat.getCustomer())) {
+                userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
+                recieverUser = chat.getNoticeOwner();
+                if (chat.getNotice().getNoticeType() == Notice.BORROW_NOTICE) {
+                    itemOwner = chat.getCustomer();
+                }
+                if (chat.getNotice().getNoticeType() == Notice.LEND_NOTICE) {
+                    itemOwner = chat.getNoticeOwner();
+                }
             }
         }
-        if( DBHelper.getUser(email).equals(chat.getNoticeOwner() ) ) {
-            userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
-            recieverUser = chat.getCustomer();
-            if(chat.getNotice().getNoticeType()== Notice.LEND_NOTICE){
-                itemOwner = chat.getNoticeOwner();
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+        try {
+            if(userTry.equals(chat.getNoticeOwner())){//if (CallUserByEmail.call(email).equals(chat.getNoticeOwner())) {
+                userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
+                recieverUser = chat.getCustomer();
+                if (chat.getNotice().getNoticeType() == Notice.LEND_NOTICE) {
+                    itemOwner = chat.getNoticeOwner();
+                }
+                if (chat.getNotice().getNoticeType() == Notice.BORROW_NOTICE) {
+                    itemOwner = chat.getCustomer();
+                }
             }
-            if(chat.getNotice().getNoticeType()==Notice.BORROW_NOTICE){
-                itemOwner = chat.getCustomer();
-            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
 
         Button terminateButton = (Button) view.findViewById(R.id.terminateButton);
         terminateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (DBHelper.getUser(email).equals(itemOwner)) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("email", email);
-                    bundle.putInt("noticeId", noticeId);
-                    chat.setStatus(Chat.RETURNED);
-                    chatNotice.finish();
-                    ChatDoneFragment chatDoneFragment = new ChatDoneFragment();
-                    chatDoneFragment.setArguments(bundle);
-                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.replace( R.id.main_biglayout, chatDoneFragment);
+                try {
+                    if(userTry.equals(itemOwner)){//if (CallUserByEmail.call(email).equals(itemOwner)) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("email", email);
+                        bundle.putInt("noticeId", noticeId);
+                        chat.setStatus(Chat.RETURNED);
+                        chatNotice.finish();
+                        ChatDoneFragment chatDoneFragment = new ChatDoneFragment();
+                        chatDoneFragment.setArguments(bundle);
+                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.main_biglayout, chatDoneFragment);
+                    }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
                 }
             }
         });
@@ -140,37 +168,46 @@ public class ChatAgreedFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
 
-                if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
-                    bundle.putString("personUserName", chat.getNoticeOwner().getUserName());
-                    bundle.putString("personPassword", chat.getNoticeOwner().getPassword());
+                try {
+                    if(userTry.equals(chat.getCustomer())){//if (CallUserByEmail.call(email).equals(chat.getCustomer())) {
+                        bundle.putString("userEmail", chat.getNoticeOwner().getEmail());
+                    }
+                    if(userTry.equals(chat.getNoticeOwner())){//if (CallUserByEmail.call(email).equals(chat.getNoticeOwner())) {
+                        bundle.putString("userEmail", chat.getCustomer().getEmail());
+
+                    }
                 }
-                if( DBHelper.getUser(email).equals(chat.getNoticeOwner()) ) {
-                    bundle.putString("personUserName", chat.getCustomer().getUserName());
-                    bundle.putString("personPassword", chat.getCustomer().getPassword());
+                catch (Exception e){
+                    e.printStackTrace();
                 }
                 ProfilePublicFragment publicProfile = new ProfilePublicFragment();
                 publicProfile.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_layout, publicProfile);
+                fragmentTransaction.commit();
 
             }
         });
 
 
         listView = (ListView) view.findViewById(R.id.chatListView);
-        listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
+        listView.setAdapter( new ChatAdapter(a , chat.getAllMessage(), email) );
         ImageButton buttonSend = (ImageButton) view.findViewById(R.id.imageButtonSend);
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
-                Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email));
+                Message message = null;
+                try {
+                    message = new Message(textBeSend, recieverUser, userTry);//CallByUserEmail.call(email)
+                }
+                catch (Exception e ){
+                    e.printStackTrace();
+                }
                 textBeSend = message.getMessage() + "\t" + " ( " + message.getCurrentTime() + " ) ";
                 message.setMsg(textBeSend);
 
                 if (!textBeSend.matches("")) {
-                    //Message message = new Message(textBeSend, recieverUser, DBHelper.getUser(email) );
-                    //stringMessages.add(message.toString());
                     chat.getAllMessage().add(message);
                     listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
                     editText.setText("");

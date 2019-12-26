@@ -57,21 +57,19 @@ public class ChatNotAgreedFragment extends Fragment {
     ListView listView;
     ChatAdapter chatAdapter;
     String textBeSend;
-    ArrayList<String> stringMessages;
-    String user;
-    //String user;
-    String notice;
 
     EditText editText;
     EditText editG;
     EditText editDay;
     TextView noticeName;
     Button userNumaAndSurname;
+    TextView gText;
 
     Notice chatNotice;
     Chat chat;
     User recieverUser;
     User itemOwner;
+    User userTry;
 
     String email;
     int noticeId;
@@ -84,26 +82,17 @@ public class ChatNotAgreedFragment extends Fragment {
         a.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View view = inflater.inflate(R.layout.fragment_chat_not_agreed, container, false);
 
-
         httpClient = new OkHttpClient();
         email = getArguments().getString("email");
-        /*
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));
-        chatFragmentTry.add(new ChatTry("message 1", false));
-        chatFragmentTry.add(new ChatTry("message 2", true));*/
 
-        final User  userTry = new User("OnurKorkmaz", "qwerty", "123456", "qwerty", 6);
+        try {
+            userTry = CallUserByEmail.call(email);
+        }
+        catch(Exception e ){
+            e.printStackTrace();
+            Toast.makeText(getActivity(),"fasdfasdf",Toast.LENGTH_LONG).show();
+        }
+        final User userTry = new User("OnurKorkmaz", "qwerty", "123456", "qwerty", 6);
         final User  userTry2 = new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 );
         noticeId = getArguments().getInt("noticeId");
 
@@ -111,18 +100,25 @@ public class ChatNotAgreedFragment extends Fragment {
         editDay = view.findViewById(R.id.daysEditText);
         editText = view.findViewById(R.id.editText);
         noticeName = view.findViewById(R.id.itemName);
-        userNumaAndSurname = view.findViewById(R.id.nameButton);
+        userNumaAndSurname = (Button)view.findViewById(R.id.nameButton);
+        gText = view.findViewById(R.id.moneyTextView);
 
         //chat = DBHelper.getChat();
         chatNotice = new Notice("bad",5,"dasdfa",0,userTry,
                 100,new LocationG());//DBHelper.getNotice(noticeId);
-        chat = new Chat(chatNotice,chatNotice.getNoticeOwner(),userTry);
+        chat = new Chat(chatNotice,chatNotice.getNoticeOwner(),userTry2);
         chat.setStatus(Chat.NOT_AGREED);
         itemOwner = userTry;
 
         noticeName.setText(chatNotice.getName());
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
+        try {
+            gText.setText(userTry.getG() + "");
+        }
+        catch (Exception e ){
+            e.printStackTrace();
+        }
 /*
         try {
             if (CallUserByEmail.call(email).equals(chat.getCustomer())) {
@@ -179,28 +175,33 @@ public class ChatNotAgreedFragment extends Fragment {
         agreeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (userTry.equals(itemOwner)) {//if (DBHelper.getUser(email).equals(itemOwner)) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("email", email);
-                    bundle.putInt("noticeId", noticeId);
-                    chat.setStatus(Chat.AGREED);
+                try {//For fixed version
+                    if (userTry.equals(itemOwner)) {//if (CallUserByEmail.call(email).equals(itemOwner)) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("email", email);
+                        bundle.putInt("noticeId", noticeId);
+                        chat.setStatus(Chat.AGREED);
 
-                    if (chatNotice.getNoticeType() == Notice.BORROW_NOTICE) {
-                        bundle.putInt("g", chatNotice.getG());
-                        chatNotice.setDay(Integer.parseInt(editDay.getText().toString()));
-                        //DBHelper.updateNotice(chatNotice);
-                    } else {
-                        try {
-                            chatNotice.setG(Integer.parseInt(editG.getText().toString()));
-                        } catch (IllegalArgumentException e) {
-                            Toast.makeText(getActivity(), "You can't make g value higher", Toast.LENGTH_SHORT).show();
+                        if (chatNotice.getNoticeType() == Notice.BORROW_NOTICE) {
+                            bundle.putInt("g", chatNotice.getG());
+                            chatNotice.setDay(Integer.parseInt(editDay.getText().toString()));
+                            //DBHelper.updateNotice(chatNotice);
+                        } else {
+                            try {
+                                chatNotice.setG(Integer.parseInt(editG.getText().toString()));
+                            } catch (IllegalArgumentException e) {
+                                Toast.makeText(getActivity(), "You can't make g value higher", Toast.LENGTH_SHORT).show();
+                            }
+                            chatNotice.setDay(Integer.parseInt(editDay.getText().toString()));
+                            //DBHelper.updateNotice(chatNotice);
                         }
-                        chatNotice.setDay(Integer.parseInt(editDay.getText().toString()));
-                        //DBHelper.updateNotice(chatNotice);
+                        PopupDoYouAgreeFragment agreePopUp = new PopupDoYouAgreeFragment();
+                        agreePopUp.setArguments(bundle);
+                        agreePopUp.show(getFragmentManager(), "AgreePopUp");
                     }
-                    PopupDoYouAgreeFragment agreePopUp = new PopupDoYouAgreeFragment();
-                    agreePopUp.setArguments(bundle);
-                    agreePopUp.show(getFragmentManager(), "AgreePopUp");
+                }
+                catch(Exception e ){
+                    e.printStackTrace();
                 }
             }
         });
@@ -210,18 +211,28 @@ public class ChatNotAgreedFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
 
-                if( userTry.equals(chat.getCustomer()) ) {//if( DBHelper.getUser(email).equals(chat.getCustomer()) ) {
-                    bundle.putString("personUserName", chat.getNoticeOwner().getUserName());
-                    bundle.putString("personPassword", chat.getNoticeOwner().getPassword());
+                try {
+                    if (userTry.equals(chat.getCustomer())) {//if( CallUserByEmail.call(email).equals(chat.getCustomer()) ) {
+                        bundle.putString("userEmail", chat.getNoticeOwner().getEmail());
+                    }
                 }
-                if( userTry.equals(chat.getNoticeOwner()) ) {// if( DBHelper.getUser(email).equals(chat.getNoticeOwner()) ) {
-                    bundle.putString("personUserName", chat.getCustomer().getUserName());
-                    bundle.putString("personPassword", chat.getCustomer().getPassword());
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+                try {
+                    if (userTry.equals(chat.getNoticeOwner())) {// if( CallUserByEmail.call(email).equals(chat.getNoticeOwner()) ) {
+                        bundle.putString("userEmail", chat.getCustomer().getEmail());
+                    }
+                }
+                catch (Exception e ){
+                    e.printStackTrace();
                 }
                 ProfilePublicFragment publicProfile = new ProfilePublicFragment();
                 publicProfile.setArguments(bundle);
+                getActivity().setContentView(R.layout.blank_layout);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_layout, publicProfile);
+                fragmentTransaction.commit();
 
             }
         });
@@ -234,12 +245,17 @@ public class ChatNotAgreedFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 textBeSend = editText.getText().toString();
-                Message message = new Message(textBeSend, recieverUser, userTry);//DBHelper.getUser(email)
+                Message message = null;
+                try {
+                    message = new Message(textBeSend, recieverUser, userTry);//CallByUserEmail.call(email)
+                }
+                catch (Exception e ){
+                    e.printStackTrace();
+                }
                 textBeSend = message.getMessage() + "\n" + " ( " + message.getCurrentTime() + " ) ";
                 message.setMsg(textBeSend);
 
                 if (!textBeSend.matches("")) {
-                    //stringMessages.add(message.toString());
                     chat.getAllMessage().add(message);
                     listView.setAdapter(new ChatAdapter(a, chat.getAllMessage(), email));
                     editText.setText("");

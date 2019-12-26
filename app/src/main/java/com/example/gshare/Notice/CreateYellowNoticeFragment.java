@@ -1,6 +1,7 @@
 package com.example.gshare.Notice;
 
 import android.os.Bundle;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.gshare.CallUserByEmail;
 import com.example.gshare.DBHelper;
 import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.Location.LocationG;
@@ -41,6 +43,8 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
     ImageButton category7;
     ImageButton category8;
 
+    String email;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,6 +58,9 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
         back = view.findViewById(R.id.backButton);
         addNotice.setOnClickListener(this);
         back.setOnClickListener(this);
+
+        Bundle bundle = getArguments();
+        email = bundle.getString("email");
 
         //Category buttons initialized
         category1 = (ImageButton) view.findViewById(R.id.transportButton);
@@ -131,7 +138,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
             Notice notice = null;
             try {
                 notice = new Notice(itemName.getText().toString(), Integer.parseInt(day.getText().toString()), note.getText().toString(), category,
-                        DBHelper.getUser(getArguments().getString("email") ) , Integer.parseInt(gValue.getText().toString()),
+                        CallUserByEmail.call(email)  , Integer.parseInt(gValue.getText().toString()),
                         new LocationG());
             } catch (Exception e) {
                 Toast.makeText(getActivity(), "Wrong values please try again", Toast.LENGTH_LONG).show();
@@ -145,6 +152,7 @@ public class CreateYellowNoticeFragment extends Fragment implements View.OnClick
         }
 
         HomePageFragment homePageFragment = new HomePageFragment();
+        getActivity().setContentView(R.layout.blank_layout);
         homePageFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_layout, homePageFragment);

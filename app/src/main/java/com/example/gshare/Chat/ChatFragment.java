@@ -13,11 +13,15 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gshare.ChatAdapter;
 import com.example.gshare.HomePageFragment;
 import com.example.gshare.ModelClasses.ChatModel.Chat;
+import com.example.gshare.ModelClasses.Location.LocationG;
+import com.example.gshare.ModelClasses.NoticeModel.Notice;
+import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.Notice.MyNoticesFragment;
 import com.example.gshare.Profile.ProfileFragment;
 import com.example.gshare.R;
@@ -31,8 +35,6 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     private ListView chatList;
     private UserChatsAdapter chatUsersAdapter;
     private ArrayList<Chat> chats;
-
-    private Bundle bundle;
     private String email;
     @Nullable
 //We will change ChatTry to Chat
@@ -41,11 +43,49 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         if(getArguments() != null) {
             email = getArguments().getString("email");
         }
+        final User userTry2 = new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 );
+        final User userTry = new User("OnurKorkmaz", "qwerty", "123456", "qwerty", 6);
+        Notice chatNotice = new Notice("bad",5,"dasdfa",0,userTry,
+                100,new LocationG());//DBHelper.getNotice(noticeId);
+        chats = new ArrayList<Chat>();
+        chats.add( new Chat(chatNotice,chatNotice.getNoticeOwner(),userTry2) );
+        chats.add( new Chat(chatNotice,chatNotice.getNoticeOwner(),userTry2) );
+        chats.add( new Chat(chatNotice,chatNotice.getNoticeOwner(),userTry2) );
         chatList = (ListView)view.findViewById(R.id.chatList);
         chatList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                Bundle bundle = new Bundle();
+                bundle.putString("email",email);
 
+                if(chats.get(0).getStatus()==Chat.NOT_AGREED){
+                    ChatNotAgreedFragment chatNotAgreedFragment = new ChatNotAgreedFragment();
+                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    chatNotAgreedFragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.main_layout,chatNotAgreedFragment);
+                    fragmentTransaction.commit();
+                }
+                if(chats.get(0).getStatus()==Chat.AGREED){
+                    ChatAgreedFragment chatAgreedFragment = new ChatAgreedFragment();
+                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    chatAgreedFragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.main_layout,chatAgreedFragment);
+                    fragmentTransaction.commit();
+                }
+                if(chats.get(0).getStatus()==Chat.RETURNED){
+                    ChatReturnedFragment chatReturnedFragment = new ChatReturnedFragment();
+                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    chatReturnedFragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.main_layout,chatReturnedFragment);
+                    fragmentTransaction.commit();
+                }
+                if(chats.get(0).getStatus()==Chat.WAITING_FOR_RETURN){
+                    ChatDoneFragment chatDoneFragment = new ChatDoneFragment();
+                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    chatDoneFragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.main_layout,chatDoneFragment);
+                    fragmentTransaction.commit();
+                }
             }
 
         });
@@ -89,9 +129,10 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("email",email);
         switch(view.getId()){
             case R.id.navigationHome:
-                bundle = getArguments();
                 HomePageFragment fragment1 = new HomePageFragment();
                 fragment1.setArguments(bundle);
                 FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
@@ -100,7 +141,6 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.navigationMap:
-                bundle = getArguments();
                 HomePageFragment fragment2 = new HomePageFragment();
                 fragment2.setArguments(bundle);
                 FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
@@ -109,7 +149,6 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.navigationMyNotices:
-                bundle = getArguments();
                 MyNoticesFragment fragment3 = new MyNoticesFragment();
                 fragment3.setArguments(bundle);
                 FragmentTransaction fragmentTransaction3 = getActivity().getSupportFragmentManager().beginTransaction();

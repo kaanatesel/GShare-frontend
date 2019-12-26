@@ -44,6 +44,7 @@ public class PopupDoYouAgreeFragment extends DialogFragment implements View.OnCl
 
 
        View view = inflater.inflate(R.layout.fragment_popup_doyouagree, container, false);
+       //chat = DBHelper.getChat();
 
        notice = new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                100,new LocationG());//DBHelper.getNotice( getArguments().getInt("noticeId"));
@@ -96,6 +97,7 @@ public class PopupDoYouAgreeFragment extends DialogFragment implements View.OnCl
             case R.id.dontAgreeButton:
                 ChatNotAgreedFragment fragment2 = new ChatNotAgreedFragment();
                 fragment2.setArguments(getArguments());
+                getActivity().setContentView(R.layout.blank_layout);
                 FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction2.replace(R.id.main_layout, fragment2);
                 fragmentTransaction2.commit();

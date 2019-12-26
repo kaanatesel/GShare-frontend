@@ -27,6 +27,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     String email;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +56,7 @@ public class HomePageActivity extends AppCompatActivity {
                                                                   switch (item.getItemId()) {
 
                                                                       case R.id.navigation_home:
-                                                                          Intent intent = new Intent(getApplicationContext(),HomePageActivity.class);
-                                                                          intent.putExtra("email",email);
-                                                                          startActivity(intent);
-
-
-                                                                         /* HomePageFragment fragment1 = new HomePageFragment();
+                                                                         HomePageFragment fragment1 = new HomePageFragment();
                                                                           fragment1.setArguments(bundle);
                                                                           FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
                                                                           fragmentTransaction1.replace(R.id.main_layout, fragment1);
@@ -68,11 +64,7 @@ public class HomePageActivity extends AppCompatActivity {
                                                                           return true;
 
                                                                       case R.id.navigation_Map:
-                                                                          Intent intent = new Intent(getApplicationContext(),HomePageActivity.class);
-                                                                          intent.putExtra("email",email);
-                                                                          startActivity(intent);
-
-                                                                          /*HomePageFragment fragment2 = new HomePageFragment();
+                                                                          HomePageFragment fragment2 = new HomePageFragment();
                                                                           fragment2.setArguments(bundle);
                                                                           FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
                                                                           fragmentTransaction2.replace(R.id.main_layout, fragment2);
@@ -80,23 +72,14 @@ public class HomePageActivity extends AppCompatActivity {
                                                                           return true;
 
                                                                       case R.id.navigation_Notices:
-
-                                                                          Intent intent = new Intent(getApplicationContext(),MyNoticesActivity.class);
-                                                                          intent.putExtra("email",email);
-                                                                          startActivity(intent);
-
-                                                                          /*MyNoticesFragment fragment3 = new MyNoticesFragment();
+                                                                          MyNoticesFragment fragment3 = new MyNoticesFragment();
                                                                           fragment3.setArguments(bundle);
                                                                           FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
                                                                           fragmentTransaction3.replace(R.id.main_layout, fragment3);
                                                                           fragmentTransaction3.commit();
                                                                           return true;
                                                                       case R.id.navigation_Chat:
-                                                                          Intent intent = new Intent(getApplicationContext(),ChatActivity.class);
-                                                                          intent.putExtra("email",email);
-                                                                          startActivity(intent);
-
-                                                                         /* ChatFragment fragment4 = new ChatFragment();
+                                                                          ChatFragment fragment4 = new ChatFragment();
                                                                           fragment4.setArguments(bundle);
                                                                           FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
                                                                           fragmentTransaction4.replace(R.id.main_layout, fragment4);
@@ -105,11 +88,7 @@ public class HomePageActivity extends AppCompatActivity {
 
 
                                                                       case R.id.navigation_Profilet:
-                                                                          Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
-                                                                          intent.putExtra("email",email);
-                                                                          startActivity(intent);
-
-                                                                          /*ProfileFragment fragment5 = new ProfileFragment();
+                                                                          ProfileFragment fragment5 = new ProfileFragment();
                                                                           fragment5.setArguments(bundle);
                                                                           FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
                                                                           fragmentTransaction5.replace(R.id.main_layout, fragment5);

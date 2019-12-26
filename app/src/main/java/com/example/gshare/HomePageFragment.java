@@ -52,7 +52,10 @@ import com.example.gshare.Notice.ListViewAdapter;
 import com.example.gshare.Notice.MyNoticesFragment;
 import com.example.gshare.Notice.ProductHomeListDisplayModel;
 import com.example.gshare.Popup.PopupSortByFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import com.example.gshare.Profile.ProfileFragment;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.JsonObject;
 
@@ -101,7 +104,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home_page,container,false);
-
+        BottomNavigationView view1 = getActivity().findViewById(R.id.nav_view);
+        view1.clearAnimation();
         httpClient = new OkHttpClient();
         sortMode = LENDING_MODE;
 
@@ -160,11 +164,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Bundle args = new Bundle();
                         args.putInt("noticeId",notices.get(position).getId());
-                        getActivity().setContentView(R.layout.fullyblanklayout);
+                        getActivity().setContentView(R.layout.blank_layout);
                         ContactYellowNoticeFragment fragmentForLending = new ContactYellowNoticeFragment();
                         fragmentForLending.setArguments(args);
                         FragmentTransaction fragmentTransactionForLending = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragmentTransactionForLending.replace(R.id.main_biglayout,fragmentForLending);
+                        fragmentTransactionForLending.replace(R.id.main_layout,fragmentForLending);
                         fragmentTransactionForLending.commit();
                     }
                 });
@@ -195,7 +199,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 //        100,new LocationG()));
                 // notices.add(new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
                 //       100,new LocationG()));
-                    
+
                 listView.setAdapter(adapter.update(notices));
 
             }
@@ -270,7 +274,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     public ArrayList<ProductHomeListDisplayModel> getNotices(){
         String url = "http://35.242.192.20/product/getAllActive/";
-        notices = new ArrayList<ProductHomeListDisplayModel>();
+        final ArrayList<ProductHomeListDisplayModel> noticesModel = new ArrayList<ProductHomeListDisplayModel>();
         Request request = new Request.Builder()
                 .url(url)
                 .header("Accept", "application/json")
@@ -297,7 +301,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                                 json.getInt("price"),
                                 json.getString("name"),
                                 json.getString("description"));
-                        notices.add(p1);
+                        noticesModel.add(p1);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -305,7 +309,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 Log.e("adapeter", mMessage);
             }
         });
-        return notices;
+        return noticesModel;
     }
    /*public ArrayList<ProductHomeListDisplayModel> getBorrowingNotices(){
         String url = "http://35.242.192.20/demand/getAllActive/";

@@ -22,8 +22,8 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".HomePageActivity"/>
         <activity android:name=".ChatActivity"/>
-        <activity android:name=".ProfileActivity"/>
-        <activity android:name=".MyNoticesActivty"/>
+        <activity android:name=".Profile.ProfileActivity"/>
+        <activity android:name=".MyNoticesActivity"/>
         <activity android:name=".Notice.ActivityContqactTry"/>
     </application>
 

@@ -265,9 +265,14 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-
-
-        bundle.putBoolean("ACCEPTED",false);
+        //
+        //
+        //
+        //
+        //
+        if(bundle != null) {
+            bundle.putBoolean("ACCEPTED", false);
+        }
         return view;
 
     }

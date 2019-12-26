@@ -57,29 +57,29 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Bundle bundle = new Bundle();
                 bundle.putString("email",email);
+                if(chats.get(position).getStatus()==Chat.NOT_AGREED){
 
-                if(chats.get(0).getStatus()==Chat.NOT_AGREED){
                     ChatNotAgreedFragment chatNotAgreedFragment = new ChatNotAgreedFragment();
                     FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     chatNotAgreedFragment.setArguments(bundle);
                     fragmentTransaction.replace(R.id.main_layout,chatNotAgreedFragment);
                     fragmentTransaction.commit();
                 }
-                if(chats.get(0).getStatus()==Chat.AGREED){
+                if(chats.get(position).getStatus()==Chat.AGREED){
                     ChatAgreedFragment chatAgreedFragment = new ChatAgreedFragment();
                     FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     chatAgreedFragment.setArguments(bundle);
                     fragmentTransaction.replace(R.id.main_layout,chatAgreedFragment);
                     fragmentTransaction.commit();
                 }
-                if(chats.get(0).getStatus()==Chat.RETURNED){
+                if(chats.get(position).getStatus()==Chat.RETURNED){
                     ChatReturnedFragment chatReturnedFragment = new ChatReturnedFragment();
                     FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     chatReturnedFragment.setArguments(bundle);
                     fragmentTransaction.replace(R.id.main_layout,chatReturnedFragment);
                     fragmentTransaction.commit();
                 }
-                if(chats.get(0).getStatus()==Chat.WAITING_FOR_RETURN){
+                if(chats.get(position).getStatus()==Chat.WAITING_FOR_RETURN){
                     ChatDoneFragment chatDoneFragment = new ChatDoneFragment();
                     FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                     chatDoneFragment.setArguments(bundle);
@@ -89,9 +89,9 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
             }
 
         });
-        chats = new ArrayList<Chat>();
-        //chatUsersAdapter = new UserChatsAdapter();
-        //chatList.setAdapter(chatUsersAdapter);
+
+        chatUsersAdapter = new UserChatsAdapter(getContext(),chats,email);
+        chatList.setAdapter(chatUsersAdapter);
         ImageButton homeButton = (ImageButton)view.findViewById(R.id.navigationHome);
         ImageButton mapButton = (ImageButton)view.findViewById(R.id.navigationMap);
         ImageButton myNoticesButton = (ImageButton)view.findViewById(R.id.navigationMyNotices);

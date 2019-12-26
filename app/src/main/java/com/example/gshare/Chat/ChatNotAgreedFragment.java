@@ -57,16 +57,13 @@ public class ChatNotAgreedFragment extends Fragment {
     ListView listView;
     ChatAdapter chatAdapter;
     String textBeSend;
-    ArrayList<String> stringMessages;
-    String user;
-    //String user;
-    String notice;
 
     EditText editText;
     EditText editG;
     EditText editDay;
     TextView noticeName;
     Button userNumaAndSurname;
+    TextView gText;
 
     Notice chatNotice;
     Chat chat;
@@ -97,17 +94,24 @@ public class ChatNotAgreedFragment extends Fragment {
         editText = view.findViewById(R.id.editText);
         noticeName = view.findViewById(R.id.itemName);
         userNumaAndSurname = view.findViewById(R.id.nameButton);
+        gText = view.findViewById(R.id.moneyTextView);
 
         //chat = DBHelper.getChat();
         chatNotice = new Notice("bad",5,"dasdfa",0,userTry,
                 100,new LocationG());//DBHelper.getNotice(noticeId);
-        chat = new Chat(chatNotice,chatNotice.getNoticeOwner(),userTry);
+        chat = new Chat(chatNotice,chatNotice.getNoticeOwner(),userTry2);
         chat.setStatus(Chat.NOT_AGREED);
         itemOwner = userTry;
 
         noticeName.setText(chatNotice.getName());
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
+        try {
+            gText.setText(CallUserByEmail.call(email).getG() + "");
+        }
+        catch (Exception e ){
+            e.printStackTrace();
+        }
 /*
         try {
             if (CallUserByEmail.call(email).equals(chat.getCustomer())) {

@@ -42,16 +42,13 @@ public class ChatReturnedFragment extends Fragment {
     ListView listView;
     ChatAdapter chatAdapter;
     String textBeSend;
-    ArrayList<String> stringMessages;
-    String user;
-    //String user;
-    String notice;
 
     EditText editText;
     EditText editG;
     EditText editDay;
     TextView noticeName;
     Button userNumaAndSurname;
+    TextView gText;
 
     Notice chatNotice;
     Chat chat;
@@ -77,6 +74,7 @@ public class ChatReturnedFragment extends Fragment {
         editText = view.findViewById(R.id.editText);
         noticeName = view.findViewById(R.id.itemName);
         userNumaAndSurname = view.findViewById(R.id.nameButton);
+        gText = view.findViewById(R.id.moneyTextView);
 
 
         //chat = DBHelper.getChat();
@@ -88,6 +86,13 @@ public class ChatReturnedFragment extends Fragment {
         noticeName.setText(chatNotice.getName());
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
+
+        try {
+            gText.setText(CallUserByEmail.call(email).getG()+"");
+        }
+        catch (Exception e ){
+            e.printStackTrace();
+        }
 
         try {
             if (CallUserByEmail.call(email).equals(chat.getCustomer())) {

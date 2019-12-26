@@ -41,7 +41,6 @@ public class ChatAgreedFragment extends Fragment {
     ListView listView;
     ChatAdapter chatAdapter;
     String textBeSend;
-    ArrayList<String> stringMessages;
 
     EditText editText;
     EditText editG;
@@ -49,6 +48,7 @@ public class ChatAgreedFragment extends Fragment {
     TextView noticeName;
     Button userNumaAndSurname;
     TextView timeLeft;
+    TextView gText;
 
     Notice chatNotice;
     Chat chat;
@@ -74,6 +74,7 @@ public class ChatAgreedFragment extends Fragment {
         noticeName = view.findViewById(R.id.itemName);
         userNumaAndSurname = view.findViewById(R.id.nameButton);
         timeLeft = view.findViewById(R.id.timeLeftTextView);
+        gText = view.findViewById(R.id.moneyTextView);
 
         //chat = DBHelper.getChat();
         chatNotice = chat.getNotice();// new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
@@ -84,6 +85,12 @@ public class ChatAgreedFragment extends Fragment {
         editG.setText( chatNotice.getG() + "" );
         editDay.setText( chatNotice.getDay() + "");
         timeLeft.setText( chatNotice.computeTimeLeftHours() + "" );
+        try {
+            gText.setText(CallUserByEmail.call(email).getG() + "");
+        }
+        catch (Exception e ){
+            e.printStackTrace();
+        }
 
         if( chatNotice.computeTimeLeftForMilliSeconds() <= 0  ){
             Bundle bundle = new Bundle();

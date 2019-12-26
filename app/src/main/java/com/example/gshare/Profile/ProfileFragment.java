@@ -87,6 +87,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 100, new LocationG()));
         notices.add(new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
                 100, new LocationG()));
+        notices.add(new Notice("bad", 5, "dasdfa", 0, new User("Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100),
+                100, new LocationG()));
         //notices = getTransactions(user);
         listView = (ListView) view.findViewById(R.id.listViewProfile);
         adapter = new ProfileTransactionAdapter(getContext(),notices);

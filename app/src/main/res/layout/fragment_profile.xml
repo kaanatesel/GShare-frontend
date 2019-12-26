@@ -197,19 +197,18 @@
     </ScrollView>
 
 
-
-        <ListView
-            android:id="@+id/listViewProfile"
-            android:layout_width="match_parent"
-            android:layout_height="210dp"
-
-            android:layout_marginTop="0dp"></ListView>
+    <ListView
+        android:id="@+id/listViewProfile"
+        android:layout_width="match_parent"
+        android:layout_height="249dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="0dp"></ListView>
 
     <fragment
         android:id="@+id/navigatorBarFragment"
         android:name="com.example.gshare.NavigatorFragment"
         android:layout_width="match_parent"
-        android:layout_height="89dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"></fragment>
 
     <RelativeLayout

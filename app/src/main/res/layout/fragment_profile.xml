@@ -198,7 +198,21 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="39dp"
-        android:layout_gravity="bottom"></RelativeLayout>
+        android:layout_height="249dp"
+        android:layout_gravity="bottom">
+
+        <ListView
+            android:id="@+id/listViewProfile"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"></ListView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="bottom"></RelativeLayout>
+    </RelativeLayout>
+
 
 </FrameLayout>

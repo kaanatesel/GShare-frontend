@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.gshare.ModelClasses.User.User;
 import com.example.gshare.R;
 
+import java.util.ArrayList;
+
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     User user;
@@ -38,8 +41,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     Button chat;
     Button profile;
     Notice notices;
-
+    ListView listView;
+        ArrayList<Notice> notices;
     String email;
+    ProfileTransactionAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         //username.setText(user.getUserName());
         //nameAndSurname.setText(user.getNameAndSurname());
+
+        //notices = getTransactions(user);
+        //listView = (ListView) view.findViewById(R.id.listViewProfile);
+        //adapter = new ProfileTransactionAdapter(getContext(),notices);
+        //listView.setAdapter(adapter);
+
 
         editButton.setOnClickListener(this);
 

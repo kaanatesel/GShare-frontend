@@ -67,19 +67,23 @@ public class ChatReturnedFragment extends Fragment {
 
 
         email = getArguments().getString("email");
+
+        final User  userTry = new User("OnurKorkmaz", "qwerty", "123456", "qwerty", 6);
+        final User  userTry2 = new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 );
         noticeId = getArguments().getInt("noticeId");
 
         editG = view.findViewById(R.id.gEditText);
         editDay = view.findViewById(R.id.daysEditText);
         editText = view.findViewById(R.id.editText);
         noticeName = view.findViewById(R.id.itemName);
-        userNumaAndSurname = view.findViewById(R.id.nameButton);
+        userNumaAndSurname = view.findViewById(R.id.nameButton2);
         gText = view.findViewById(R.id.moneyTextView);
 
 
         //chat = DBHelper.getChat();
-        chatNotice = chat.getNotice();//new Notice("bad",5,"dasdfa",0, new User( "Cagri Eren", "ejderado", "dfasfd", "ejderado99@gmail.com", 100 ),
-                //100,new LocationG());//DBHelper.getNotice(noticeId);
+        chatNotice = new Notice("bad",5,"dasdfa",0,userTry,
+                100,new LocationG());//DBHelper.getNotice(noticeId);
+        chat = new Chat(chatNotice,chatNotice.getNoticeOwner(),userTry2);
 
         chat.setStatus(Chat.RETURNED);
 
@@ -95,7 +99,7 @@ public class ChatReturnedFragment extends Fragment {
         }
 
         try {
-            if (CallUserByEmail.call(email).equals(chat.getCustomer())) {
+            if(userTry.equals(chat.getCustomer())){//if (CallUserByEmail.call(email).equals(chat.getCustomer())) {
                 userNumaAndSurname.setText(chat.getNoticeOwner().getNameAndSurname());
                 recieverUser = chat.getNoticeOwner();
                 if (chat.getNotice().getNoticeType() == Notice.BORROW_NOTICE) {
@@ -110,7 +114,7 @@ public class ChatReturnedFragment extends Fragment {
             e.printStackTrace();
         }
         try {
-            if (CallUserByEmail.call(email).equals(chat.getNoticeOwner())) {
+            if(userTry.equals(chat.getNoticeOwner())){//if (CallUserByEmail.call(email).equals(chat.getNoticeOwner())) {
                 userNumaAndSurname.setText(chat.getCustomer().getNameAndSurname());
                 recieverUser = chat.getCustomer();
                 if (chat.getNotice().getNoticeType() == Notice.LEND_NOTICE) {
@@ -132,10 +136,10 @@ public class ChatReturnedFragment extends Fragment {
                 Bundle bundle = new Bundle();
 
                 try {
-                    if (CallUserByEmail.call(email).equals(chat.getCustomer())) {
+                    if(userTry.equals(chat.getCustomer())){//if (CallUserByEmail.call(email).equals(chat.getCustomer())) {
                         bundle.putString("userEmail", chat.getNoticeOwner().getEmail());
                     }
-                    if (CallUserByEmail.call(email).equals(chat.getNoticeOwner())) {
+                    if(userTry.equals(chat.getNoticeOwner())){//if (CallUserByEmail.call(email).equals(chat.getNoticeOwner())) {
                         bundle.putString("userEmail", chat.getCustomer().getUserName());
                     }
                 }
@@ -160,7 +164,7 @@ public class ChatReturnedFragment extends Fragment {
                 textBeSend = editText.getText().toString();
                 Message message = null;
                 try {
-                    message = new Message(textBeSend, recieverUser, CallUserByEmail.call(email));//CallByUserEmail.call(email)
+                    message = new Message(textBeSend, recieverUser, userTry);//CallByUserEmail.call(email)
                 }
                 catch (Exception e ){
                     e.printStackTrace();

@@ -74,7 +74,7 @@ public class ChatDoneFragment extends Fragment {
         editDay = view.findViewById(R.id.daysEditText);
         editText = view.findViewById(R.id.editText);
         noticeName = view.findViewById(R.id.itemName);
-        userNumaAndSurname = view.findViewById(R.id.nameButton);
+        userNumaAndSurname = view.findViewById(R.id.nameButton2);
         gText = view.findViewById(R.id.moneyTextView);
 
 

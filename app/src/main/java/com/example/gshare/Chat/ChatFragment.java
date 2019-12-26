@@ -57,6 +57,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         ImageButton myNoticesButton = (ImageButton)view.findViewById(R.id.navigationMyNotices);
         ImageButton chatButton = (ImageButton)view.findViewById(R.id.navigationChat);
         ImageButton profileButton = (ImageButton)view.findViewById(R.id.navigationProfile);
+
         homeButton.setOnClickListener(this);
         mapButton.setOnClickListener(this);
         myNoticesButton.setOnClickListener(this);
